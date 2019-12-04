@@ -3,10 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { FormComponent } from './component/form/form.component';
+import { LandingComponent } from './component/landing/landing.component';
+import { LibraryComponent } from './component/library/library.component';
+import { LoaderComponent } from './component/loader/loader.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { ProfileComponent } from './component/profile/profile.component';
+import { QuizComponent } from './component/quiz/quiz.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    FormComponent,
+    LandingComponent,
+    LibraryComponent,
+    LoaderComponent,
+    NavbarComponent,
+    ProfileComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
