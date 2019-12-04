@@ -11,6 +11,7 @@ import { LoaderComponent } from './component/loader/loader.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { QuizComponent } from './component/quiz/quiz.component';
+import { SidebarlibraryComponent } from './component/library/sidebarlibrary/sidebarlibrary.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { QuizComponent } from './component/quiz/quiz.component';
     LoaderComponent,
     NavbarComponent,
     ProfileComponent,
-    QuizComponent
+    QuizComponent,
+    SidebarlibraryComponent
   ],
   imports: [
     BrowserModule,

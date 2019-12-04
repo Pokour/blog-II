@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+export let browserRefreshforApp = false;
 
 @Component({
   selector: 'app-root',

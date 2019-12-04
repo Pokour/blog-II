@@ -1,1 +1,501 @@
-<p>form works!</p>
+<!-- Basic form Info -->
+<div *ngIf = "auth.user$ | async as user" class="container formcard">
+    <div class="row">
+      <div class="col-md-7">
+        <h2> Basic Info </h2>
+        <form>
+          <div class="form-row">
+            <div  class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input [(ngModel)] = "user.email" name = "email" type="email" class="form-control" id="inputEmail4" placeholder="Email" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputName">Name</label>
+              <input type="text" class="form-control" id="inputName" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputState">Gender/Type</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Institution</option>
+                <option>None</option>
+              </select>
+            </div>
+  
+            <div class="form-group col-md-6">
+              <!-- <label for="inputrole">Role</label>
+              <select [(ngModel)] = "seletedRole" id="inputrole" class="form-control" name="something">
+              <option *ngFor = "let role of roleOptions; let k = index" [selected] = "k == 0" [value]= "role">{{role}}</option>
+              </select>
+              <p>{{selectedRole}}</p> -->
+              
+              <label for="inputState">Role</label>
+              <select #selectedrole id="inputState" class="form-control" (change)= "selectedRoleByUser(selectedrole.value)" >
+                <option *ngFor = "let role of roleOptions; let i = index" [selected] = "i == 0" [value] = "role">{{role}}</option>
+              </select>
+              
+            </div>
+          </div>
+        </form>
+      </div>
+  
+      <div class="col-md-5">
+        <img src="https://via.placeholder.com/300/09f/fff.png" />
+      </div>
+    </div>
+  </div>
+  
+  <!-- Form for role selected as Student -->
+  <div *ngIf= "seletedRole == 'student'" class="container formcard">
+    <div class="row">
+      <div class="col-md-7">
+        <h2> Chosen Role Student </h2>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress">FLATNO/HOUSENO</label>
+              <input [(ngModel)] = "student.add1" name="add1" type="text" class="form-control" id="inputaddress" placeholder="address1">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputaddress2">HOUSE/BUILDINGNAME</label>
+              <input [(ngModel)] = "student.add2" name="add2" type="text" class="form-control" id="inputaddress2" placeholder="address2">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress3">AREA/LOACTILY</label>
+              <input [(ngModel)] = "student.add3" name="add3" type="text" class="form-control" id="inputaddress3" placeholder="address3">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input [(ngModel)] = "student.city" name ="city" type="text" class="form-control" id="inputCity" placeholder="City">
+              <p>{{student.city}}</p>            
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputState">State</label>
+                <select [(ngModel)] = "student.state" id="inputState" class="form-control" name="state">
+                    <option *ngFor = "let state of states" [value]= "state">{{state}}</option>
+                </select>
+  
+              <!-- <label for="inputaddress4">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+              </select> -->
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">Pincode</label>
+              <input [(ngModel)] = "student.pincode" name="pincode" type="number" class="form-control" id="inputpin" placeholder="PIN">
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group phone-list col-md-6">
+              <label for="phone">Mobile</label>
+              <input [(ngModel)] = "student.mobile" name="mobile" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            </div>
+            <div class="form-group phone-list col-md-6">
+              <label for="phone">Alternate Mobile</label>
+              <input [(ngModel)] = "student.altmobile" name="altmobile" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">School/Institute</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+  
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">School/Institute</label>
+              <input [(ngModel)] = "student.institute" name="institute" type="text" class="form-control" id="inputpin" placeholder="Institution Name">
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="row">
+                <div class="col-md-7">
+                  <label class="form-check-label" for="exampleCheck1">My Institute is not listed</label>
+                </div>
+                <div class="col-md-5">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group phone-list col-md-6">
+              <label for="standard">Class</label>
+              <input [(ngModel)] = "student.standard" name="standard"  type="text" class="form-control" placeholder="class" />
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputineterest1">Topic of Intrest 1</label>
+              <select id="inputineterest1" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputineterest2">Topic of Intrest 2</label>
+              <select id="inputineterest2" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputineterest3">Topic of Intrest 3</label>
+              <select id="inputineterest3" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group phone-list col-md-6">
+                <label for="standard">Date Of Birth</label>
+                <input  [(ngModel)] = "student.dob" name="dob" type="date" class="form-control" placeholder="DOB" />
+              </div>
+          </div>
+          <button class = "btn btn-primary" (click)= "submit_student_info()" > Submit Test Button</button>
+        </form>
+      </div>
+      <div class="col-md-5">
+        <img src="https://via.placeholder.com/300/09f/fff.png" />
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Form for role selected as Collaborator -->
+  <div  *ngIf= "seletedRole == 'collaborator'" class="container formcard">
+      <div class="row">
+        <div class="col-md-7">
+          <h2> Chosen Role Collaborator </h2>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputaddress">FLATNO/HOUSENO</label>
+                <input type="text" class="form-control" id="inputaddress" placeholder="address1">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputaddress2">HOUSE/BUILDINGNAME</label>
+                <input type="text" class="form-control" id="inputaddress2" placeholder="address2">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputaddress3">AREA/LOACTILY</label>
+                <input type="text" class="form-control" id="inputaddress3" placeholder="address3">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="City">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputaddress4">State</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputaddress4">Pincode</label>
+                <input type="number" class="form-control" id="inputpin" placeholder="PIN">
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group phone-list col-md-6">
+                <label for="phone">Mobile</label>
+                <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+              </div>
+              <div class="form-group phone-list col-md-6">
+                <label for="phone">Alternate Mobile</label>
+                <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputaddress4">I did my Schooling at</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+    
+              <div class="form-group col-md-6">
+                <label for="inputaddress4">School Name</label>
+                <input type="text" class="form-control" id="inputpin" placeholder="Institution Name">
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <div class="col-md-7">
+                    <label class="form-check-label" for="exampleCheck1">My Institute is not listed</label>
+                  </div>
+                  <div class="col-md-5">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputaddress4">My College</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+    
+              <div class="form-group col-md-6">
+                <label for="inputaddress4">Collage Name</label>
+                <input type="text" class="form-control" id="inputpin" placeholder="Institution Name">
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <div class="row">
+                  <div class="col-md-7">
+                    <label class="form-check-label" for="exampleCheck1">My Institute is not listed</label>
+                  </div>
+                  <div class="col-md-5">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  </div>
+                </div>
+              </div>            
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group phone-list col-md-4">
+                <label for="standard">College Degree</label>
+                <input type="text" class="form-control" placeholder="Degree" />
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="inputaddress4">college Start</label>
+                  <input type="date" class="form-control" id="inputpin" placeholder="college Start">
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="inputaddress4">College Ends</label>
+                  <input type="date" class="form-control" id="inputpin" placeholder="Graduated">
+              </div>
+            </div>
+    
+            <!-- <div class="form-row">
+              <div class="form-group phone-list col-md-6">
+                <label for="standard">Class</label>
+                <input type="text" class="form-control" placeholder="class" />
+              </div>
+            </div> -->
+    
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputineterest1">Topic of Intrest 1</label>
+                <select id="inputineterest1" class="form-control">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputineterest2">Topic of Intrest 2</label>
+                <select id="inputineterest2" class="form-control">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputineterest3">Topic of Intrest 3</label>
+                <select id="inputineterest3" class="form-control">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group phone-list col-md-6">
+                  <label for="standard">Date Of Birth</label>
+                  <input type="date" class="form-control" placeholder="DOB" />
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="col-md-5">
+          <img src="https://via.placeholder.com/300/09f/fff.png" />
+        </div>
+      </div>
+    </div>
+  
+  
+    <!-- Form for role selected as Organisation -->
+  <div  *ngIf= "seletedRole == 'organisation'" class="container formcard">
+    <div class="row">
+      <div class="col-md-7">
+        <h2> Chosen Role Organisation </h2>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress">FLATNO/HOUSENO</label>
+              <input type="text" class="form-control" id="inputaddress" placeholder="address1">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputaddress2">HOUSE/BUILDINGNAME</label>
+              <input type="text" class="form-control" id="inputaddress2" placeholder="address2">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress3">AREA/LOACTILY</label>
+              <input type="text" class="form-control" id="inputaddress3" placeholder="address3">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="City">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">Pincode</label>
+              <input type="number" class="form-control" id="inputpin" placeholder="PIN">
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">Office Desk</label>
+              <input type="text" class="form-control" placeholder="Office Desk" />
+            </div>
+  
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">email</label>
+              <input type="email"class="form-control" placeholder="Email" />
+            </div>
+  
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">Phone</label>
+              <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">Principal/HOD</label>
+              <input type="text" class="form-control" placeholder="Principal/HOD Name" />
+            </div>
+  
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">email</label>
+              <input type="email"class="form-control" placeholder="Email" />
+            </div>
+  
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">Phone</label>
+              <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">POC for Activities</label>
+              <input type="text" class="form-control" placeholder="POC" />
+            </div>
+  
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">email</label>
+              <input type="email"class="form-control" placeholder="Email" />
+            </div>
+  
+            <div class="form-group phone-list col-md-4">
+              <label for="phone">Phone</label>
+              <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            </div>
+          </div>
+  
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">School/Institute</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+  
+            <div class="form-group col-md-6">
+              <label for="inputaddress4">School/Institute</label>
+              <input type="text" class="form-control" id="inputpin" placeholder="Institution Name">
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="row">
+                <div class="col-md-7">
+                  <label class="form-check-label" for="exampleCheck1">My Institute is not listed</label>
+                </div>
+                <div class="col-md-5">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                </div>
+              </div>
+            </div>
+          </div> -->
+  
+          <div class="form-row">
+            <div class="form-group phone-list col-md-6">
+              <label for="standard">Class</label>
+              <input type="text" class="form-control" placeholder="class" />
+            </div>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputineterest1">Topic of Intrest 1</label>
+              <select id="inputineterest1" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputineterest2">Topic of Intrest 2</label>
+              <select id="inputineterest2" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputineterest3">Topic of Intrest 3</label>
+              <select id="inputineterest3" class="form-control">
+                <option selected>Choose...</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group phone-list col-md-6">
+                <label for="standard">Date Of Birth</label>
+                <input type="date" class="form-control" placeholder="DOB" />
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="col-md-5">
+        <img src="https://via.placeholder.com/300/09f/fff.png" />
+      </div>
+    </div>
+  </div>

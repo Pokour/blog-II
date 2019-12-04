@@ -1,0 +1,58 @@
+.company-nav {
+    background-color:rgb(0, 0, 0);
+    color:rgb(209, 209, 209);
+    height: 55px;
+    z-index: 4;
+  }
+  
+  .company-nav .nav-lib-button {
+    background-color:#ffffff;
+    color:#000000;
+    font-size:14px;
+    margin-left: 120px;
+    margin-left: 0px;
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: medium;
+    opacity: 100%;
+    &:focus{
+      background-color: #000000;
+      color: #ffffff;
+    }
+    &:hover{
+      background-color: #000000;
+      color: #ffffff;
+    }
+  }
+  
+  .profile-image{
+    border-radius: 70%;
+    margin-top: 10px;
+  }
+  
+  .brand-logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    position: absolute;
+    z-index: 100;
+    top: 10px;
+    left: 70px;
+  }
+  
+  .navbar-collapse.collapse.show{
+    text-align: center;
+    z-index: 20;
+    background-color: #ffffff;
+    .navbar-nav{
+      img {
+        display: none;
+      }
+    }
+  }
+  
+  .sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }

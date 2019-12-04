@@ -1,1 +1,373 @@
-<p>profile works!</p>
+<!-- *********************************profile card starts here******************************** -->
+
+<div class="container-fluid students-container">
+    <!-- **************************Profile card student start here.*************************-->
+    <div *ngIf="auth.user$ | async as user" class="row">
+      <div class="col-12 col-sm-4 col-md-3 bg-white side-bar-profile">
+        <div class="text-center students-profile-card">
+          <div>
+            <img class="" src="{{user.photoURL}}" height="150px">
+          </div>
+          <!-- profile interests section -->
+          <div class="row px-2">
+            <span class="text-gray">SKILLS</span><span class="horizontal-line"></span>
+            <div class="col-4 ">
+              <div class=""></div>
+            </div>
+            <div class="col-4">
+              <div class=""></div>
+            </div>
+            <div class="col-4">
+              <div class=""></div>
+            </div>
+          </div>
+  
+          <button [routerLink]="['../form']" class="btn btn-primary" type="button">Update Profile </button>
+          <button [routerLink]="['../quiz']" class="btn btn-primary" type="button">Take Quiz </button>
+  
+          <nav class="nav flex-column navigation-column">
+            <a class="nav-link active" href="#library">Library</a>
+            <a class="nav-link" href="#toppers">Toppers</a>
+            <a class="nav-link" href="#timeline">Learning Curve</a>
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </nav>
+  
+        </div>
+      </div>
+      <div class="col-12 col-sm-8 col-md-9 profile-landscape">
+        <div class="text-left right-section-profile">
+          <div class="personal-information">
+            <h1 class="text-primary">{{user.displayName}}</h1>
+            <p class="mb-3"> {{role}}</p>
+            <span class="text-gray">Ranking</span>
+            <hr class="">
+          </div>
+  
+          <!-- Library Section -->
+          <div class=" students-library-card" id="library">
+            <div class="row">
+              <div class="col text-center"><img src="" class="text-center library-img">
+                <h2 class="text-left">Free Access to Library</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-12 text-left mb-3">
+                <div class="text-left mt-2">
+                  <p class=""> Our Library is opem, interactive, expanding and always driving innovative
+                    minds. We are dedicated and comitted to provide you with the best and latest content
+                    in the the field of
+                    "ROBOTICS"</p>
+                </div>
+              </div>
+  
+              <div class="col-12 text-center col-md-4">
+                <img src="./../../../assets/img/1.png" class="blog-post-img">
+                <h3>Blog 1</h3>
+                <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+              </div>
+              <div class="col-12 text-center col-md-4">
+                <img src="./../../../assets/img/1.png" class="blog-post-img">
+                <h3>Blog 1</h3>
+                <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+              </div>
+              <div class="col-12 text-center col-md-4">
+                <img src="./../../../assets/img/1.png" class="blog-post-img">
+                <h3>Blog 1</h3>
+                <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+              </div>
+  
+              <div class="col-12 text-center mt-5">
+                <p><a class="btn btn-primary" role="button" href="#">Visit Library</a></p>
+              </div>
+  
+            </div>
+          </div>
+          <!-- Library Section Ends-->
+  
+          <!-- Toppers Section -->
+          <div class="container students-timeline-card" id="toppers">
+            <h2 class="text-center mb-5">Toppers' of the Month</h2>
+            <div class="row no-gutters text-center">
+              <div class="col-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First</th>
+                      <th scope="col">Last</th>
+                      <th scope="col">Handle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                      <td>the Bird</td>
+                      <td>@twitter</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Toppers Section End -->
+  
+          <!-- Timeline card students start here -->
+          <div class="container students-timeline-card" id="timeline">
+            <h2 class="text-center mb-5">Students' Learning Curve.</h2>
+            <div class="row no-gutters text-center">
+              <div class="col-12 col-md-8 timeline-centered">
+                <div class="container py-2 mt-4 mb-4">
+                  <!-- timeline item 1 -->
+                  <div class="row">
+                    <!-- timeline item 1 left dot -->
+                    <div class="col-auto text-center flex-column d-none d-sm-flex">
+                      <div class="row h-50">
+                        <div class="col">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                      <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                      </h5>
+                      <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                    </div>
+                    <!-- timeline item 1 event content -->
+                    <div class="col py-2">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
+                          <h4 class="card-title text-muted">Day 1 Orientation</h4>
+                          <p class="card-text">Welcome to the campus, introduction and get started with the tour.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                  <!-- timeline item 2 -->
+                  <div class="row">
+                    <div class="col-auto text-center flex-column d-none d-sm-flex">
+                      <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                      <h5 class="m-2">
+                        <span class="badge badge-pill bg-success">&nbsp;</span>
+                      </h5>
+                      <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                    </div>
+                    <div class="col py-2">
+                      <div class="card border-success shadow">
+                        <div class="card-body">
+                          <div class="float-right text-success">Tue, Jan 10th 2019 8:30 AM</div>
+                          <h4 class="card-title text-success">Day 2 Sessions</h4>
+                          <p class="card-text">Sign-up for the lessons and speakers that coincide with your course
+                            syllabus. Meet and greet with instructors.</p>
+                          <button class="btn btn-sm btn-secondary" type="button" data-target="#t2_details"
+                            data-toggle="collapse">Show Details ▼</button>
+                          <div class="collapse border" id="t2_details">
+                            <div class="p-2 text-monospace">
+                              <div>08:30 - 09:00 Breakfast in CR 2A</div>
+                              <div>09:00 - 10:30 Live sessions in CR 3</div>
+                              <div>10:30 - 10:45 Break</div>
+                              <div>10:45 - 12:00 Live sessions in CR 3</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                  <!-- timeline item 3 -->
+                  <div class="row">
+                    <div class="col-auto text-center flex-column d-none d-sm-flex">
+                      <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                      <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                      </h5>
+                      <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                    </div>
+                    <div class="col py-2">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="float-right text-muted">Wed, Jan 11th 2019 8:30 AM</div>
+                          <h4 class="card-title">Day 3 Sessions</h4>
+                          <p>Shoreditch vegan artisan Helvetica. Tattooed Codeply Echo Park Godard kogi, next level irony
+                            ennui twee squid fap selvage. Meggings flannel Brooklyn literally small batch, mumblecore PBR
+                            try-hard kale chips. Brooklyn vinyl lumbersexual
+                            bicycle rights, viral fap cronut leggings squid chillwave pickled gentrify mustache. 3 wolf
+                            moon hashtag church-key Odd Future. Austin messenger bag normcore, Helvetica Williamsburg
+                            sartorial tote bag distillery Portland before
+                            they sold out gastropub taxidermy Vice.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                  <!-- timeline item 4 -->
+                  <div class="row">
+                    <div class="col-auto text-center flex-column d-none d-sm-flex">
+                      <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                      <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                      </h5>
+                      <div class="row h-50">
+                        <div class="col">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                      </div>
+                    </div>
+                    <div class="col py-2">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="float-right text-muted">Thu, Jan 12th 2019 11:30 AM</div>
+                          <h4 class="card-title">Day 4 Wrap-up</h4>
+                          <p>Join us for lunch in Bootsy's cafe across from the Campus Center.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                </div>
+                <!-- <article id="article-right" class="timeline-entry">
+                                  <div class="timeline-entry-inner">
+                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
+                                      <div class="timeline-icon bg-success"><em class="entypo-feather">Italic</em></div>
+                                      <div class="timeline-label">
+                                          <h2>Heading<a href="#">Art Ramadani</a><span>Posted a status update</span></h2>
+                                          <p>Tolerably earnestly middleton extremely distrusts</p>
+                                      </div>
+                                  </div>
+                              </article>
+                              <article id="article-left" class="timeline-entry left-aligned">
+                                  <div class="timeline-entry-inner">
+                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
+                                      <div class="timeline-icon bg-secondary"><em class="entypo-suitcase">Italic</em>
+                                      </div>
+                                      <div class="timeline-label">
+                                          <h2>Heading<a href="#">Job Meeting</a><span>You have a meeting at</span></h2>
+                                          <p>Tolerably earnestly middleton extremely distrusts</p>
+                                      </div>
+                                  </div>
+                              </article>
+                              <article id="article-right" class="timeline-entry">
+                                  <div class="timeline-entry-inner">
+                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
+                                      <div class="timeline-icon bg-success"><em class="entypo-feather">Italic</em></div>
+                                      <div class="timeline-label">
+                                          <h2>Heading<a href="#">Art Ramadani</a><span>Posted a status update</span></h2>
+                                          <p>Tolerably earnestly middleton extremely distrusts</p>
+                                      </div>
+                                  </div>
+                              </article>
+                              <article id="article-left" class="timeline-entry left-aligned">
+                                  <div class="timeline-entry-inner">
+                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
+                                      <div class="timeline-icon bg-secondary"><em class="entypo-suitcase">Italic</em>
+                                      </div>
+                                      <div class="timeline-label">
+                                          <h2>Heading<a href="#">Job Meeting</a><span>You have a meeting at</span></h2>
+                                          <p>Tolerably earnestly middleton extremely distrusts</p>
+                                      </div>
+                                  </div>
+                              </article> -->
+              </div>
+            </div>
+          </div>
+          <!-- ***************************Timeline card students ends here**************************** -->
+  
+          <!-- ************************Quiz and test card students start here************************* -->
+          <div class="container students-quizcard">
+            <div class="row no-gutters">
+              <div class="col text-center mb-5"><img src="" class="quiz-img">
+                <h1>Quiz &amp; Tests</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="media"><img class="mr-3">
+                  <div class="media-body">
+                    <h5>About Quiz</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                      diam feugiat,
+                      non
+                      vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                      orci
+                      finibus.
+                    </p>
+                    <div><a class="btn btn-outline-primary" data-toggle="collapse" aria-expanded="false"
+                        aria-controls="collapse-1" role="button" href="#collapse-1">More Info</a>
+                      <div class="collapse" id="collapse-1">
+                        <p>Collapse content.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="media"><img class="mr-3">
+                  <div class="media-body">
+                    <h5>About Courses and Tests</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                      diam feugiat,
+                      non
+                      vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                      orci
+                      finibus.
+                    </p>
+                    <div><a class="btn btn-outline-primary" data-toggle="collapse" aria-expanded="false"
+                        aria-controls="collapse-2" role="button" href="#collapse-2">More Info</a>
+                      <div class="collapse" id="collapse-2" style="margin-top:20px;">
+                        <div class="row">
+                          <div class="col-7"><select class="form-control-lg" style="min-width:126px;">
+                              <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                              </optgroup>
+                            </select></div>
+                          <div class="col-5"><button class="btn btn-outline-primary btn-block" type="button"
+                              style="width:116px;">Course Details</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ************************Quiz and test card students ends here************************* -->
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- *********************************profile card ends here******************************** -->

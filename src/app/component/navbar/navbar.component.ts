@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthsService } from 'src/app/service/auths.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @Input()  isSticky: Boolean; //Getting from app.components
 
-  constructor() { }
+  constructor( public auth: AuthsService ) { }
 
   ngOnInit() {
+    console.log(this.isSticky)
+  }
+
+  accountlogout(){
+    this.auth.logout();
   }
 
 }
