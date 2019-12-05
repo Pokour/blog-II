@@ -1,18 +1,13 @@
 <nav #navbar class="navbar navbar-light bg-light navbar-expand-md company-nav">
-
     <div class="container-fluid">
         <a href="#" class="navbar-brand">
             <img alt="The Breadboard" src="../../../assets/TBB_BlackBG.png" class="brand-logo">
         </a>
-
         <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navcol-1">
-
-
             <ul class="nav navbar-nav ml-auto">
                 <li>
                     <button class="btn btn-primary nav-lib-button mr-sm-2" type="button"
@@ -21,11 +16,9 @@
                 <li *ngIf="auth.user$ | async as user" class="navbar-nav">
                     <img class="profile-image" src="{{user.photoURL}}" width="25" height="25" alt="avatar">
                 </li>
-
                 <li *ngIf="!(auth.user$ | async)" class="nav-item active">
                     <a class="nav-link" routerLink="login"> Login </a>
                 </li>
-
                 <li *ngIf="auth.user$ | async as user" class="dropdown">
                     <a data-toggle="dropdown" aria-expanded="false" href="#"
                         class="dropdown-toggle nav-link dropdown-toggle active">{{user.displayName}}</a>
@@ -35,7 +28,6 @@
                         <a role="presentation" href="#" class="dropdown-item" (click)="accountlogout()">Logout</a>
                     </div>
                 </li>
-
                 <li>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -49,11 +41,9 @@
                         </div>
                     </div>
                 </li>
-
                 <li role="presentation" class="nav-item">
                     <a href="#" class="nav-link active" routerLink="profile">Profile</a>
                 </li>
-
             </ul>
         </div>
     </div>

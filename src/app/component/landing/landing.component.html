@@ -1,103 +1,107 @@
-
 <!-- Hero Area Start -->
 <div id="demo" class="carousel slide" data-ride="carousel">
 
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-      <li data-target="#demo" data-slide-to="0" class="active"></li>
-      <li data-target="#demo" data-slide-to="1"></li>
-      <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-  
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../../../assets/carousel/dummy-2.jpg" alt="Los Angeles">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../assets/carousel/dummy-1.jpg" alt="Chicago">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../assets/carousel/dummy-3.png" alt="New York">
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../../../assets/carousel/dummy-2.jpg" alt="Los Angeles">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../assets/carousel/dummy-1.jpg" alt="Chicago">
+    </div>
+    <div class="carousel-item">
+      <img src="../../../assets/carousel/dummy-3.png" alt="New York">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+<!-- Hero Area End -->
+
+
+
+<div class="why-main-body">
+
+
+  <!-- Why Section Start -->
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-7">
+
+          <div>
+            <h2 class="title-hl wow fadeInLeft" data-wow-delay="0.3s">Why are we here? <br> </h2>
+            <p class="mb-4">We are an educational platform in a mission to create an ecosystem which
+              breeds young minds and help them pursue their hobby in electronics & robotics.
+              There is a lot of talk around robotics and the web has become a dumping
+              ground of such stories. We are here to solve that exact problem. We aim to
+              clear the clutter and provide a platform for students to guide them
+              through their road to learning.
+            </p>
+            <a href="#" class="btn btn-common">More About Us</a>
+            <button [routerLink]="['../quiz']" class="btn btn-primary" type="button" target="_blank">Take Quiz </button>
+          </div>
+
+        </div>
       </div>
     </div>
-  
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-  
-  </div>
-  <!-- Hero Area End -->
-  
-  
-  
-  <div class="why-main-body">
-  
-  
-    <!-- Why Section Start -->
-    <section >
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-lg-7">
-           
-              <div>
-                <h2 class="title-hl wow fadeInLeft" data-wow-delay="0.3s">Why are we here? <br> </h2>
-                <p class="mb-4">We are an educational platform in a mission to create an ecosystem which 
-                  breeds young minds and help them pursue their hobby in electronics & robotics. 
-                  There is a lot of talk around robotics and the web has become a dumping 
-                  ground of such stories. We are here to solve that exact problem. We aim to 
-                  clear the clutter and provide a platform for students to guide them 
-                  through their road to learning.
-                </p>
-                <a href="#" class="btn btn-common">More About Us</a>
-                <button [routerLink]="['../quiz']" class="btn btn-primary" type="button" target="_blank" >Take Quiz </button>
-              </div>
-           
+  </section>
+</div>
+<!-- Why Section End -->
+
+<!-- What Section Start -->
+<div class="what-main-body">
+  <section>
+    <div class="container-fluid">
+      <div class="row ">
+        <div class="col-md-12 col-sm-12">
+          <h2 class="text-center mb-4">What do we provide? <br> </h2>
+          <div class="row">
+            <div class="col-12 col-md-4 text-center">
+              <img src="../../../assets/landing/LandingPage_libraryIcon.svg" style="width:220px;">
+              <h3>Library</h3>
+              <p class="mt-4"> It is called a library, because it is one! Apart from the usual click bait articles, you
+                will find every other article as a valuable source to strengthen your knowledge in the subject.</p>
+            </div>
+            <div class="col-12 col-md-4 text-center">
+              <img src="../../../assets/landing/LandingPage_projectIcon.svg" style="width:220px;">
+              <h3>Projects</h3>
+              <p class="mt-4">This is where the fun part comes. Apply the lesson learnt! We welcome all the nerdy heads
+                out there to collaborate with us and be a part of exciting projects which will help you pursue a career
+                in modern technology.</p>
+            </div>
+            <div class="col-12 col-md-4 text-center">
+              <img src="../../../assets/landing/LandingPage_Marketplace.svg" style="width:220px;">
+              <h3>Products</h3>
+              <p class="mt-4">We have built a marketplace for all that you need to make believe the idea in your head.
+                Checkout the shop section in the website and find your item in need. Also, in the name of good hope, we
+                will start manufacturing the products which we believe might take off in the market. </p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-   <!-- Why Section End -->
-  
-   <!-- What Section Start -->
-  <div class="what-main-body">
-    <section >
-      <div class="container-fluid">
-        <div class="row ">
-          <div class="col-md-12 col-sm-12">        
-              <h2 class="text-center mb-4" >What do we provide? <br> </h2> 
-              <div class="row">
-                <div class="col-12 col-md-4 text-center">
-                  <img src="../../../assets/landing/LandingPage_libraryIcon.svg" style="width:220px;">
-                  <h3>Library</h3>
-                  <p class="mt-4"> It is called a library, because it is one! Apart from the usual click bait articles, you will find every other article as a valuable source to strengthen your knowledge in the subject.</p>
-                </div>
-                <div class="col-12 col-md-4 text-center">
-                  <img src="../../../assets/landing/LandingPage_projectIcon.svg" style="width:220px;">
-                  <h3>Projects</h3>
-                  <p class="mt-4">This is where the fun part comes. Apply the lesson learnt! We welcome all the nerdy heads out there to collaborate with us and be a part of exciting projects which will help you pursue a career in modern technology.</p>
-                </div>
-                <div class="col-12 col-md-4 text-center">
-                    <img src="../../../assets/landing/LandingPage_Marketplace.svg" style="width:220px;">
-                    <h3>Products</h3>
-                    <p class="mt-4">We have built a marketplace for all that you need to make believe the idea in your head. Checkout the shop section in the website and find your item in need. Also, in the name of good hope, we will start manufacturing the products which we believe might take off in the market. </p>
-                </div>
-              </div>         
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-   <!-- What Section Ends -->
-  
-    <!-- Get Started Section Start -->
-    <div class="get-started-main-body">
-        <!-- <section >
+    </div>
+  </section>
+</div>
+<!-- What Section Ends -->
+
+<!-- Get Started Section Start -->
+<div class="get-started-main-body">
+  <!-- <section >
           <div class="container-fluid">
             <h2 class="text-center pb-5" >Let's get started! <br> </h2> 
             <div class="row mt-5">
@@ -123,64 +127,64 @@
             </div>
           </div>
         </section> -->
-        <section class="roles-container">
-            <div class="container-fluid">
-              <h2 class="text-left pb-3" >Let's get started! <br> </h2> 
-              <h3 class="text-left pb-3" > Scroll the roles and choose what best suits you. </h3>
-              <div class="row mt-5 text-left">
-                <div class="col-sm-12 col-md-12 col-lg-12 " id="scroll" style=" cursor: pointer;">  
-                  <div class="row">
-                    <div class="col-12 col-md-3">
-                      <div class="text-center mb-5">
-                        <img src="../../../assets/landing/student.png" style="width:110px;">
-                        <h3>Student</h3>
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-9">
-                      <div class="description-space">
-                        <p>{{roleDescription[0]}}</p>
-                        <!-- <button class="btn btn-common mt-3">Sign Up</button> -->
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="text-center mb-5" >
-                          <img src="../../../assets/landing/collaborator.jpg" style="width:170px;">
-                          <h3>Collaborator</h3>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-9">
-                      <div class="description-space">
-                        <p>{{roleDescription[1]}}</p>
-                        <!-- <button class="btn btn-common mt-3">Sign Up</button> -->
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="text-center mb-3" >
-                            <img src="../../../assets/landing/institution.png" style="width:100px;">
-                            <h3>School/College</h3>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-9">
-                      <div class="description-space">
-                        <p>{{roleDescription[2]}}</p>
-                        <!-- <button class="btn btn-common mt-3">Sign Up</button> -->
-                      </div>
-                    </div>
-                  </div>  
-                  <div class="col-12 text-center">
-                      <button class="btn btn-common btn-lg mt-3">Sign Up</button> 
-                  </div>
-                </div>          
+  <section class="roles-container">
+    <div class="container-fluid">
+      <h2 class="text-left pb-3">Let's get started! <br> </h2>
+      <h3 class="text-left pb-3"> Scroll the roles and choose what best suits you. </h3>
+      <div class="row mt-5 text-left">
+        <div class="col-sm-12 col-md-12 col-lg-12 " id="scroll" style=" cursor: pointer;">
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <div class="text-center mb-5">
+                <img src="../../../assets/landing/student.png" style="width:110px;">
+                <h3>Student</h3>
               </div>
             </div>
-        </section>
+            <div class="col-12 col-md-9">
+              <div class="description-space">
+                <p>{{roleDescription[0]}}</p>
+                <!-- <button class="btn btn-common mt-3">Sign Up</button> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="text-center mb-5">
+                <img src="../../../assets/landing/collaborator.jpg" style="width:170px;">
+                <h3>Collaborator</h3>
+              </div>
+            </div>
+            <div class="col-12 col-md-9">
+              <div class="description-space">
+                <p>{{roleDescription[1]}}</p>
+                <!-- <button class="btn btn-common mt-3">Sign Up</button> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="text-center mb-3">
+                <img src="../../../assets/landing/institution.png" style="width:100px;">
+                <h3>School/College</h3>
+              </div>
+            </div>
+            <div class="col-12 col-md-9">
+              <div class="description-space">
+                <p>{{roleDescription[2]}}</p>
+                <!-- <button class="btn btn-common mt-3">Sign Up</button> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <button class="btn btn-common btn-lg mt-3">Sign Up</button>
+          </div>
+        </div>
+      </div>
     </div>
-     <!-- Get Started Section Ends -->
-  
-    <!--==========================
+  </section>
+</div>
+<!-- Get Started Section Ends -->
+
+<!--==========================
         Get Started Section
       ============================-->
-    <!-- <section id="get-started" class="padd-section text-center wow fadeInUp">
+<!-- <section id="get-started" class="padd-section text-center wow fadeInUp">
   
       <div class="container">
         <div class="section-title text-center">
@@ -231,88 +235,86 @@
       </div>
   
     </section> -->
-  
-  
-  
-  
-    <!-- Blog Section -->
-    <section id="blog">
-      <!-- Container Starts -->
-      <div class="container">
-        <div class="section-header text-center">
-          <h2 class="section-title wow fadeInDown" >Recent additions to the Library</h2>
-          <p>A desire to help and empower others between community contributors in technology. <br> 
-          </p>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 blog-item">
-            <!-- Blog Item Starts -->
-            <div class="blog-item-wrapper wow fadeInLeft" data-wow-delay="0.3s">
-              <!-- <div class="blog-item-img">
+
+
+
+
+<!-- Blog Section -->
+<section id="blog">
+  <!-- Container Starts -->
+  <div class="container">
+    <div class="section-header text-center">
+      <h2 class="section-title wow fadeInDown">Recent additions to the Library</h2>
+      <p>A desire to help and empower others between community contributors in technology. <br>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 blog-item">
+        <!-- Blog Item Starts -->
+        <div class="blog-item-wrapper wow fadeInLeft" data-wow-delay="0.3s">
+          <!-- <div class="blog-item-img">
                 <a [routerLink]="['../blog']">
                   <img src="assets/img/blog/img1.jpg" alt="">
                 </a>
               </div> -->
-              <div class="blog-item-text">
-                <h3>
-                  <a [routerLink]="['../blog']">Suspendisse dictum non velit</a>
-                </h3>
-                <p>
-                  Nunc in mauris a ante rhoncus tristique vitae et nisl. Quisque ullamcorper rutrum lacinia. Integer varius
-                  ornare egestas.
-                </p>
-                <a [routerLink]="['../blog']" class="btn btn-common btn-rm">Read More</a>
-              </div>
-            </div>
-            <!-- Blog Item Wrapper Ends-->
+          <div class="blog-item-text">
+            <h3>
+              <a [routerLink]="['../blog']">Suspendisse dictum non velit</a>
+            </h3>
+            <p>
+              Nunc in mauris a ante rhoncus tristique vitae et nisl. Quisque ullamcorper rutrum lacinia. Integer varius
+              ornare egestas.
+            </p>
+            <a [routerLink]="['../blog']" class="btn btn-common btn-rm">Read More</a>
           </div>
-  
-          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 blog-item">
-            <!-- Blog Item Starts -->
-            <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.6s">
-              <!-- <div class="blog-item-img">
+        </div>
+        <!-- Blog Item Wrapper Ends-->
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 blog-item">
+        <!-- Blog Item Starts -->
+        <div class="blog-item-wrapper wow fadeInUp" data-wow-delay="0.6s">
+          <!-- <div class="blog-item-img">
                 <a href="single-post.html">
                   <img src="assets/img/blog/img2.jpg" alt="">
                 </a>
               </div> -->
-              <div class="blog-item-text">
-                <h3>
-                  <a href="single-post.html">Remarkably Did Increasing</a>
-                </h3>
-                <p>
-                  Nunc in mauris a ante rhoncus tristique vitae et nisl. Quisque ullamcorper rutrum lacinia. Integer varius
-                  ornare egestas.
-                </p>
-                <a href="single-post.html" class="btn btn-common btn-rm">Read More</a>
-              </div>
-            </div>
-            <!-- Blog Item Wrapper Ends-->
+          <div class="blog-item-text">
+            <h3>
+              <a href="single-post.html">Remarkably Did Increasing</a>
+            </h3>
+            <p>
+              Nunc in mauris a ante rhoncus tristique vitae et nisl. Quisque ullamcorper rutrum lacinia. Integer varius
+              ornare egestas.
+            </p>
+            <a href="single-post.html" class="btn btn-common btn-rm">Read More</a>
           </div>
-  
-          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 blog-item">
-            <!-- Blog Item Starts -->
-            <div class="blog-item-wrapper wow fadeInRight" data-wow-delay="0.3s">
-              <!-- <div class="blog-item-img">
+        </div>
+        <!-- Blog Item Wrapper Ends-->
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 blog-item">
+        <!-- Blog Item Starts -->
+        <div class="blog-item-wrapper wow fadeInRight" data-wow-delay="0.3s">
+          <!-- <div class="blog-item-img">
                 <a href="single-post.html">
                   <img src="assets/img/blog/img3.jpg" alt="">
                 </a>
               </div> -->
-              <div class="blog-item-text">
-                <h3>
-                  <a href="single-post.html">Changing the topic scope</a>
-                </h3>
-                <p>
-                  Nunc in mauris a ante rhoncus tristique vitae et nisl. Quisque ullamcorper rutrum lacinia. Integer varius
-                  ornare egestas.
-                </p>
-                <a href="single-post.html" class="btn btn-common btn-rm">Read More</a>
-              </div>
-            </div>
-            <!-- Blog Item Wrapper Ends-->
+          <div class="blog-item-text">
+       s     <h3>
+              <a href="single-post.html">Changing the topic scope</a>
+            </h3>
+            <p>
+              Nunc in mauris a ante rhoncus tristique vitae et nisl. Quisque ullamcorper rutrum lacinia. Integer varius
+              ornare egestas.
+            </p>
+            <a href="single-post.html" class="btn btn-common btn-rm">Read More</a>
           </div>
         </div>
+        <!-- Blog Item Wrapper Ends-->
       </div>
-    </section>
-    <!-- blog Section End -->
-  
-  
+    </div>
+  </div>
+</section>
+<!-- blog Section End -->

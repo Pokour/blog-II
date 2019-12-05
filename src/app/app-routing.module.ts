@@ -9,13 +9,13 @@ import { AuthguardService } from './service/authguard.service';
 
 
 const routes: Routes = [
-  {path: '', component: LandingComponent  },
-  {path: 'landing', component: LandingComponent},
-  {path: 'form', component: FormComponent},
-  {path: 'library', component: LibraryComponent, canActivate: [AuthguardService]},
-  {path: 'library/:name', component: LibraryComponent, canActivate: [AuthguardService]},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthguardService]},
-  {path: 'login', component: LoginComponent}
+  { path: '', component: LandingComponent },
+  { path: 'landing', component: LandingComponent },
+  { path: 'form', component: FormComponent },
+  { path: 'library', component: LibraryComponent, canActivate: [AuthguardService] },
+  { path: 'library/:name', component: LibraryComponent, canActivate: [AuthguardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthguardService] },
+  { path: 'login', component: LoginComponent }
   // {path: 'blog', component: BlogComponent},
   // {path: 'quiz', component: QuizComponent}
 ];

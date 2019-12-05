@@ -19,29 +19,29 @@ export class AppComponent {
   isSticky: boolean = false;
 
 
-  constructor(userService: UserService, 
-    private auth: AuthsService, 
-    private router: Router, 
-    private utility: AppUtilService, 
+  constructor(userService: UserService,
+    private auth: AuthsService,
+    private router: Router,
+    private utility: AppUtilService,
     private _apputil: AppUtilService) {
-    
+
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefreshforApp = !router.navigated;
       }
     });
-    
+
     auth.user$.subscribe(user => {
       if (user) {
         this._apputil.loadingEnded();
-        console.log('User Object recieved after Authentication in appcomponent',user);
+        console.log('User Object recieved after Authentication in appcomponent', user);
         // if user is logged in we update the email and name in the firebase database using save() defined in UserService.
         userService.save(user);
         const storedUrl = localStorage.getItem('storedUrl');
-        if( this.router.url == '/login' || this.router.url.indexOf('/login') > -1){
+        if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
           this.auth.postLoggedIn();
         }
-    localStorage.clear();
+        localStorage.clear();
       }
     });
   }
@@ -60,19 +60,19 @@ export class AppComponent {
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {
     //   return false;
     // };
-  
+
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
-          this.router.navigated = false;
-          window.scrollTo(0, 0);
+        this.router.navigated = false;
+        window.scrollTo(0, 0);
       }
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     localStorage.clear();
     this.subscription.unsubscribe();
   }
-  
-  
+
+
 }
