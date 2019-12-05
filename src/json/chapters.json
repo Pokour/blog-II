@@ -1,0 +1,52 @@
+[
+  {
+    "0": [
+      "Charges",
+      "Current AC/DC",
+      "Resistance",
+      "Capacitance",
+      "Magnetism",
+      "Inductance"
+    ]
+  },
+
+  {
+    "0": [
+      "Resistor",
+      "Capacitor",
+      "Diode",
+      "Transistor",
+      "Mosfet",
+      "IC",
+      "Inductor",
+      "Antenna"
+    ],
+    "1": [
+      "Bridge Rectifier",
+      "Oscillator",
+      "Transistor Switch",
+      "555 Timer",
+      "OPamp",
+      "Logic Gates",
+      "Motor Drivers"
+    ],
+    "2": [
+      "Motor Driver",
+      "Stepper Driver",
+      "BLDC Driver",
+      "Relay Driver",
+      "Voltage Regulator",
+      "Analog to Digital"
+    ]
+  },
+
+  {
+    "0": [
+      "cat 2 book 0 chap 0",
+      "cat 2 book 0 chap 1",
+      "cat 2 book 0 chap 2",
+      "cat 2 book 0 chap 3",
+      "cat 2 book 0 chap 4"
+    ]
+  }
+]

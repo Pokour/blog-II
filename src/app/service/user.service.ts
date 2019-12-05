@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private dataShare: BehaviorSubject<Subdata> = new BehaviorSubject<Subdata>({} as any);
+  private dataShare: BehaviorSubject<any> = new BehaviorSubject({} as any);
   data$ = this.dataShare.asObservable();
 
   constructor() { }

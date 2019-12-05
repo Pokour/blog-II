@@ -1,0 +1,54 @@
+[
+    [
+      "url/url/",
+      "blogheading",
+      "blogInfo",
+      "synopsis",
+      "body",
+      "img",
+      "youtube"
+    ],
+    {
+      "blogheading": "How Does A Bulb Glow"
+    },
+    {
+      "blogInfo": [
+        {"authorImg": "author Image url"},
+        {"author": "Author Name"},
+        {"publishedOn": "date"},
+        {"lastedit": "date"},
+        {"lastUpdate": "date"},
+        {"edits": [
+          {"userName": "name1", "url": "urlllllll1"},
+          {"userName": "name2", "url": "urlllllll2"},
+          {"userName": "name3", "url": "urlllllll3"},
+          {"userName": "name4", "url": "urlllllll4"},
+          {"userName": "name5", "url": "urlllllll5"},
+          {"userName": "name6", "url": "urlllllll6"}
+          ]
+        }
+      ]
+    },
+    {
+      "synopsis": "Electronic circuits are at the core of all \n robots and automated machines. These circuits need power to operate, and this\npower is fed to the circuits in the form of flowing electrons. In this chapter,\nwe will cover the dynamics of the electrons and how their flow is created. This\nis the first step towards understanding the most basic concept of electronic\ncomponents and circuits."
+    },
+    {
+      "body": [
+        {"head": "Source of Electric Energy: Cell"},
+        {"para": "The branch  of chemistry dealing with the chemical changes which result in an\nelectrical phenomenon of charges moving across electrodes and electrolyte is\ntermed as electro-chemistry. A cell is a construction in which two electrodes\nare immersed in an electrolyte, an electrolytic solution of ions. The potential\ncreated by such reactions is measured in volts, and the energy that is linked\nwith this potential is the by-product of the cell reactions. Chemicals used to\nmake a cell determines the voltage of that cell. The chemical reactions\noccurring inside the cell is called a redox reaction. Different combinations of\nelectrodes and electrolytes are used to make cells with varying properties on\nthe basis of desired voltage and rechargeability."},
+        {"head": "Working of a cell"},
+        {"para": "Two electrodes in an electrolytic solution\nmake up a cell. An ongoing redox reaction in the cell creates a potential\ndifference between the two electrodes. When an external wire is connected to\nthe two electrodes, electricity starts to flow according to the potential\ndifference between the two electrodes. A chemical reaction involves a change of\nenergy at the molecular level between the two reacting entities and the product\nformed. A single electrode in an electrolytic solution is known as a half cell,\nand the overall redox reaction occurring at the two electrodes separately can\nbe seen as two half-cell reactions. "},
+        {"head": "voltaic Cell"},
+        {"para": "A\nVoltaic cell is made by using zinc and copper as the electrodes and dilute\nsulfuric acid as the electrolyte. In this voltaic cell, the reacting entities\nare Zn & H2SO4 and the products formed are ZnSO4 & H2. Fig 1.2 shows\nthe construction of a voltaic cell. The ongoing reaction creates a potential\ndifference, making Cu positively charged, and Zn negatively charged. When a\nbulb is externally connected to the two electrodes, the current starts to flow\nfrom Cu electrode, to Zn through the external wire and from Zn electrode to Cu\ninside the cell."},
+        {"head": "Reaction on zinc"},
+        {"para": "Zinc\nreacts with sulfuric acid to form zinc sulfide. In this process zinc atom from\nthe zinc electrode leaves behind 2 electrons and forms a bond with sulfide\nions. It is called as a half-cell reaction or oxidation reaction of a voltaic\ncell.\n\nZn   ----> Zn22+ + 2e-       E0 = − 0.76V"},
+        {"head": "Reaction on copper" },
+        {"para": "At the copper electrode, electrons from the\nzinc electrode travel through the external circuit and are gained by H+ ions to\nmake Hydrogen gas.\n\n2H+ ----> H2 E0\n= + 0.35 V\n\nZn (s) + H2SO4 (aq) ---> ZnSO4 (aq) + H2 (g)" }
+      ]
+    },
+    {
+      "img": "https://lh3.googleusercontent.com/-8mkhHfY5nTL8DKV-FVpyq9vatEIykApg0WNaPlYNShJkq7rsV6hlsNK9YpzL3KIvn9J7IOHf4X7wPgtS7froA9qGG7jAivbq8fa3haKTmPLDipJY6EW2NJKKHq1cbRG7EFBKK4yBw=w2400"},
+    {
+      "youtube": "https://www.youtube.com/embed/hN2H4sexhL4"
+    }
+  ]
