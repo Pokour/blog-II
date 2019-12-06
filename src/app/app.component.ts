@@ -18,43 +18,51 @@ export class AppComponent {
   subscription: Subscription;
   isSticky: boolean = false;
 
-
   constructor(userService: UserService,
-    private auth: AuthsService,
+    private authenticationService: AuthsService,
     private router: Router,
-    private utility: AppUtilService,
+    private utility: AppUtilService, // why AppUtilService serve is having 2 Instances?
     private _apputil: AppUtilService) {
 
+    /**********************************************************************
+     * EXPLAIN THE CODE BELOW
+     * ********************************************************************/
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefreshforApp = !router.navigated;
       }
     });
 
-    auth.user$.subscribe(user => {
-      if (user) {
-        this._apputil.loadingEnded();
-        console.log('User Object recieved after Authentication in appcomponent', user);
-        // if user is logged in we update the email and name in the firebase database using save() defined in UserService.
-        userService.save(user);
+    /**********************************************************************
+     * 1. Authentication starts from app.component.ts
+     * 2. Subscribe to the USER Observable in Authentication service.
+     * 3. Pass the recieved user object to save method in userService, user
+     *    parameters "name" and "email" are updated.
+     * 4. EXPLAIN the routing code after user is saved.
+     **********************************************************************/
+    authenticationService.user$.subscribe(userObjectRecieved => {
+      if (userObjectRecieved) {
+        // this._apputil.loadingEnded();
+        console.log('User Object recieved after Authentication in appcomponent', userObjectRecieved);
+        userService.save(userObjectRecieved);
         const storedUrl = localStorage.getItem('storedUrl');
         if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
-          this.auth.postLoggedIn();
+          this.authenticationService.postLoggedIn();
         }
         localStorage.clear();
       }
     });
   }
 
-  ngAfterViewInit() {
-    this.utility.getSpinnerSubject()
-      .pipe(
-        startWith(null),
-        delay(0),
-        tap(data => this.spinnerVisible = data),
-        catchError(data => throwError(data))
-      ).subscribe();
-  }
+  // ngAfterViewInit() {
+  //   this.utility.getSpinnerSubject()
+  //     .pipe(
+  //       startWith(null),
+  //       delay(0),
+  //       tap(data => this.spinnerVisible = data),
+  //       catchError(data => throwError(data))
+  //     ).subscribe();
+  // }
 
   ngOnInit() {
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {
