@@ -19,9 +19,9 @@ export class AppComponent {
   isSticky: boolean = false;
 
   constructor(userService: UserService,
-    private authenticationService: AuthsService,
+    private auth: AuthsService,
     private router: Router,
-    private utility: AppUtilService, // why AppUtilService serve is having 2 Instances?
+    private utility: AppUtilService, // why AppUtilService is having 2 Instances ?
     private _apputil: AppUtilService) {
 
     /**********************************************************************
@@ -40,14 +40,14 @@ export class AppComponent {
      *    parameters "name" and "email" are updated.
      * 4. EXPLAIN the routing code after user is saved.
      **********************************************************************/
-    authenticationService.user$.subscribe(userObjectRecieved => {
+    auth.firebaseUserObservable$.subscribe(userObjectRecieved => {
       if (userObjectRecieved) {
         // this._apputil.loadingEnded();
         console.log('User Object recieved after Authentication in appcomponent', userObjectRecieved);
         userService.save(userObjectRecieved);
         const storedUrl = localStorage.getItem('storedUrl');
         if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
-          this.authenticationService.postLoggedIn();
+          this.auth.postLoggedIn();
         }
         localStorage.clear();
       }

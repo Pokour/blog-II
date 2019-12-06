@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     private uservice: UserService,
     private _apputil: AppUtilService
   ) { 
-    auth.user$.subscribe(user => {
+    auth.firebaseUserObservable$.subscribe(user => {
       this.uid = user.uid;
     });
   }

@@ -12,7 +12,7 @@ export class AuthguardService {
   constructor(private auth: AuthsService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean | Promise<boolean> {
-    return this.auth.user$.pipe(map(user => {
+    return this.auth.firebaseUserObservable$.pipe(map(user => {
       if (user) {
         console.log("AuthGuard checked USER")
         return true;
