@@ -1,5 +1,5 @@
 <!-- Basic form Info -->
-<div *ngIf="auth.user$ | async as user" class="container formcard">
+<div *ngIf="auth.firebaseUserObservable$ | async as user" class="container formcard">
   <div class="row">
     <div class="col-md-7">
       <h2> Basic Info </h2>

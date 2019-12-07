@@ -10,7 +10,8 @@ import { AppUtilService } from 'src/app/service/app-util.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private  auth: AuthsService, private route: ActivatedRoute, private _apputil: AppUtilService) { }
+  constructor(private  auth: AuthsService, private route: ActivatedRoute, private _apputil: AppUtilService) {
+  }
 
   ngOnInit() {
     const storedUrl = localStorage.getItem('storedUrl');

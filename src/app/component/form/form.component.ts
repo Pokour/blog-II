@@ -115,11 +115,11 @@ export class FormComponent implements OnInit {
     public auth: AuthsService,
     private http: HttpClient,
     private crud: CrudService,
-    public uservice: UserService
+    public userService: UserService
   ) { }
 
   ngOnInit() {
-    this.uservice.data$.subscribe((data: any) => {
+    this.userService.data$.subscribe((data: any) => {
       console.log('Data recieved in forms from subject', data);
       this.subData = data;
       this.seletedRole = this.subData.fData.role;     // append role infoe fron GS to selectedRole
@@ -187,7 +187,7 @@ export class FormComponent implements OnInit {
         var data: any = confirmation;
         if (data) {
           const { userRow, roleRow, state } = data;
-          this.uservice.updateUser(this.uid, this.seletedRole, requestStatus, userRow, roleRow, state);
+          this.userService.updateUser(this.uid, this.seletedRole, requestStatus, userRow, roleRow, state);
         }
       });
       // once you have the data 

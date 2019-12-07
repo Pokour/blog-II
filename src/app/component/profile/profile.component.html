@@ -2,7 +2,7 @@
 
 <div class="container-fluid students-container">
   <!-- **************************Profile card student start here.*************************-->
-  <div *ngIf="auth.user$ | async as user" class="row">
+  <div *ngIf="auth.firebaseUserObservable$ | async as user" class="row">
     <div class="col-12 col-sm-4 col-md-3 bg-white side-bar-profile">
       <div class="text-center students-profile-card">
         <div>

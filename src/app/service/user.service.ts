@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
  * the subject.
  * To retrieve the data from the subject a data$ observable is created 
  * that needs to be subscribed to get the data in any component
- ****************************************************************/
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class UserService {
   /************************************************************
    * dataShare is the the Behaviour subject
    * data$ is the obserable defined for the Behaviour subject
-   ************************************************************/
+   */
   private dataShare: BehaviorSubject<any> = new BehaviorSubject({} as any);
   data$ = this.dataShare.asObservable();
 
@@ -28,7 +28,7 @@ export class UserService {
   /**********************************************************
    * This function send tha data to the subject by .next()
    * function
-   **********************************************************/
+   */
   sendToSubject(data) {
     this.dataShare.next(data);
     console.log('Data to  SUBJECT', data);
@@ -36,7 +36,7 @@ export class UserService {
   /**********************************************************
    * This function is used to save name and email of the user
    * to Firebase database
-   **********************************************************/
+   */
   save(user: firebase.User) {
     firebase.database().ref('/user/' + user.uid).update({
       name: user.displayName,
@@ -47,7 +47,7 @@ export class UserService {
    * This function is used to read the entire user footprint
    * of user in Firebase database under UID.
    * It reads only once the function is triggered.
-   **********************************************************/
+   */
   readUser(uid) {
     return firebase.database().ref('/user/' + uid).once('value').then(function (snapshot) {
       const userdata = snapshot.val();
@@ -57,7 +57,7 @@ export class UserService {
   /**********************************************************
    * updateUser is used to define the metadta and basic database
    * structure to the new signed in user who submits the profile
-   **********************************************************/
+   */
   updateUser(uid, seletedRole, requestStatus, userRow, roleRow, state) {
     firebase.database().ref('/user/' + uid).update({
       role: seletedRole,
