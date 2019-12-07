@@ -25,6 +25,21 @@ export class UserService {
 
   constructor() {
   }
+  /**************************************************************
+   * Objective of mandatoryLoginRoutine() method is to kick in right
+   * after a user logs in and determine current status of the user 
+   * and other details about user that would be pushed in to the
+   * behaviour subject and utilized in other components.
+   * 1. Read the data footprint in Firebase DB.
+   * 2. Check the recieved data to determine initial status of user.
+   *    Is the user (First time logged in) / (logged in earlier).
+   * 3. Determine the current status and update in the Behavioursubject.
+   * 4. Update the Firebase DB with basic updates for new user and 
+   *    Timestamp details for existing user. 
+   */
+  mandatoryLoginRoutine(userObjectRecieved){
+
+  }
   /**********************************************************
    * This function send tha data to the subject by .next()
    * function

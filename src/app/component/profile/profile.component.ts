@@ -10,8 +10,8 @@ import { AppUtilService } from 'src/app/service/app-util.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  uid: string;
-  newLibraryString: string = 'none';
+  uid = '';
+  newLibraryString = 'none';
   subData: any = {};
   googledata: Object;
   queryParamsObject: {};
