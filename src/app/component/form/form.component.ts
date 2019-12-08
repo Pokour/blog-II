@@ -119,11 +119,11 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.data$.subscribe((data: any) => {
+    this.userService.subjectDataObservable$.subscribe((data: any) => {
       console.log('Data recieved in forms from subject', data);
       this.subData = data;
       this.seletedRole = this.subData.fData.role;     // append role infoe fron GS to selectedRole
-      this.uid = this.subData.fData.uid;
+      this.uid = this.subData.uData.uid;
       if (this.seletedRole == 'student') {            // Check for selected role or Stored
         this.student = this.subData.gData.role;
       } else if (this.seletedRole == 'collaborator') {

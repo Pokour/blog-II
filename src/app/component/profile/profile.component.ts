@@ -27,73 +27,99 @@ export class ProfileComponent implements OnInit {
   newLibraryString = 'none';
   subData: any = {};
   googledata: Object;
-  queryParamsObject: {};
+  // queryParamsObject: {};
   role;
+  recievedSubjectData: any = {};
+  query = "";
 
   constructor(
-    private crud: CrudService,
-    public auth: AuthsService,
-    private userService: UserService,
-    private _apputil: AppUtilService
-  ) { 
-    userService.subjectDataObservable$.subscribe(data => {
-      this.uid = data.uid;
+    private crud: CrudService, public auth: AuthsService, private userService: UserService,
+    private _apputil: AppUtilService) {
+    userService.subjectDataObservable$.subscribe(recievedSubjectData => {
+      this.recievedSubjectData = recievedSubjectData;
     });
   }
-
+  /*******************************************************************
+   * 1. Destructuring of the behaviourSubject and get dataFootprint
+   *    and other data.
+   * 2. generate querystring for the request to be send to Google Sheets
+   * 3. 
+   */
   ngOnInit() {
-    this._apputil.loadingStarted();
-    this.userService.readUser(this.uid).then(data => {
+    // this._apputil.loadingStarted();
+    // this.userService.readUser(this.uid).then(data => {
+    //   if (data) {
+    //     console.log('Data from FIERBASE', data);
+    //     this.unwrapData(data);
+    //   }
+    // });
+    const { uData: { name, email, photoURL, uid, userType }, dataFootprint, uData } = this.recievedSubjectData;
+    this.subData = {fData:dataFootprint, uData: uData};
+    this.dataUnwrap(name, email, photoURL, uid, userType, dataFootprint);
+  }
+  /************************************************************************
+   * 1. Destructuring dataFootprint recieved from Behaviour subject.
+   * 2. Check userType "OUWP" "EUWOP" "NU"
+   * 3. generate query string to request Google Sheet
+   * 4. Send Google Sheet data to behaviur subject
+   */
+  dataUnwrap(name, email, photoURL, uid, userType, dataFootprint) {
+    const { lastTimestamp, requestStatus, role, signupTimestamp, metadata: { roleSheet, user, library } } = dataFootprint;
+    this.subData.fData = dataFootprint
+    if (userType == "OUWP") {
+      this.query = this.generateQueryString(role, requestStatus, user, roleSheet)
+        + "&library=" + this.generateLibraryString(library);
+      this.getGoogleSheetData(this.query);
+    }
+    if (userType == "EUWOP") {
+      this.query = this.generateQueryString(role, requestStatus, user, roleSheet);
+      this.getGoogleSheetData(this.query);
+    }
+    if (userType == "NU") {
+
+    }
+  }
+  /*************************************************************************
+   * Generating query string. Basic essential parameters
+   * role, requestStatus, user, roleSheet
+   */
+  generateQueryString(role, requestStatus, user, roleSheet) {
+    var queryString = "?action=read&role=" + role + "&requestStatus=" + requestStatus + "&userPointer="
+      + user + "&rolePointer=" + roleSheet;
+    return queryString;
+  }
+  /************************************************************************
+   * This function checks for existance of library node in Firebase DB
+   * If library array is detected it is converted to a string separated by ","
+   * If no library is detected "none" is returned
+   */
+  generateLibraryString(library) {
+    if (library) {
+      var libToString = '';
+      for (let i = 0; i < (library.length); i++) {
+        libToString = libToString + library[i] + ",";
+      }
+      return libToString;
+    }
+    return "none"
+  }
+  /*************************************************************************
+   * This function takes the query string and requests the Google Sheet data
+   * from CRUD service.
+   * As the data is recieved the data is passed to the Payload function as
+   * parameter
+   */
+  getGoogleSheetData(qstring) {
+    this.crud.readGsData(qstring).subscribe(data => {
       if (data) {
-        console.log('Data from FIERBASE', data);
-        this.unwrapData(data);
+        this.payLoadtoSubject(data);
       }
     });
   }
 
-   // This unwarapps the data recieved from the firebase
-   unwrapData(data) {
-    // Firebase data appended to subject object
-    this.subData.fData = data;
-    this.subData.fData.uid = this.uid;
-    this.role = this.subData.fData.role;
-    let queryString = ''; // Query parameters to pass to the appscript
-    //logic to check the status and nature of the user loggedIn and fetch data from GS
-    if (this.subData.fData.metadata) { // If the user is old
-      console.log('OLD USER');
-      // Data destructured
-      const { role, requestStatus, metadata: { user, roleSheet } } = data;
-      // converting all library pointers to a string      
-      if (data.metadata.library) {
-        this.newLibraryString = '';
-        for (let i = 0; i < (data.metadata.library.length); i++) {
-          this.newLibraryString = this.newLibraryString + data.metadata.library[i] + ",";
-        }
-      }
-      console.log('Library STRING', this.newLibraryString);       // library elements converted to string
-      queryString = "?action=read&role=" + role + "&requestStatus=" + requestStatus + "&userPointer="
-        + user + "&rolePointer=" + roleSheet + "&library=" + this.newLibraryString;
-      console.log('Query STRING', queryString);
-
-      // read the data from google sheet subscribe and store in gData
-      this.crud.readGsData(queryString).subscribe((data: any) => {
-        if (data) {
-          this.subData.gData = data;
-          console.log('Data Recieved GOOGLESHEETS', data);
-          this._apputil.loadingEnded();
-        }
-      });
-    }
-
-    
-    else if (this.subData.metadata == undefined) { // if the user is new
-      console.log('New User');
-      this._apputil.loadingEnded();
-    }
-
-    // Loading the data to the subject
+  payLoadtoSubject(gData) {
+    this.subData.gData = gData;
     this.userService.sendToSubject(this.subData);
   }
-
 
 }

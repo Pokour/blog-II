@@ -42,8 +42,8 @@ export class UserService {
    */
   mandatoryLoginRoutine(userObjectRecieved) {
     this.userObjectRecieved = userObjectRecieved;
-    console.log("MandatoryLoginRoutine",userObjectRecieved);
-    this.getDataFootprint(userObjectRecieved).then(dataFootprint => {      
+    console.log("MandatoryLoginRoutine", userObjectRecieved);
+    this.getDataFootprint(userObjectRecieved).then(dataFootprint => {
       console.log("data Inside promise", dataFootprint);
       this.checkUserStatus(dataFootprint);
     });
@@ -51,6 +51,9 @@ export class UserService {
   /********************************************************************
    * STEP 1
    * Get the data footprint from the Firebase DB to analyse the USER
+   * getDataFootprint() accepts userObjectRecieved recieved from
+   * fireAuthModule.
+   * promise is returned by the method with data from the UID.
    */
   getDataFootprint(userObjectRecieved) {
     return firebase.database().ref('/user/' + userObjectRecieved.uid).once('value').then(function (snapshot) {
@@ -91,19 +94,22 @@ export class UserService {
         signupTimestamp: new Date()
       });
     }
-    const {displayName, email, photoURL, uid } = this.userObjectRecieved;
-    var fdata = {
-      name: displayName,
-      email: email,
-      photoURL: photoURL,
-      uid: uid, userType: this.userType,
-      dataFootprint: dataFootprint}
+    const { displayName, email, photoURL, uid } = this.userObjectRecieved;
+    var fdata = { uData:{name: displayName, email: email, photoURL: photoURL,
+      uid: uid, userType: this.userType},
+      dataFootprint: dataFootprint
+    }
     console.log("From user status check", dataFootprint);
     this.sendToSubject(fdata);
   }
-  /*******************************************************************
+  /************************************************************************
    * STEP 3
    * Update the data to the Firebase DB
+   * saveToFirebaseOnLogin(p1,p2) recieves two parameters
+   * p1 is (user: firebase.User) the user object recieved from fireAuthModule
+   * p2 is the (obj: Object) object that needs to be updated in the FDB.
+   * this function updates the object passed as parameter to the node in
+   * FDB inside UID
    */
   saveToFirebaseOnLogin(user: firebase.User, obj: Object) {
     firebase.database().ref('/user/' + user.uid).update(obj);

@@ -36,10 +36,8 @@ export class AppComponent {
     /**********************************************************************
      * 1. Authentication starts from app.component.ts
      * 2. Subscribe to the USER Observable in Authentication service.
-     * 3. If user object is available Pass the recieved user object to save
-     *    method in userService, user parameters "name" and "email" are updated.
-     *    Create a new function in UserService mandatoryLoginRoutine()------------## TODO ##
-     *    replace userService.save() method.
+     * 3. Create a new function in UserService mandatoryLoginRoutine().
+     *    userObjectRecieved is passed as a parameter.
      * 4. Retrieve the stored url in local storage to navigate to the same route
      *    that the user was trying to reach before signing with redirect.
      * 5. EXPLAIN the routing code after navigateByUrl is saved.------------------## TODO ##
@@ -47,9 +45,9 @@ export class AppComponent {
     auth.firebaseUserObservable$.subscribe(userObjectRecieved => {
       if (userObjectRecieved) {
         // this._apputil.loadingEnded();
-        console.log('User Object recieved after Authentication in appcomponent', userObjectRecieved);
+        console.log('userObject from FireAuthModule', userObjectRecieved);
         userService.mandatoryLoginRoutine(userObjectRecieved);
-        // userService.save(userObjectRecieved);
+        // userService.save(userObjectRecieved);----------------------------------## deprecated ##
         let storedUrl = localStorage.getItem('storedUrl');
         router.navigateByUrl(storedUrl);
 
