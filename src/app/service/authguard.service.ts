@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { AuthsService } from './auths.service';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
+/****************************************************************************
+ * authguard service contains the logic to keep the user access routes
+ * that are authorised.
+ * If the user is authenticatedcanActivate property is used to return a TRUE
+ * to the app-routing.module.ts
+ * If user is not authenticated router.navigate() is used to redirect the user
+ * to the login page and queryParams property of the navigate() method is
+ * used to store the URL that the user tried to access in key "queryUrl" by 
+ * using "state.url" property of queryParams.
+ * 
+ */
 @Injectable({
   providedIn: 'root'
 })
-export class AuthguardService {
+export class AuthguardService implements CanActivate {
 
   constructor(private auth: AuthsService, private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean | Promise<boolean> {
+  canActivate(route, state: RouterStateSnapshot){
     return this.auth.firebaseUserObservable$.pipe(map(user => {
       if (user) {
         console.log("AuthGuard checked USER")
         return true;
       }
-      else {
-        console.log("Connot find USER. Navigating to Login page! Stored present url in queryParams using state property");
-        console.log("the saved URL is  " + state.url);
+      if(!user) {
+        console.log("Connot find USER. The attempted route is " + state.url);
         this.router.navigate(['/login'], { queryParams: { queryUrl: state.url } });
       }
 

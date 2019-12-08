@@ -26,7 +26,7 @@ export class AppComponent {
 
     /**********************************************************************
      * EXPLAIN THE CODE BELOW
-     * ********************************************************************/
+     */
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefreshforApp = !router.navigated;
@@ -36,20 +36,28 @@ export class AppComponent {
     /**********************************************************************
      * 1. Authentication starts from app.component.ts
      * 2. Subscribe to the USER Observable in Authentication service.
-     * 3. Pass the recieved user object to save method in userService, user
-     *    parameters "name" and "email" are updated.
-     * 4. EXPLAIN the routing code after user is saved.
-     **********************************************************************/
+     * 3. Create a new function in UserService mandatoryLoginRoutine().
+     *    userObjectRecieved is passed as a parameter.
+     * 4. Retrieve the stored url in local storage to navigate to the same route
+     *    that the user was trying to reach before signing with redirect.
+     * 5. EXPLAIN the routing code after navigateByUrl is saved.------------------## TODO ##
+     */
     auth.firebaseUserObservable$.subscribe(userObjectRecieved => {
       if (userObjectRecieved) {
         // this._apputil.loadingEnded();
-        console.log('User Object recieved after Authentication in appcomponent', userObjectRecieved);
-        userService.save(userObjectRecieved);
-        const storedUrl = localStorage.getItem('storedUrl');
-        if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
-          this.auth.postLoggedIn();
-        }
-        localStorage.clear();
+        console.log('userObject from FireAuthModule', userObjectRecieved);
+        userService.mandatoryLoginRoutine(userObjectRecieved);
+        // userService.save(userObjectRecieved);----------------------------------## deprecated ##
+        let storedUrl = localStorage.getItem('storedUrl');
+        router.navigateByUrl(storedUrl);
+
+        /******************************************************************
+         * Explain the use of commented code below
+         */
+        // if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
+        //   this.auth.postLoggedIn();
+        // }
+        // localStorage.clear();
       }
     });
   }
@@ -68,7 +76,6 @@ export class AppComponent {
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {
     //   return false;
     // };
-
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         this.router.navigated = false;
