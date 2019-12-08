@@ -49,7 +49,7 @@ export class AppComponent {
         // this._apputil.loadingEnded();
         console.log('User Object recieved after Authentication in appcomponent', userObjectRecieved);
         userService.mandatoryLoginRoutine(userObjectRecieved);
-        userService.save(userObjectRecieved);
+        // userService.save(userObjectRecieved);
         let storedUrl = localStorage.getItem('storedUrl');
         router.navigateByUrl(storedUrl);
 
@@ -59,9 +59,7 @@ export class AppComponent {
         // if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
         //   this.auth.postLoggedIn();
         // }
-
-
-        localStorage.clear();
+        // localStorage.clear();
       }
     });
   }
@@ -80,7 +78,6 @@ export class AppComponent {
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {
     //   return false;
     // };
-
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
         this.router.navigated = false;

@@ -45,9 +45,9 @@ export class AuthsService {
   /***********************************
    * What is this for ?
    */
-  postLoggedIn() {
-    this.router.navigateByUrl('/');
-  }
+  // postLoggedIn() {
+  //   this.router.navigateByUrl('/');
+  // }
   /********************************************
    * AngularFireAuth module id used to sign out
    */

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 
+
 /********************************************************************
  * UserService deals with all the data interaction with Firebase Mainly
  * saving updating and reading user to realtime database.UserService
@@ -21,8 +22,10 @@ export class UserService {
    * data$ is the obserable defined for the Behaviour subject
    */
   private dataShare: BehaviorSubject<any> = new BehaviorSubject({} as any);
-  data$ = this.dataShare.asObservable();
-
+  subjectDataObservable$ = this.dataShare.asObservable();
+  userType;
+  uid;
+  userObjectRecieved;
   constructor() {
   }
   /**************************************************************
@@ -37,8 +40,73 @@ export class UserService {
    * 4. Update the Firebase DB with basic updates for new user and 
    *    Timestamp details for existing user. 
    */
-  mandatoryLoginRoutine(userObjectRecieved){
-
+  mandatoryLoginRoutine(userObjectRecieved) {
+    this.userObjectRecieved = userObjectRecieved;
+    console.log("MandatoryLoginRoutine",userObjectRecieved);
+    this.getDataFootprint(userObjectRecieved).then(dataFootprint => {      
+      console.log("data Inside promise", dataFootprint);
+      this.checkUserStatus(dataFootprint);
+    });
+  }
+  /********************************************************************
+   * STEP 1
+   * Get the data footprint from the Firebase DB to analyse the USER
+   */
+  getDataFootprint(userObjectRecieved) {
+    return firebase.database().ref('/user/' + userObjectRecieved.uid).once('value').then(function (snapshot) {
+      const userdata = snapshot.val();
+      console.log("First", userdata);
+      return userdata;
+    });
+  }
+  /********************************************************************
+   * STEP 2
+   * Determine the USER status
+   * a. "FIRST TIME"
+   * b. "OLD WITHOUT PROFILE"
+   * c. "OLD WITH PROFILE" 
+   * d. Update to BehaviourSubject
+   */
+  checkUserStatus(dataFootprint) {
+    if (dataFootprint) {
+      if (dataFootprint.metadata) {
+        this.userType = "OUWP";  // OLD USER WITH PROFILE
+        this.saveToFirebaseOnLogin(this.userObjectRecieved, {
+          lastTimestamp: new Date()
+        });
+      }
+      if (!dataFootprint.metadata) {
+        this.userType = "EUWOP"; // EXISTING USER WITHOUT PROFILE
+        this.saveToFirebaseOnLogin(this.userObjectRecieved, {
+          lastTimestamp: new Date()
+        });
+      }
+    }
+    if (dataFootprint == null) {
+      this.userType = "NU";      // NEW USER
+      this.saveToFirebaseOnLogin(this.userObjectRecieved, {
+        name: this.userObjectRecieved.displayName,
+        email: this.userObjectRecieved.email,
+        lastTimestamp: new Date(),
+        signupTimestamp: new Date()
+      });
+    }
+    const {displayName, email, photoURL, uid } = this.userObjectRecieved;
+    var fdata = {
+      name: displayName,
+      email: email,
+      photoURL: photoURL,
+      uid: uid, userType: this.userType,
+      dataFootprint: dataFootprint}
+    console.log("From user status check", dataFootprint);
+    this.sendToSubject(fdata);
+  }
+  /*******************************************************************
+   * STEP 3
+   * Update the data to the Firebase DB
+   */
+  saveToFirebaseOnLogin(user: firebase.User, obj: Object) {
+    firebase.database().ref('/user/' + user.uid).update(obj);
   }
   /**********************************************************
    * This function send tha data to the subject by .next()
@@ -47,16 +115,6 @@ export class UserService {
   sendToSubject(data) {
     this.dataShare.next(data);
     console.log('Data to  SUBJECT', data);
-  }
-  /**********************************************************
-   * This function is used to save name and email of the user
-   * to Firebase database
-   */
-  save(user: firebase.User) {
-    firebase.database().ref('/user/' + user.uid).update({
-      name: user.displayName,
-      email: user.email
-    });
   }
   /**********************************************************
    * This function is used to read the entire user footprint

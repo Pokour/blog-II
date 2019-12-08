@@ -4,6 +4,19 @@ import { AuthsService } from 'src/app/service/auths.service';
 import { UserService } from 'src/app/service/user.service';
 import { AppUtilService } from 'src/app/service/app-util.service';
 
+/********************************************************************
+ * Objective of this component is to etrieve data from the Firebase
+ * and google sheet. This data is consumed by the user profile and forms
+ * Behaviour subject has firebaseUserObject and Firebase DB data from
+ * mandatoryLoginRoutine login routine. 
+ * 1. Subscribe to the behaviourSubject to get firebase datafootprint,
+ *    firebaseUserObject and inferred userType.
+ * 2. Destructure data accoring to the userType
+ * 3. generate a querystring to send request to Google Sheet data
+ * 4. read data from Google sheets.
+ * 4. Structure the object with GS data FB and upadte it in subject.
+ */
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,17 +33,17 @@ export class ProfileComponent implements OnInit {
   constructor(
     private crud: CrudService,
     public auth: AuthsService,
-    private uservice: UserService,
+    private userService: UserService,
     private _apputil: AppUtilService
   ) { 
-    auth.firebaseUserObservable$.subscribe(user => {
-      this.uid = user.uid;
+    userService.subjectDataObservable$.subscribe(data => {
+      this.uid = data.uid;
     });
   }
 
   ngOnInit() {
     this._apputil.loadingStarted();
-    this.uservice.readUser(this.uid).then(data => {
+    this.userService.readUser(this.uid).then(data => {
       if (data) {
         console.log('Data from FIERBASE', data);
         this.unwrapData(data);
@@ -79,7 +92,7 @@ export class ProfileComponent implements OnInit {
     }
 
     // Loading the data to the subject
-    this.uservice.sendToSubject(this.subData);
+    this.userService.sendToSubject(this.subData);
   }
 
 
