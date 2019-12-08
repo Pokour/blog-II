@@ -112,11 +112,8 @@ export class FormComponent implements OnInit {
   };
 
   constructor(
-    public auth: AuthsService,
-    private http: HttpClient,
-    private crud: CrudService,
-    public userService: UserService
-  ) { }
+    public auth: AuthsService, private http: HttpClient, private crud: CrudService,
+    public userService: UserService) { }
 
   ngOnInit() {
     this.userService.subjectDataObservable$.subscribe((data: any) => {
@@ -153,7 +150,6 @@ export class FormComponent implements OnInit {
       // Old user data must be updated and callback shold be updated to FDB
       this.updateOldUserProfile()
     }
-
   }
 
   createUserProfile() {
