@@ -54,15 +54,15 @@ export class AppComponent {
     });
   }
 
-  // ngAfterViewInit() {
-  //   this.utility.getSpinnerSubject()
-  //     .pipe(
-  //       startWith(null),
-  //       delay(0),
-  //       tap(data => this.spinnerVisible = data),
-  //       catchError(data => throwError(data))
-  //     ).subscribe();
-  // }
+  ngAfterViewInit() {
+    this.utility.getSpinnerSubject()
+      .pipe(
+        startWith(null),
+        delay(0),
+        tap(data => this.spinnerVisible = data),
+        catchError(data => throwError(data))
+      ).subscribe();
+  }
 
   ngOnInit() {
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {
