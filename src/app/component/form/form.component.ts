@@ -151,6 +151,7 @@ export class FormComponent implements OnInit {
     }
     if (userType == "OUWP") {
       // Old user data must be updated and callback shold be updated to FDB
+      this.updateOldUserProfile()
     }
 
   }
