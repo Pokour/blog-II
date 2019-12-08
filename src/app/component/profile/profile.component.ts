@@ -53,9 +53,9 @@ export class ProfileComponent implements OnInit {
     //     this.unwrapData(data);
     //   }
     // });
-    const { uData: { name, email, photoURL, uid, userType }, dataFootprint, uData } = this.recievedSubjectData;
-    this.subData = {fData:dataFootprint, uData: uData};
-    this.dataUnwrap(name, email, photoURL, uid, userType, dataFootprint);
+    const { uData: { name, email, photoURL, uid, userType }, fData, uData } = this.recievedSubjectData;
+    this.subData.uData = uData;
+    this.dataUnwrap(name, email, photoURL, uid, userType, fData);
   }
   /************************************************************************
    * 1. Destructuring dataFootprint recieved from Behaviour subject.
@@ -63,17 +63,18 @@ export class ProfileComponent implements OnInit {
    * 3. generate query string to request Google Sheet
    * 4. Send Google Sheet data to behaviur subject
    */
-  dataUnwrap(name, email, photoURL, uid, userType, dataFootprint) {
-    const { lastTimestamp, requestStatus, role, signupTimestamp, metadata: { roleSheet, user, library } } = dataFootprint;
-    this.subData.fData = dataFootprint
+  dataUnwrap(name, email, photoURL, uid, userType, fData) {
+    const { requestStatus, role, metadata } = fData;
+    this.subData.fData = fData
     if (userType == "OUWP") {
+      const {roleSheet, user, library} = metadata;
       this.query = this.generateQueryString(role, requestStatus, user, roleSheet)
         + "&library=" + this.generateLibraryString(library);
       this.getGoogleSheetData(this.query);
     }
     if (userType == "EUWOP") {
-      this.query = this.generateQueryString(role, requestStatus, user, roleSheet);
-      this.getGoogleSheetData(this.query);
+      // this.query = this.generateQueryString(role, requestStatus );
+      // this.getGoogleSheetData(this.query);
     }
     if (userType == "NU") {
 

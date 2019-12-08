@@ -42,9 +42,7 @@ export class UserService {
    */
   mandatoryLoginRoutine(userObjectRecieved) {
     this.userObjectRecieved = userObjectRecieved;
-    console.log("MandatoryLoginRoutine", userObjectRecieved);
     this.getDataFootprint(userObjectRecieved).then(dataFootprint => {
-      console.log("data Inside promise", dataFootprint);
       this.checkUserStatus(dataFootprint);
     });
   }
@@ -58,7 +56,6 @@ export class UserService {
   getDataFootprint(userObjectRecieved) {
     return firebase.database().ref('/user/' + userObjectRecieved.uid).once('value').then(function (snapshot) {
       const userdata = snapshot.val();
-      console.log("First", userdata);
       return userdata;
     });
   }
@@ -95,12 +92,11 @@ export class UserService {
       });
     }
     const { displayName, email, photoURL, uid } = this.userObjectRecieved;
-    var fdata = { uData:{name: displayName, email: email, photoURL: photoURL,
+    var dataObject = { uData:{name: displayName, email: email, photoURL: photoURL,
       uid: uid, userType: this.userType},
-      dataFootprint: dataFootprint
+      fData: dataFootprint
     }
-    console.log("From user status check", dataFootprint);
-    this.sendToSubject(fdata);
+    this.sendToSubject(dataObject);
   }
   /************************************************************************
    * STEP 3

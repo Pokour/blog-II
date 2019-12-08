@@ -123,7 +123,7 @@ export class FormComponent implements OnInit {
       console.log('Data recieved in forms from subject', data);
       this.subData = data;
       this.seletedRole = this.subData.fData.role;     // append role infoe fron GS to selectedRole
-      this.uid = this.subData.uData.uid;
+      this.uid = data.uData.uid;
       if (this.seletedRole == 'student') {            // Check for selected role or Stored
         this.student = this.subData.gData.role;
       } else if (this.seletedRole == 'collaborator') {
@@ -139,15 +139,54 @@ export class FormComponent implements OnInit {
     console.log(role)
   }
 
-  objectToQueryString(object, action) {
-    let keys = Object.keys(object);
-    let values = Object.values(object);
-    let abc = '?action=' + action + '&';
-    for (var i = 0; i < keys.length; i++) {
-      abc = abc + keys[i] + '=' + values[i] + '&';
+  submit_student_info() {
+    const { uData: { uid, userType, } } = this.subData;
+    if (userType == "NU") {
+      // metadadat should be saved after submit
+      this.createUserProfile();
     }
-    abc = abc + 'role=' + this.seletedRole + '&uid=' + this.subData.fData.uid;
-    return abc;
+    if (userType == "EUWOP") {
+      // metadadat should be saved after submit
+      this.createUserProfile();
+    }
+    if (userType == "OUWP") {
+      // Old user data must be updated and callback shold be updated to FDB
+    }
+
+  }
+
+  createUserProfile() {
+    var action = 'write';
+    var qString = this.genQString(action);
+    var requestStatus;
+    if (this.seletedRole == "student") {
+      requestStatus = "granted";
+    } else {
+      requestStatus = "requested";
+    }
+    this.crud.writeGsData(qString).subscribe(confirmation => {
+      console.log('RETURN after UPDATE', confirmation);
+      var data: any = confirmation;
+      if (data) {
+        const { userRow, roleRow, state } = data;
+        this.confirmationBackToFdb(this.uid, this.seletedRole, requestStatus, userRow, roleRow, state);
+      }
+    });
+  }
+
+  confirmationBackToFdb(uid, seletedRole, requestStatus, userRow, roleRow, state) {
+    this.userService.updateUser(uid, seletedRole, requestStatus, userRow, roleRow, state);
+  }
+
+  updateOldUserProfile() {
+    const { gData, fData: { metadata: { roleSheet, user } } } = this.subData;
+    var action = 'update';      // Update procedure for existing user
+    var qString = this.genQString(action);
+    qString = qString + '&userPointer=' + user + '&rolePointer=' + roleSheet;
+    console.log('user is old', qString);
+    this.crud.updateGsData(qString).subscribe(confirmation => {
+      console.log('RETURN after UPDATE', confirmation)
+    });
   }
 
   genQString(action) {
@@ -162,36 +201,15 @@ export class FormComponent implements OnInit {
     return qString;
   }
 
-  submit_student_info() {
-    if (this.subData.fData.metadata) {
-      const { gData, fData: { metadata: { roleSheet, user } } } = this.subData;
-      var action = 'update';      // Update procedure for existing user
-      var qString = this.genQString(action);
-      qString = qString + '&userPointer=' + user + '&rolePointer=' + roleSheet;
-      console.log('user is old', qString);
-      this.crud.updateGsData(qString).subscribe(confirmation => { console.log('RETURN after UPDATE', confirmation) });
-      //After confirmation the the pointers need to be checked and updated in the FIREBASE
+  objectToQueryString(object, action) {
+    let keys = Object.keys(object);
+    let values = Object.values(object);
+    let abc = '?action=' + action + '&';
+    for (var i = 0; i < keys.length; i++) {
+      abc = abc + keys[i] + '=' + values[i] + '&';
     }
-    else if (this.subData.fData.metadata == undefined) {      // Write procedure for a new user GS --> Firebase
-      var action = 'write';
-      var qString = this.genQString(action);
-      var requestStatus;
-      console.log('user is NEW', qString);
-      if (this.seletedRole == "student") {
-        requestStatus = "granted";
-      } else {
-        requestStatus = "requested";
-      }
-      this.crud.writeGsData(qString).subscribe(confirmation => {
-        console.log('RETURN after UPDATE', confirmation);
-        var data: any = confirmation;
-        if (data) {
-          const { userRow, roleRow, state } = data;
-          this.userService.updateUser(this.uid, this.seletedRole, requestStatus, userRow, roleRow, state);
-        }
-      });
-      // once you have the data 
-    }
+    abc = abc + 'role=' + this.seletedRole + '&uid=' + this.uid;
+    return abc;
   }
 
 }
