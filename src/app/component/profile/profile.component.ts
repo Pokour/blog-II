@@ -27,8 +27,10 @@ export class ProfileComponent implements OnInit {
     private crud: CrudService, public auth: AuthsService, private userService: UserService,
     private _apputil: AppUtilService) {
     userService.subjectDataObservable$.subscribe(recievedSubjectData => {
-      this.rSubData = recievedSubjectData;
-      console.log("SUBJECT DATA RECIEVED in profile", this.rSubData);
+      if (recievedSubjectData) {
+        this.rSubData = recievedSubjectData;
+        console.log("SUBJECT DATA RECIEVED in profile", this.rSubData);
+      }
     });
   }
   /*******************************************************************
@@ -38,7 +40,7 @@ export class ProfileComponent implements OnInit {
    * 3. 
    */
   ngOnInit() {
-    // this._apputil.loadingStarted();
+    this._apputil.loadingStarted();
     // this.userService.readUser(this.uid).then(data => {
     //   if (data) {
     //     console.log('Data from FIERBASE', data);
@@ -106,6 +108,7 @@ export class ProfileComponent implements OnInit {
   getGoogleSheetData(qstring) {
     this.crud.readGsData(qstring).subscribe(gdata => {
       if (gdata) {
+        this._apputil.loadingEnded();
         this.payLoadtoSubject(gdata);
       }
     });
