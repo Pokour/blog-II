@@ -23,20 +23,14 @@ import { AppUtilService } from 'src/app/service/app-util.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  uid = '';
-  newLibraryString = 'none';
-  subData: any = {};
-  googledata: Object;
-  // queryParamsObject: {};
-  role;
-  recievedSubjectData: any = {};
-  query = "";
+  rSubData;
 
   constructor(
     private crud: CrudService, public auth: AuthsService, private userService: UserService,
     private _apputil: AppUtilService) {
     userService.subjectDataObservable$.subscribe(recievedSubjectData => {
-      this.recievedSubjectData = recievedSubjectData;
+      this.rSubData = recievedSubjectData;
+      console.log("SUBJECT DATA RECIEVED in profile", this.rSubData);
     });
   }
   /*******************************************************************
@@ -53,9 +47,7 @@ export class ProfileComponent implements OnInit {
     //     this.unwrapData(data);
     //   }
     // });
-    const { uData: { name, email, photoURL, uid, userType }, fData, uData } = this.recievedSubjectData;
-    this.subData.uData = uData;
-    this.dataUnwrap(name, email, photoURL, uid, userType, fData);
+    this.dataUnwrap(this.rSubData);
   }
   /************************************************************************
    * 1. Destructuring dataFootprint recieved from Behaviour subject.
@@ -63,21 +55,21 @@ export class ProfileComponent implements OnInit {
    * 3. generate query string to request Google Sheet
    * 4. Send Google Sheet data to behaviur subject
    */
-  dataUnwrap(name, email, photoURL, uid, userType, fData) {
-    const { requestStatus, role, metadata } = fData;
-    this.subData.fData = fData
+  dataUnwrap(subjectObject) {
+    const { userType } = subjectObject;
     if (userType == "OUWP") {
-      const {roleSheet, user, library} = metadata;
-      this.query = this.generateQueryString(role, requestStatus, user, roleSheet)
+      const {  metadata: { user, roleSheet, library }, role, requestStatus } = subjectObject.fData;
+      let query = this.generateQueryString(role, requestStatus, user, roleSheet)
         + "&library=" + this.generateLibraryString(library);
-      this.getGoogleSheetData(this.query);
+      this.getGoogleSheetData(query);
     }
     if (userType == "EUWOP") {
+      this.payLoadtoSubject({});
       // this.query = this.generateQueryString(role, requestStatus );
       // this.getGoogleSheetData(this.query);
     }
     if (userType == "NU") {
-
+      this.payLoadtoSubject({});
     }
   }
   /*************************************************************************
@@ -111,16 +103,17 @@ export class ProfileComponent implements OnInit {
    * parameter
    */
   getGoogleSheetData(qstring) {
-    this.crud.readGsData(qstring).subscribe(data => {
-      if (data) {
-        this.payLoadtoSubject(data);
+    this.crud.readGsData(qstring).subscribe(gdata => {
+      if (gdata) {
+        this.payLoadtoSubject(gdata);
       }
     });
   }
 
   payLoadtoSubject(gData) {
-    this.subData.gData = gData;
-    this.userService.sendToSubject(this.subData);
+    const { userType, fireAuthObj, fData } = this.rSubData;
+    let obj = { gData: gData, userType: userType, fireAuthObj: fireAuthObj, fData: fData }
+    this.userService.sendToSubject(obj);
   }
 
 }
