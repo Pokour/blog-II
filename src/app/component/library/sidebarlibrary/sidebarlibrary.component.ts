@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CrudService } from 'src/app/service/crud.service';
 import { browserRefreshforApp } from 'src/app/app.component';
+import { AppUtilService } from 'src/app/service/app-util.service';
 
 @Component({
   selector: 'app-sidebarlibrary',
@@ -27,14 +28,15 @@ export class SidebarlibraryComponent implements OnInit {
   selectedBook: String;
 
 
-  constructor(private crud: CrudService) { }
+  constructor(private crud: CrudService, private _apputil: AppUtilService) { }
 
   ngOnInit() {
-    this.browserRefresh = browserRefreshforApp;
-    console.log(this.browserRefresh);
-    if (this.browserRefresh) {
-      this.getLibrary();
-    }
+    this._apputil.loadingStarted();
+    // this.browserRefresh = browserRefreshforApp;
+    // console.log(this.browserRefresh);
+    // if (this.browserRefresh) {
+    this.getLibrary();
+    // }
   }
 
   getLibrary() {
@@ -51,15 +53,14 @@ export class SidebarlibraryComponent implements OnInit {
 
     this.crud.getbooks()
       .subscribe(recievedbooks => {
-        this.booksList = recievedbooks;
-
-        for (let i = 0; i < this.booksList.length; i++) {
-
-          this.chaptersOfCategory[i] = Object.values(this.chapterData[i]);
-
-          this.books[i] = Object.values(this.booksList[i])
+        if (recievedbooks) {
+          this._apputil.loadingEnded();
+          this.booksList = recievedbooks;
+          for (let i = 0; i < this.booksList.length; i++) {
+            this.chaptersOfCategory[i] = Object.values(this.chapterData[i]);
+            this.books[i] = Object.values(this.booksList[i])
+          }
         }
-
       });
   }
 
@@ -71,7 +72,7 @@ export class SidebarlibraryComponent implements OnInit {
     this.selectedBook = item;
   }
 
-  sendtofetchblog(i,j,k,chapter){
+  sendtofetchblog(i, j, k, chapter) {
     this.blogCategory.emit(i);
     this.blogBook.emit(j);
     this.blogChapter.emit(k);

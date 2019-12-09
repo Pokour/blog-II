@@ -1,8 +1,8 @@
 <!-- *********************************profile card starts here******************************** -->
 
-<div class="container-fluid students-container">
+<div *ngIf="auth.firebaseUserObservable$ | async as user" class="container-fluid students-container">
   <!-- **************************Profile card student start here.*************************-->
-  <div *ngIf="auth.firebaseUserObservable$ | async as user" class="row">
+  <div *ngIf="role == 'student'" class="row">
     <div class="col-12 col-sm-4 col-md-3 bg-white side-bar-profile">
       <div class="text-center students-profile-card">
         <div>
@@ -431,6 +431,1297 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="role == 'NA'" class="row">
+    <div class="col-12 col-sm-4 col-md-3 bg-white side-bar-profile">
+      <div class="text-center students-profile-card">
+        <div>
+          <img class="" src="{{user.photoURL}}" height="150px">
+        </div>
+        <!-- profile interests section -->
+        <div class="row px-2">
+          <span class="text-gray">SKILLS</span><span class="horizontal-line"></span>
+          <div class="col-4 ">
+            <div class=""></div>
+          </div>
+          <div class="col-4">
+            <div class=""></div>
+          </div>
+          <div class="col-4">
+            <div class=""></div>
+          </div>
+        </div>
+
+        <button [routerLink]="['../form']" class="btn btn-primary mr-2" type="button">Update Profile </button>
+        <button [routerLink]="['../quiz']" class="btn btn-primary" type="button">Take Quiz </button>
+
+        <nav class="nav flex-column navigation-column">
+          <a class="nav-link active" href="#librarysection">Library</a>
+          <a class="nav-link" href="#toppers">Toppers</a>
+          <a class="nav-link" href="#timeline">Learning Curve</a>
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </nav>
+
+      </div>
+    </div>
+    <div class="col-12 col-sm-8 col-md-9 profile-landscape">
+      <div class="text-left right-section-profile">
+        <div class="personal-information">
+          <h1 class="text-primary">{{user.displayName}}</h1>
+          <p class="mb-3 role-name"> {{role}}</p>
+          <span class="text-gray">Ranking</span>
+          <hr class="">
+        </div>
+
+        <!-- Toppers Section -->
+        <div class="toppers-section" id="toppers">
+          <h2 class="text-left mb-5 text-primary">Toppers of the Month</h2>
+          <div class="row no-gutters text-left">
+            <div class="col-7">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toppers Section End -->
+
+        <!-- Timeline card students start here -->
+        <div class="timeline-section" id="timeline">
+          <h2 class="text-left mb-5">Students' Learning Curve.</h2>
+          <div class="row no-gutters text-center">
+            <div class="col-12 col-md-8 timeline-centered">
+              <div class="container py-2 mt-4 mb-4">
+                <!-- timeline item 1 -->
+                <div class="row">
+                  <!-- timeline item 1 left dot -->
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-primary border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <!-- timeline item 1 event content -->
+                  <div class="col py-2">
+                    <div class="card border-primary">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
+                        <h4 class="card-title text-muted">Day 1 Orientation</h4>
+                        <p class="card-text">Welcome to the campus, introduction and get started with the tour.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 2 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-success">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card border-success shadow">
+                      <div class="card-body">
+                        <div class="float-right text-success">Tue, Jan 10th 2019 8:30 AM</div>
+                        <h4 class="card-title text-success">Day 2 Sessions</h4>
+                        <p class="card-text">Sign-up for the lessons and speakers that coincide with your course
+                          syllabus. Meet and greet with instructors.</p>
+                        <button class="btn btn-sm btn-secondary" type="button" data-target="#t2_details"
+                          data-toggle="collapse">Show Details ▼</button>
+                        <div class="collapse border" id="t2_details">
+                          <div class="p-2 text-monospace">
+                            <div>08:30 - 09:00 Breakfast in CR 2A</div>
+                            <div>09:00 - 10:30 Live sessions in CR 3</div>
+                            <div>10:30 - 10:45 Break</div>
+                            <div>10:45 - 12:00 Live sessions in CR 3</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 3 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Wed, Jan 11th 2019 8:30 AM</div>
+                        <h4 class="card-title">Day 3 Sessions</h4>
+                        <p>Shoreditch vegan artisan Helvetica. Tattooed Codeply Echo Park Godard kogi, next level irony
+                          ennui twee squid fap selvage. Meggings flannel Brooklyn literally small batch, mumblecore PBR
+                          try-hard kale chips. Brooklyn vinyl lumbersexual
+                          bicycle rights, viral fap cronut leggings squid chillwave pickled gentrify mustache. 3 wolf
+                          moon hashtag church-key Odd Future. Austin messenger bag normcore, Helvetica Williamsburg
+                          sartorial tote bag distillery Portland before
+                          they sold out gastropub taxidermy Vice.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 4 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Thu, Jan 12th 2019 11:30 AM</div>
+                        <h4 class="card-title">Day 4 Wrap-up</h4>
+                        <p>Join us for lunch in Bootsy's cafe across from the Campus Center.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ***************************Timeline card students ends here**************************** -->
+
+        <!-- ************************Quiz and test card students start here************************* -->
+        <div class="students-quiz-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Quiz &amp; Tests</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="media"><img class="mr-3">
+                <div class="media-body">
+                  <h5>About Quiz</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                    diam feugiat,
+                    non
+                    vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                    orci
+                    finibus.
+                  </p>
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
+                      aria-controls="collapse-1" role="button" href="#collapse-1">More Info</a>
+                    <div class="collapse" id="collapse-1">
+                      <p>Collapse content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="media"><img class="mr-3">
+                <div class="media-body">
+                  <h5>About Courses and Tests</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                    diam feugiat,
+                    non
+                    vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                    orci
+                    finibus.
+                  </p>
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
+                      aria-controls="collapse-2" role="button" href="#collapse-2">More Info</a>
+                    <div class="collapse" id="collapse-2" style="margin-top:20px;">
+                      <div class="row">
+                        <div class="col-7"><select class="form-control-lg" style="min-width:126px;">
+                            <optgroup label="This is a group">
+                              <option value="12" selected="">This is item 1</option>
+                              <option value="13">This is item 2</option>
+                              <option value="14">This is item 3</option>
+                            </optgroup>
+                          </select></div>
+                        <div class="col-5"><button class="btn btn-primary btn-block" type="button"
+                            style="width:116px;">Course Details</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ************************Quiz and test card students ends here************************* -->
+
+        <!-- Library Section -->
+        <div class="library-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">Free Access to Library</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left mb-3">
+              <div class="text-left mt-2">
+                <p class=""> Our Library is opem, interactive, expanding and always driving innovative
+                  minds. We are dedicated and comitted to provide you with the best and latest content
+                  in the the field of
+                  "ROBOTICS"</p>
+              </div>
+            </div>
+
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+
+            <div class="col-12 text-center mt-5">
+              <p><a class="btn btn-primary" role="button" href="#">Visit Library</a></p>
+            </div>
+
+          </div>
+        </div>
+        <!-- Library Section Ends-->
+
+        <!-- *** Latest Events Section -->
+        <div class="latest-events-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Recent Events</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                  <img src="../../../assets/img/fff.png" height="90px" width="90px">
+                </span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Robotics Competition</span>
+                  <span class="info-box-number">90<small>%</small></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Likes</span>
+                  <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Sales</span>
+                  <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">New Members</span>
+                  <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+        </div>
+        <!-- ** Latest Events Section Ends *** -->
+
+        <!-- Collaborator Choice Section -->
+        <div class="collaborator-choice-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">How can you Collaborate?</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left my-3">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                    aria-controls="pills-contact" aria-selected="false">Contact</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  .dfdggs..</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Collaborator Choice Section -->
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="role == 'collaborator'" class="row">
+    <div class="col-12 col-sm-4 col-md-3 bg-white side-bar-profile">
+      <div class="text-center students-profile-card">
+        <div>
+          <img class="" src="{{user.photoURL}}" height="150px">
+        </div>
+        <!-- profile interests section -->
+        <div class="row px-2">
+          <span class="text-gray">SKILLS</span><span class="horizontal-line"></span>
+          <div class="col-4 ">
+            <div class=""></div>
+          </div>
+          <div class="col-4">
+            <div class=""></div>
+          </div>
+          <div class="col-4">
+            <div class=""></div>
+          </div>
+        </div>
+
+        <button [routerLink]="['../form']" class="btn btn-primary mr-2" type="button">Update Profile </button>
+        <button [routerLink]="['../quiz']" class="btn btn-primary" type="button">Take Quiz </button>
+
+        <nav class="nav flex-column navigation-column">
+          <a class="nav-link active" href="#librarysection">Library</a>
+          <a class="nav-link" href="#toppers">Toppers</a>
+          <a class="nav-link" href="#timeline">Learning Curve</a>
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </nav>
+
+      </div>
+    </div>
+    <div class="col-12 col-sm-8 col-md-9 profile-landscape">
+      <div class="text-left right-section-profile">
+        <div class="personal-information">
+          <h1 class="text-primary">{{user.displayName}}</h1>
+          <p class="mb-3 role-name"> {{role}}</p>
+          <span class="text-gray">Ranking</span>
+          <hr class="">
+        </div>
+
+        <!-- Toppers Section -->
+        <div class="toppers-section" id="toppers">
+          <h2 class="text-left mb-5 text-primary">Toppers of the Month</h2>
+          <div class="row no-gutters text-left">
+            <div class="col-7">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toppers Section End -->
+
+        <!-- Timeline card students start here -->
+        <div class="timeline-section" id="timeline">
+          <h2 class="text-left mb-5">Students' Learning Curve.</h2>
+          <div class="row no-gutters text-center">
+            <div class="col-12 col-md-8 timeline-centered">
+              <div class="container py-2 mt-4 mb-4">
+                <!-- timeline item 1 -->
+                <div class="row">
+                  <!-- timeline item 1 left dot -->
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-primary border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <!-- timeline item 1 event content -->
+                  <div class="col py-2">
+                    <div class="card border-primary">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
+                        <h4 class="card-title text-muted">Day 1 Orientation</h4>
+                        <p class="card-text">Welcome to the campus, introduction and get started with the tour.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 2 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-success">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card border-success shadow">
+                      <div class="card-body">
+                        <div class="float-right text-success">Tue, Jan 10th 2019 8:30 AM</div>
+                        <h4 class="card-title text-success">Day 2 Sessions</h4>
+                        <p class="card-text">Sign-up for the lessons and speakers that coincide with your course
+                          syllabus. Meet and greet with instructors.</p>
+                        <button class="btn btn-sm btn-secondary" type="button" data-target="#t2_details"
+                          data-toggle="collapse">Show Details ▼</button>
+                        <div class="collapse border" id="t2_details">
+                          <div class="p-2 text-monospace">
+                            <div>08:30 - 09:00 Breakfast in CR 2A</div>
+                            <div>09:00 - 10:30 Live sessions in CR 3</div>
+                            <div>10:30 - 10:45 Break</div>
+                            <div>10:45 - 12:00 Live sessions in CR 3</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 3 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Wed, Jan 11th 2019 8:30 AM</div>
+                        <h4 class="card-title">Day 3 Sessions</h4>
+                        <p>Shoreditch vegan artisan Helvetica. Tattooed Codeply Echo Park Godard kogi, next level irony
+                          ennui twee squid fap selvage. Meggings flannel Brooklyn literally small batch, mumblecore PBR
+                          try-hard kale chips. Brooklyn vinyl lumbersexual
+                          bicycle rights, viral fap cronut leggings squid chillwave pickled gentrify mustache. 3 wolf
+                          moon hashtag church-key Odd Future. Austin messenger bag normcore, Helvetica Williamsburg
+                          sartorial tote bag distillery Portland before
+                          they sold out gastropub taxidermy Vice.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 4 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Thu, Jan 12th 2019 11:30 AM</div>
+                        <h4 class="card-title">Day 4 Wrap-up</h4>
+                        <p>Join us for lunch in Bootsy's cafe across from the Campus Center.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ***************************Timeline card students ends here**************************** -->
+
+        <!-- ************************Quiz and test card students start here************************* -->
+        <div class="students-quiz-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Quiz &amp; Tests</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="media"><img class="mr-3">
+                <div class="media-body">
+                  <h5>About Quiz</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                    diam feugiat,
+                    non
+                    vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                    orci
+                    finibus.
+                  </p>
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
+                      aria-controls="collapse-1" role="button" href="#collapse-1">More Info</a>
+                    <div class="collapse" id="collapse-1">
+                      <p>Collapse content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="media"><img class="mr-3">
+                <div class="media-body">
+                  <h5>About Courses and Tests</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                    diam feugiat,
+                    non
+                    vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                    orci
+                    finibus.
+                  </p>
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
+                      aria-controls="collapse-2" role="button" href="#collapse-2">More Info</a>
+                    <div class="collapse" id="collapse-2" style="margin-top:20px;">
+                      <div class="row">
+                        <div class="col-7"><select class="form-control-lg" style="min-width:126px;">
+                            <optgroup label="This is a group">
+                              <option value="12" selected="">This is item 1</option>
+                              <option value="13">This is item 2</option>
+                              <option value="14">This is item 3</option>
+                            </optgroup>
+                          </select></div>
+                        <div class="col-5"><button class="btn btn-primary btn-block" type="button"
+                            style="width:116px;">Course Details</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ************************Quiz and test card students ends here************************* -->
+
+        <!-- Library Section -->
+        <div class="library-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">Free Access to Library</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left mb-3">
+              <div class="text-left mt-2">
+                <p class=""> Our Library is opem, interactive, expanding and always driving innovative
+                  minds. We are dedicated and comitted to provide you with the best and latest content
+                  in the the field of
+                  "ROBOTICS"</p>
+              </div>
+            </div>
+
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+
+            <div class="col-12 text-center mt-5">
+              <p><a class="btn btn-primary" role="button" href="#">Visit Library</a></p>
+            </div>
+
+          </div>
+        </div>
+        <!-- Library Section Ends-->
+
+        <!-- *** Latest Events Section -->
+        <div class="latest-events-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Recent Events</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                  <img src="../../../assets/img/fff.png" height="90px" width="90px">
+                </span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Robotics Competition</span>
+                  <span class="info-box-number">90<small>%</small></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Likes</span>
+                  <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Sales</span>
+                  <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">New Members</span>
+                  <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+        </div>
+        <!-- ** Latest Events Section Ends *** -->
+
+        <!-- Collaborator Choice Section -->
+        <div class="collaborator-choice-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">How can you Collaborate?</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left my-3">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                    aria-controls="pills-contact" aria-selected="false">Contact</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  .dfdggs..</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Collaborator Choice Section -->
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="role == 'institute'" class="row">
+    <div class="col-12 col-sm-4 col-md-3 bg-white side-bar-profile">
+      <div class="text-center students-profile-card">
+        <div>
+          <img class="" src="{{user.photoURL}}" height="150px">
+        </div>
+        <!-- profile interests section -->
+        <div class="row px-2">
+          <span class="text-gray">SKILLS</span><span class="horizontal-line"></span>
+          <div class="col-4 ">
+            <div class=""></div>
+          </div>
+          <div class="col-4">
+            <div class=""></div>
+          </div>
+          <div class="col-4">
+            <div class=""></div>
+          </div>
+        </div>
+
+        <button [routerLink]="['../form']" class="btn btn-primary mr-2" type="button">Update Profile </button>
+        <button [routerLink]="['../quiz']" class="btn btn-primary" type="button">Take Quiz </button>
+
+        <nav class="nav flex-column navigation-column">
+          <a class="nav-link active" href="#librarysection">Library</a>
+          <a class="nav-link" href="#toppers">Toppers</a>
+          <a class="nav-link" href="#timeline">Learning Curve</a>
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </nav>
+
+      </div>
+    </div>
+    <div class="col-12 col-sm-8 col-md-9 profile-landscape">
+      <div class="text-left right-section-profile">
+        <div class="personal-information">
+          <h1 class="text-primary">{{user.displayName}}</h1>
+          <p class="mb-3 role-name"> {{role}}</p>
+          <span class="text-gray">Ranking</span>
+          <hr class="">
+        </div>
+
+        <!-- Toppers Section -->
+        <div class="toppers-section" id="toppers">
+          <h2 class="text-left mb-5 text-primary">Toppers of the Month</h2>
+          <div class="row no-gutters text-left">
+            <div class="col-7">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toppers Section End -->
+
+        <!-- Timeline card students start here -->
+        <div class="timeline-section" id="timeline">
+          <h2 class="text-left mb-5">Students' Learning Curve.</h2>
+          <div class="row no-gutters text-center">
+            <div class="col-12 col-md-8 timeline-centered">
+              <div class="container py-2 mt-4 mb-4">
+                <!-- timeline item 1 -->
+                <div class="row">
+                  <!-- timeline item 1 left dot -->
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-primary border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <!-- timeline item 1 event content -->
+                  <div class="col py-2">
+                    <div class="card border-primary">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
+                        <h4 class="card-title text-muted">Day 1 Orientation</h4>
+                        <p class="card-text">Welcome to the campus, introduction and get started with the tour.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 2 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-success">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card border-success shadow">
+                      <div class="card-body">
+                        <div class="float-right text-success">Tue, Jan 10th 2019 8:30 AM</div>
+                        <h4 class="card-title text-success">Day 2 Sessions</h4>
+                        <p class="card-text">Sign-up for the lessons and speakers that coincide with your course
+                          syllabus. Meet and greet with instructors.</p>
+                        <button class="btn btn-sm btn-secondary" type="button" data-target="#t2_details"
+                          data-toggle="collapse">Show Details ▼</button>
+                        <div class="collapse border" id="t2_details">
+                          <div class="p-2 text-monospace">
+                            <div>08:30 - 09:00 Breakfast in CR 2A</div>
+                            <div>09:00 - 10:30 Live sessions in CR 3</div>
+                            <div>10:30 - 10:45 Break</div>
+                            <div>10:45 - 12:00 Live sessions in CR 3</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 3 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Wed, Jan 11th 2019 8:30 AM</div>
+                        <h4 class="card-title">Day 3 Sessions</h4>
+                        <p>Shoreditch vegan artisan Helvetica. Tattooed Codeply Echo Park Godard kogi, next level irony
+                          ennui twee squid fap selvage. Meggings flannel Brooklyn literally small batch, mumblecore PBR
+                          try-hard kale chips. Brooklyn vinyl lumbersexual
+                          bicycle rights, viral fap cronut leggings squid chillwave pickled gentrify mustache. 3 wolf
+                          moon hashtag church-key Odd Future. Austin messenger bag normcore, Helvetica Williamsburg
+                          sartorial tote bag distillery Portland before
+                          they sold out gastropub taxidermy Vice.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+                <!-- timeline item 4 -->
+                <div class="row">
+                  <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                      <div class="col border-right">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                      <div class="col">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
+                    </div>
+                  </div>
+                  <div class="col py-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="float-right text-muted">Thu, Jan 12th 2019 11:30 AM</div>
+                        <h4 class="card-title">Day 4 Wrap-up</h4>
+                        <p>Join us for lunch in Bootsy's cafe across from the Campus Center.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/row-->
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- ***************************Timeline card students ends here**************************** -->
+
+        <!-- ************************Quiz and test card students start here************************* -->
+        <div class="students-quiz-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Quiz &amp; Tests</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="media"><img class="mr-3">
+                <div class="media-body">
+                  <h5>About Quiz</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                    diam feugiat,
+                    non
+                    vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                    orci
+                    finibus.
+                  </p>
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
+                      aria-controls="collapse-1" role="button" href="#collapse-1">More Info</a>
+                    <div class="collapse" id="collapse-1">
+                      <p>Collapse content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="media"><img class="mr-3">
+                <div class="media-body">
+                  <h5>About Courses and Tests</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac
+                    diam feugiat,
+                    non
+                    vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada
+                    orci
+                    finibus.
+                  </p>
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
+                      aria-controls="collapse-2" role="button" href="#collapse-2">More Info</a>
+                    <div class="collapse" id="collapse-2" style="margin-top:20px;">
+                      <div class="row">
+                        <div class="col-7"><select class="form-control-lg" style="min-width:126px;">
+                            <optgroup label="This is a group">
+                              <option value="12" selected="">This is item 1</option>
+                              <option value="13">This is item 2</option>
+                              <option value="14">This is item 3</option>
+                            </optgroup>
+                          </select></div>
+                        <div class="col-5"><button class="btn btn-primary btn-block" type="button"
+                            style="width:116px;">Course Details</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ************************Quiz and test card students ends here************************* -->
+
+        <!-- Library Section -->
+        <div class="library-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">Free Access to Library</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left mb-3">
+              <div class="text-left mt-2">
+                <p class=""> Our Library is opem, interactive, expanding and always driving innovative
+                  minds. We are dedicated and comitted to provide you with the best and latest content
+                  in the the field of
+                  "ROBOTICS"</p>
+              </div>
+            </div>
+
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+
+            <div class="col-12 text-center mt-5">
+              <p><a class="btn btn-primary" role="button" href="#">Visit Library</a></p>
+            </div>
+
+          </div>
+        </div>
+        <!-- Library Section Ends-->
+
+        <!-- *** Latest Events Section -->
+        <div class="latest-events-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Recent Events</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                  <img src="../../../assets/img/fff.png" height="90px" width="90px">
+                </span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Robotics Competition</span>
+                  <span class="info-box-number">90<small>%</small></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Likes</span>
+                  <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Sales</span>
+                  <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">New Members</span>
+                  <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+        </div>
+        <!-- ** Latest Events Section Ends *** -->
+
+        <!-- Collaborator Choice Section -->
+        <div class="collaborator-choice-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">How can you Collaborate?</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left my-3">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                    aria-controls="pills-contact" aria-selected="false">Contact</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  .dfdggs..</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Collaborator Choice Section -->
+
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 <!-- *********************************profile card ends here******************************** -->

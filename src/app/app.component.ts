@@ -44,7 +44,7 @@ export class AppComponent {
      */
     auth.firebaseUserObservable$.subscribe(userObjectRecieved => {
       if (userObjectRecieved) {
-        // this._apputil.loadingEnded();
+        this._apputil.loadingEnded();
         console.log('USEROBJECT recieved from FireAuthModule', userObjectRecieved);
         userService.mandatoryLoginRoutine(userObjectRecieved);
         // userService.save(userObjectRecieved);----------------------------------## deprecated ##
@@ -56,6 +56,10 @@ export class AppComponent {
          */
         // if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
         //   this.auth.postLoggedIn();
+        // }
+        // if( this.router.url == '/login' || this.router.url.indexOf('/login') > -1){
+        //   // this.auth.postLoggedIn();
+        //   //this._apputil.loadingStarted();
         // }
         localStorage.clear();
       }

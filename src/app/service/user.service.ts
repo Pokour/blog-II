@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
+import { AppUtilService } from './app-util.service';
 
 /********************************************************************
  * UserService deals with all the data interaction with Firebase Mainly
@@ -25,7 +26,7 @@ export class UserService {
   userType;
   userAuthObject: firebase.User;
   fireDBObj;
-  constructor() {
+  constructor(private _apputil: AppUtilService) {
   }
   /**************************************************************
    * Objective of mandatoryLoginRoutine() method is to kick in right
@@ -42,6 +43,7 @@ export class UserService {
   mandatoryLoginRoutine(userObjRecieved) {
     this.userAuthObject = userObjRecieved;
     this.getDataFootprint(userObjRecieved).then(fData => {
+      this._apputil.loadingEnded();
       this.checkUserStatus(fData);
       console.log("FIREBASE data recieved in userservice", fData);
     });
