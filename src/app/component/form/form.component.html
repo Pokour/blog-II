@@ -198,46 +198,48 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress">FLATNO/HOUSENO</label>
-            <input type="text" class="form-control" id="inputaddress" placeholder="address1">
+            <input [(ngModel)]="collaborator.add1" name="add1" type="text" class="form-control" id="inputaddress"
+            placeholder="address1">
           </div>
           <div class="form-group col-md-6">
             <label for="inputaddress2">HOUSE/BUILDINGNAME</label>
-            <input type="text" class="form-control" id="inputaddress2" placeholder="address2">
+            <input [(ngModel)]="collaborator.add2" name="add2" type="text" class="form-control" id="inputaddress2" placeholder="address2">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress3">AREA/LOACTILY</label>
-            <input type="text" class="form-control" id="inputaddress3" placeholder="address3">
+            <input [(ngModel)]="collaborator.add3" name="add3" type="text" class="form-control" id="inputaddress3" placeholder="address3">
           </div>
           <div class="form-group col-md-6">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="City">
+            <input [(ngModel)]="collaborator.city" name="city" type="text" class="form-control" id="inputCity" placeholder="City">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress4">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
+            <select [(ngModel)]="collaborator.state" id="inputState" class="form-control" name="state">
+              <option *ngFor="let state of states" [value]="state">{{state}}</option>
             </select>
+
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress4">Pincode</label>
-            <input type="number" class="form-control" id="inputpin" placeholder="PIN">
+            <input [(ngModel)]="collaborator.pincode" name="pincode" type="number" class="form-control" id="inputpin" placeholder="PIN">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group phone-list col-md-6">
             <label for="phone">Mobile</label>
-            <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            <input [(ngModel)]="collaborator.mobile" name="mobile" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
           </div>
           <div class="form-group phone-list col-md-6">
             <label for="phone">Alternate Mobile</label>
-            <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            <input [(ngModel)]="collaborator.altmobile" name="altmobile" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
           </div>
         </div>
 
@@ -251,7 +253,7 @@
 
           <div class="form-group col-md-6">
             <label for="inputaddress4">School Name</label>
-            <input type="text" class="form-control" id="inputpin" placeholder="Institution Name">
+            <input [(ngModel)]="collaborator.institute" name="institute" type="text" class="form-control" id="inputpin" placeholder="Institution Name">
           </div>
         </div>
 
@@ -278,7 +280,7 @@
 
           <div class="form-group col-md-6">
             <label for="inputaddress4">Collage Name</label>
-            <input type="text" class="form-control" id="inputpin" placeholder="Institution Name">
+            <input [(ngModel)]="collaborator.college" name="college" type="text" class="form-control" id="inputpin" placeholder="Institution Name">
           </div>
         </div>
 
@@ -298,15 +300,15 @@
         <div class="form-row">
           <div class="form-group phone-list col-md-4">
             <label for="standard">College Degree</label>
-            <input type="text" class="form-control" placeholder="Degree" />
+            <input [(ngModel)]="collaborator.Degree" name="Degree" type="text" class="form-control" placeholder="Degree" />
           </div>
           <div class="form-group col-md-4">
             <label for="inputaddress4">college Start</label>
-            <input type="date" class="form-control" id="inputpin" placeholder="college Start">
+            <input [(ngModel)]="collaborator.startdate" name="startdate" type="date" class="form-control" id="inputpin" placeholder="college Start">
           </div>
           <div class="form-group col-md-4">
             <label for="inputaddress4">College Ends</label>
-            <input type="date" class="form-control" id="inputpin" placeholder="Graduated">
+            <input [(ngModel)]="collaborator.enddate" name="enddate" type="date" class="form-control" id="inputpin" placeholder="Graduated">
           </div>
         </div>
 
@@ -340,9 +342,10 @@
         <div class="form-row">
           <div class="form-group phone-list col-md-6">
             <label for="standard">Date Of Birth</label>
-            <input type="date" class="form-control" placeholder="DOB" />
+            <input [(ngModel)]="collaborator.dob" name="dob" type="date" class="form-control" placeholder="DOB" />
           </div>
         </div>
+        <button class="btn btn-primary" (click)="submit_student_info()"> Submit Test Button</button>
       </form>
     </div>
     <div class="col-md-5">
@@ -504,6 +507,7 @@
             <input type="date" class="form-control" placeholder="DOB" />
           </div>
         </div>
+        <button class="btn btn-primary" (click)="submit_student_info()"> Submit Test Button</button>
       </form>
     </div>
     <div class="col-md-5">

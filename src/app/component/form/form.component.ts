@@ -248,6 +248,7 @@ export class FormComponent implements OnInit {
     } else if (this.seletedRole == 'organisation') {
       qString = this.objectToQueryString(this.organisation, action);
     }
+    console.log(qString);
     return qString;
   }
 
