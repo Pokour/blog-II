@@ -23,10 +23,10 @@ export class UserService {
   private dataShare: BehaviorSubject<any> = new BehaviorSubject({} as any);
   subjectDataObservable$ = this.dataShare.asObservable();
   userType;
-  uid;
-  userObjectRecieved;
-  constructor() {}
-
+  userAuthObject: firebase.User;
+  fireDBObj;
+  constructor() {
+  }
   /**************************************************************
    * Objective of mandatoryLoginRoutine() method is to kick in right
    * after a user logs in and determine current status of the user 
@@ -39,11 +39,11 @@ export class UserService {
    * 4. Update the Firebase DB with basic updates for new user and 
    *    Timestamp details for existing user. 
    */
-
-  mandatoryLoginRoutine(userObjectRecieved) {
-    this.userObjectRecieved = userObjectRecieved;
-    this.getDataFootprint(userObjectRecieved).then(dataFootprint => {
-      this.checkUserStatus(dataFootprint);
+  mandatoryLoginRoutine(userObjRecieved) {
+    this.userAuthObject = userObjRecieved;
+    this.getDataFootprint(userObjRecieved).then(fData => {
+      this.checkUserStatus(fData);
+      console.log("FIREBASE data recieved in userservice", fData);
     });
   }
 
@@ -56,8 +56,8 @@ export class UserService {
    */
   getDataFootprint(userObjectRecieved) {
     return firebase.database().ref('/user/' + userObjectRecieved.uid).once('value').then(function (snapshot) {
-      const userdata = snapshot.val();
-      return userdata;
+      const userData = snapshot.val();
+      return userData;
     });
   }
 
@@ -69,37 +69,33 @@ export class UserService {
    * c. "OLD WITH PROFILE" 
    * d. Update to BehaviourSubject
    */
-
-  checkUserStatus(dataFootprint) {
-    if (dataFootprint) {
-      if (dataFootprint.metadata) {
+  checkUserStatus(fData) {
+    this.fireDBObj = fData;
+    if (fData) {
+      if (fData.metadata) {
         this.userType = "OUWP";  // OLD USER WITH PROFILE
-        this.saveToFirebaseOnLogin(this.userObjectRecieved, {
+        this.saveToFirebaseOnLogin(this.userAuthObject, {
           lastTimestamp: new Date()
         });
       }
-      if (!dataFootprint.metadata) {
+      if (!fData.metadata) {
         this.userType = "EUWOP"; // EXISTING USER WITHOUT PROFILE
-        this.saveToFirebaseOnLogin(this.userObjectRecieved, {
+        this.saveToFirebaseOnLogin(this.userAuthObject, {
           lastTimestamp: new Date()
         });
       }
     }
-    if (dataFootprint == null) {
+    if (fData == null) {
       this.userType = "NU";      // NEW USER
-      this.saveToFirebaseOnLogin(this.userObjectRecieved, {
-        name: this.userObjectRecieved.displayName,
-        email: this.userObjectRecieved.email,
+      this.saveToFirebaseOnLogin(this.userAuthObject, {
+        name: this.userAuthObject.displayName,
+        email: this.userAuthObject.email,
         lastTimestamp: new Date(),
         signupTimestamp: new Date()
       });
     }
-    const { displayName, email, photoURL, uid } = this.userObjectRecieved;
-    var dataObject = { uData:{name: displayName, email: email, photoURL: photoURL,
-      uid: uid, userType: this.userType},
-      fData: dataFootprint
-    }
-    this.sendToSubject(dataObject);
+
+    this.sendToSubject({userType: this.userType, fireAuthObj: this.userAuthObject, fData: this.fireDBObj});
   }
   
   /************************************************************************
@@ -120,7 +116,7 @@ export class UserService {
    */
   sendToSubject(data) {
     this.dataShare.next(data);
-    console.log('Data to  SUBJECT', data);
+    console.log('DATA LOADED TO BEHAVIOUR SUBJECT', data);
   }
   /**********************************************************
    * This function is used to read the entire user footprint
@@ -134,10 +130,17 @@ export class UserService {
     });
   }
   /**********************************************************
-   * updateUser is used to define the metadta and basic database
+   * writeNewSignedInUser is used to define the metadta and basic database
    * structure to the new signed in user who submits the profile
    */
-  updateUser(uid, seletedRole, requestStatus, userRow, roleRow, state) {
+  writeNewSignedInUser(uid, seletedRole, userRow, roleRow, state) {
+    console.log(state);
+    let requestStatus = "";
+    if (seletedRole == "student") {
+      requestStatus = "granted";
+    } else {
+      requestStatus = "requested";
+    }
     firebase.database().ref('/user/' + uid).update({
       role: seletedRole,
       requestStatus: requestStatus,

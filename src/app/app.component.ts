@@ -45,7 +45,7 @@ export class AppComponent {
     auth.firebaseUserObservable$.subscribe(userObjectRecieved => {
       if (userObjectRecieved) {
         // this._apputil.loadingEnded();
-        console.log('userObject from FireAuthModule', userObjectRecieved);
+        console.log('USEROBJECT recieved from FireAuthModule', userObjectRecieved);
         userService.mandatoryLoginRoutine(userObjectRecieved);
         // userService.save(userObjectRecieved);----------------------------------## deprecated ##
         let storedUrl = localStorage.getItem('storedUrl');

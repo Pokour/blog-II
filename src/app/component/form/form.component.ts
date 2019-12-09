@@ -3,6 +3,12 @@ import { AuthsService } from 'src/app/service/auths.service';
 import { CrudService } from 'src/app/service/crud.service';
 import { UserService } from 'src/app/service/user.service';
 import { HttpClient } from '@angular/common/http';
+/***********************************************************************
+ * This component handles data that to be send to Google Sheet and also
+ * the data recieved from Google Sheet.
+ * 1. There are predefined data objects to send and recieve data like
+ *    student{} collaborator{} organisation{} and an array roleOptions[]
+ */
 
 @Component({
   selector: 'app-form',
@@ -11,9 +17,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormComponent implements OnInit {
   roleOptions = ['None', 'student', 'collaborator', 'organisation'];
-  subData: any = {};
+  rSubData;
+  requestStatus;
   seletedRole;
-  uid;
+  uid = '';
   states = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -110,74 +117,114 @@ export class FormComponent implements OnInit {
     pocemail: '',
     pocphone: '',
   };
-
+  /*******************************************************************************
+   * Behaviour subject is subscribed to get data
+   * Recieved data is saved to global object "rSubData" for easy access throuhout
+   * the component.
+   */
   constructor(
     public auth: AuthsService, private http: HttpClient, private crud: CrudService,
-    public userService: UserService) { }
-
-  ngOnInit() {
+    public userService: UserService) {
     this.userService.subjectDataObservable$.subscribe((data: any) => {
       console.log('Data recieved in forms from subject', data);
-      this.subData = data;
-      this.seletedRole = this.subData.fData.role;     // append role infoe fron GS to selectedRole
-      this.uid = data.uData.uid;
-      if (this.seletedRole == 'student') {            // Check for selected role or Stored
-        this.student = this.subData.gData.role;
-      } else if (this.seletedRole == 'collaborator') {
-        this.collaborator = this.subData.gData.role;
-      } else if (this.seletedRole == 'organisation') {
-        this.organisation = this.subData.gData.role;
-      }
+      this.rSubData = data;
+      this.uid = data.fireAuthObj.uid;
     });
   }
+  /***********************************************************************
+   * Data flow is determined by the type of user logged in. Check UserType
+   * 1. Destructure rSubData to get userType
+   * 2. function call to update data objects according to role.
+   */
+  ngOnInit() {
+    const { userType } = this.rSubData
+    if (userType == "NU") {
 
+    }
+    if (userType == "EUWOP") {
+
+    }
+    if (userType == "OUWP") {
+      this.updateRoleObj();
+    }
+  }
+  /**********************************************************************
+   * The user data recieved from Google Sheet is updated to role object
+   * 1. role from fData is passed to a global variable selectedRole
+   * 2. based on selectedRole data is passed to the particular object
+   */
+  updateRoleObj() {
+    this.seletedRole = this.rSubData.fData.role;
+    console.log("ROLE updated from Gdata",this.seletedRole)
+    if (this.seletedRole == 'student') {
+      this.student = this.rSubData.gData.role;
+    } else if (this.seletedRole == 'collaborator') {
+      this.collaborator = this.rSubData.gData.role;
+    } else if (this.seletedRole == 'organisation') {
+      this.organisation = this.rSubData.gData.role;
+    }
+  }
+  /********************************************************************
+   * This binds the selected role by the user and updates the global
+   * varible "seletedRole"
+   */
   selectedRoleByUser(role) {
     this.seletedRole = role;
     console.log(role)
   }
-
+  /************************************************************************
+   * This function kicks in after user hits the submit button. It validates
+   * userType to take appropriate actions.
+   * 1. Destructure rSubData (global variable to get subscribed subject data)
+   *    to get userType
+   * 2. If(userType) and trigger creation of profile or update of profile
+   */
   submit_student_info() {
-    const { uData: { uid, userType, } } = this.subData;
+    const { userType } = this.rSubData;
     if (userType == "NU") {
-      // metadadat should be saved after submit
-      this.createUserProfile();
+      this.createUserProfile('write');
     }
     if (userType == "EUWOP") {
-      // metadadat should be saved after submit
-      this.createUserProfile();
+      this.createUserProfile('write');
     }
     if (userType == "OUWP") {
-      // Old user data must be updated and callback shold be updated to FDB
-      this.updateOldUserProfile()
+      this.updateOldUserProfile('update');
     }
   }
-
-  createUserProfile() {
-    var action = 'write';
+  /*************************************************************************
+   * ALL CRUD functions dealing with Google Sheets is in crudService.
+   * createUserProfile(action) takes a parameted to define the action that
+   * is to be performed on GoogleSheet.
+   * 1. genQString(action) is triggered to get the qString.
+   * 2. writeGsData(qString) from crudService to write to Google Sheet
+   * 3. confirmation data is returned from Google Sheet App Script with roleRow
+   *    and userRow.
+   * 4. confirmationBackToFdb(data) is used to handle returned data
+   */
+  createUserProfile(action) {
     var qString = this.genQString(action);
-    var requestStatus;
-    if (this.seletedRole == "student") {
-      requestStatus = "granted";
-    } else {
-      requestStatus = "requested";
-    }
     this.crud.writeGsData(qString).subscribe(confirmation => {
       console.log('RETURN after UPDATE', confirmation);
       var data: any = confirmation;
       if (data) {
-        const { userRow, roleRow, state } = data;
-        this.confirmationBackToFdb(this.uid, this.seletedRole, requestStatus, userRow, roleRow, state);
+        this.confirmationBackToFdb(data);
       }
     });
   }
-
-  confirmationBackToFdb(uid, seletedRole, requestStatus, userRow, roleRow, state) {
-    this.userService.updateUser(uid, seletedRole, requestStatus, userRow, roleRow, state);
+  /***********************************************************************
+   * Data recieved after query is sent to Google Sheet is destructured to
+   * get userRow, roleRow, state and passed as parameter into
+   * writeNewSignedInUser(userRow, roleRow, state) to 
+   * set metadata in Firebase DB
+   */
+  confirmationBackToFdb(data) {
+    const { userRow, roleRow, state } = data
+    this.userService.writeNewSignedInUser(this.uid, this.seletedRole, userRow, roleRow, state);
   }
 
-  updateOldUserProfile() {
-    const { gData, fData: { metadata: { roleSheet, user } } } = this.subData;
-    var action = 'update';      // Update procedure for existing user
+  updateOldUserProfile(action) {
+    const { gData, fData: { metadata: { roleSheet, user } } } = this.rSubData;
+    // var action = 'update';
     var qString = this.genQString(action);
     qString = qString + '&userPointer=' + user + '&rolePointer=' + roleSheet;
     console.log('user is old', qString);

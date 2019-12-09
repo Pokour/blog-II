@@ -27,7 +27,6 @@ export class AuthsService {
   constructor(
     private afAuth: AngularFireAuth, private route: ActivatedRoute,
     private router: Router, private _apputil: AppUtilService) {
-
     this.firebaseUserObservable$ = afAuth.authState;  // user observable
   }
   /***********************************************************************
