@@ -128,10 +128,17 @@ export class UserService {
     });
   }
   /**********************************************************
-   * updateUser is used to define the metadta and basic database
+   * writeNewSignedInUser is used to define the metadta and basic database
    * structure to the new signed in user who submits the profile
    */
-  updateUser(uid, seletedRole, requestStatus, userRow, roleRow, state) {
+  writeNewSignedInUser(uid, seletedRole, userRow, roleRow, state) {
+    console.log(state);
+    let requestStatus = "";
+    if (seletedRole == "student") {
+      requestStatus = "granted";
+    } else {
+      requestStatus = "requested";
+    }
     firebase.database().ref('/user/' + uid).update({
       role: seletedRole,
       requestStatus: requestStatus,
