@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  roleOptions = ['None', 'student', 'collaborator', 'organisation'];
+  roleOptions = ['None', 'student', 'collaborator', 'institute'];
   rSubData;
   requestStatus;
   seletedRole;
@@ -101,10 +101,10 @@ export class FormComponent implements OnInit {
     interest3: '',
     dob: ''
   };
-  organisation = {
-    address1: '',
-    address2: '',
-    address3: '',
+  institute = {
+    add1: '',
+    add2: '',
+    add3: '',
     city: '',
     state: '',
     pincode: '',
@@ -162,8 +162,8 @@ export class FormComponent implements OnInit {
       this.student = this.rSubData.gData.role;
     } else if (this.seletedRole == 'collaborator') {
       this.collaborator = this.rSubData.gData.role;
-    } else if (this.seletedRole == 'organisation') {
-      this.organisation = this.rSubData.gData.role;
+    } else if (this.seletedRole == 'institute') {
+      this.institute = this.rSubData.gData.role;
     }
   }
   /********************************************************************
@@ -245,8 +245,8 @@ export class FormComponent implements OnInit {
       qString = this.objectToQueryString(this.student, action);
     } else if (this.seletedRole == 'collaborator') {
       qString = this.objectToQueryString(this.collaborator, action);
-    } else if (this.seletedRole == 'organisation') {
-      qString = this.objectToQueryString(this.organisation, action);
+    } else if (this.seletedRole == 'institute') {
+      qString = this.objectToQueryString(this.institute, action);
     }
     console.log(qString);
     return qString;

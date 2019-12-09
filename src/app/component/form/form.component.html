@@ -356,7 +356,7 @@
 
 
 <!-- Form for role selected as Organisation -->
-<div *ngIf="seletedRole == 'organisation'" class="container formcard">
+<div *ngIf="seletedRole == 'institute'" class="container formcard">
   <div class="row">
     <div class="col-md-7">
       <h2> Chosen Role Organisation </h2>
@@ -364,21 +364,21 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress">FLATNO/HOUSENO</label>
-            <input type="text" class="form-control" id="inputaddress" placeholder="address1">
+            <input [(ngModel)]="institute.add1" name="add1" type="text" class="form-control" id="inputaddress" placeholder="address1">
           </div>
           <div class="form-group col-md-6">
             <label for="inputaddress2">HOUSE/BUILDINGNAME</label>
-            <input type="text" class="form-control" id="inputaddress2" placeholder="address2">
+            <input [(ngModel)]="institute.add2" name="add2" type="text" class="form-control" id="inputaddress2" placeholder="address2">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress3">AREA/LOACTILY</label>
-            <input type="text" class="form-control" id="inputaddress3" placeholder="address3">
+            <input [(ngModel)]="institute.add3" name="add3" type="text" class="form-control" id="inputaddress3" placeholder="address3">
           </div>
           <div class="form-group col-md-6">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="City">
+            <input [(ngModel)]="institute.city" name="city" type="text" class="form-control" id="inputCity" placeholder="City">
           </div>
         </div>
         <div class="form-row">
@@ -392,58 +392,58 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputaddress4">Pincode</label>
-            <input type="number" class="form-control" id="inputpin" placeholder="PIN">
+            <input [(ngModel)]="institute.pincode" name="pincode"  type="number" class="form-control" id="inputpin" placeholder="PIN">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group phone-list col-md-4">
             <label for="phone">Office Desk</label>
-            <input type="text" class="form-control" placeholder="Office Desk" />
+            <input [(ngModel)]="institute.Office" name="Office" type="text" class="form-control" placeholder="Office Desk" />
           </div>
 
           <div class="form-group phone-list col-md-4">
             <label for="phone">email</label>
-            <input type="email" class="form-control" placeholder="Email" />
+            <input [(ngModel)]="institute.Officeemail" name="Officeemail" type="email" class="form-control" placeholder="Email" />
           </div>
 
           <div class="form-group phone-list col-md-4">
             <label for="phone">Phone</label>
-            <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            <input [(ngModel)]="institute.officephone" name="officephone" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group phone-list col-md-4">
             <label for="phone">Principal/HOD</label>
-            <input type="text" class="form-control" placeholder="Principal/HOD Name" />
+            <input [(ngModel)]="institute.principal" name="principal" type="text" class="form-control" placeholder="Principal/HOD Name" />
           </div>
 
           <div class="form-group phone-list col-md-4">
             <label for="phone">email</label>
-            <input type="email" class="form-control" placeholder="Email" />
+            <input [(ngModel)]="institute.principalemail" name="principalemail" type="email" class="form-control" placeholder="Email" />
           </div>
 
           <div class="form-group phone-list col-md-4">
             <label for="phone">Phone</label>
-            <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            <input [(ngModel)]="institute.principalphone" name="principalphone" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group phone-list col-md-4">
             <label for="phone">POC for Activities</label>
-            <input type="text" class="form-control" placeholder="POC" />
+            <input [(ngModel)]="institute.poc" name="poc" type="text" class="form-control" placeholder="POC" />
           </div>
 
           <div class="form-group phone-list col-md-4">
             <label for="phone">email</label>
-            <input type="email" class="form-control" placeholder="Email" />
+            <input [(ngModel)]="institute.pocemail" name="pocemail" type="email" class="form-control" placeholder="Email" />
           </div>
 
           <div class="form-group phone-list col-md-4">
             <label for="phone">Phone</label>
-            <input type="text" maxlength="10" class="form-control" placeholder="9090909090" />
+            <input [(ngModel)]="institute.pocphone" name="pocphone" type="text" maxlength="10" class="form-control" placeholder="9090909090" />
           </div>
         </div>
 
