@@ -248,7 +248,7 @@ export class FormComponent implements OnInit {
     } else if (this.seletedRole == 'institute') {
       qString = this.objectToQueryString(this.institute, action);
     }
-    console.log(qString);
+    console.log("GENERATED qstring is",qString);
     return qString;
   }
 
@@ -264,3 +264,4 @@ export class FormComponent implements OnInit {
   }
 
 }
+
