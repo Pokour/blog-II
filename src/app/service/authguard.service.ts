@@ -21,17 +21,16 @@ export class AuthguardService implements CanActivate {
 
   constructor(private auth: AuthsService, private router: Router) { }
 
-  canActivate(route, state: RouterStateSnapshot){
+  canActivate(route, state: RouterStateSnapshot) {
     return this.auth.firebaseUserObservable$.pipe(map(user => {
       if (user) {
         console.log("AuthGuard checked USER")
         return true;
       }
-      if(!user) {
+      if (!user) {
         console.log("Connot find USER. The attempted route is " + state.url);
         this.router.navigate(['/login'], { queryParams: { queryUrl: state.url } });
       }
-
     }));
 
   }
