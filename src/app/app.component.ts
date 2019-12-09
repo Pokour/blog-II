@@ -63,6 +63,10 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
+    /***************
+     * This is the code for loader. Spinner Subject gets the boolean value as per which it gets displayed and not displayed.
+     * If spinnerVisible is true, loader is shown otherwise not.
+     */
     this.utility.getSpinnerSubject()
       .pipe(
         startWith(null),

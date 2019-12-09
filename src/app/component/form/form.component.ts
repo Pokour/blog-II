@@ -3,6 +3,7 @@ import { AuthsService } from 'src/app/service/auths.service';
 import { CrudService } from 'src/app/service/crud.service';
 import { UserService } from 'src/app/service/user.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 /***********************************************************************
  * This component handles data that to be send to Google Sheet and also
  * the data recieved from Google Sheet.
@@ -124,7 +125,8 @@ export class FormComponent implements OnInit {
    */
   constructor(
     public auth: AuthsService, private http: HttpClient, private crud: CrudService,
-    public userService: UserService) {
+    public userService: UserService,
+    private ns: ToastrService) {
     this.userService.subjectDataObservable$.subscribe((data: any) => {
       console.log('Data recieved in forms from subject', data);
       this.rSubData = data;
@@ -208,6 +210,7 @@ export class FormComponent implements OnInit {
       var data: any = confirmation;
       if (data) {
         this.confirmationBackToFdb(data);
+        this.ns.success('Form Submitted Successfully');
       }
     });
   }
@@ -229,7 +232,10 @@ export class FormComponent implements OnInit {
     qString = qString + '&userPointer=' + user + '&rolePointer=' + roleSheet;
     console.log('user is old', qString);
     this.crud.updateGsData(qString).subscribe(confirmation => {
-      console.log('RETURN after UPDATE', confirmation)
+      if (confirmation){
+        this.ns.success('Form Submitted Successfully');
+        console.log('RETURN after UPDATE', confirmation)
+      }
     });
   }
 
