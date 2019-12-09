@@ -57,7 +57,7 @@ export class AppComponent {
         // if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
         //   this.auth.postLoggedIn();
         // }
-        // localStorage.clear();
+        localStorage.clear();
       }
     });
   }

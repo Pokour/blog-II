@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
 
-
 /********************************************************************
  * UserService deals with all the data interaction with Firebase Mainly
  * saving updating and reading user to realtime database.UserService
@@ -26,8 +25,8 @@ export class UserService {
   userType;
   uid;
   userObjectRecieved;
-  constructor() {
-  }
+  constructor() {}
+
   /**************************************************************
    * Objective of mandatoryLoginRoutine() method is to kick in right
    * after a user logs in and determine current status of the user 
@@ -40,12 +39,14 @@ export class UserService {
    * 4. Update the Firebase DB with basic updates for new user and 
    *    Timestamp details for existing user. 
    */
+
   mandatoryLoginRoutine(userObjectRecieved) {
     this.userObjectRecieved = userObjectRecieved;
     this.getDataFootprint(userObjectRecieved).then(dataFootprint => {
       this.checkUserStatus(dataFootprint);
     });
   }
+
   /********************************************************************
    * STEP 1
    * Get the data footprint from the Firebase DB to analyse the USER
@@ -59,6 +60,7 @@ export class UserService {
       return userdata;
     });
   }
+
   /********************************************************************
    * STEP 2
    * Determine the USER status
@@ -67,6 +69,7 @@ export class UserService {
    * c. "OLD WITH PROFILE" 
    * d. Update to BehaviourSubject
    */
+
   checkUserStatus(dataFootprint) {
     if (dataFootprint) {
       if (dataFootprint.metadata) {
@@ -98,6 +101,7 @@ export class UserService {
     }
     this.sendToSubject(dataObject);
   }
+  
   /************************************************************************
    * STEP 3
    * Update the data to the Firebase DB
