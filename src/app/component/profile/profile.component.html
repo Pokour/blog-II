@@ -22,11 +22,11 @@
           </div>
         </div>
 
-        <button [routerLink]="['../form']" class="btn btn-primary" type="button">Update Profile </button>
+        <button [routerLink]="['../form']" class="btn btn-primary mr-2" type="button">Update Profile </button>
         <button [routerLink]="['../quiz']" class="btn btn-primary" type="button">Take Quiz </button>
 
         <nav class="nav flex-column navigation-column">
-          <a class="nav-link active" href="#library">Library</a>
+          <a class="nav-link active" href="#librarysection">Library</a>
           <a class="nav-link" href="#toppers">Toppers</a>
           <a class="nav-link" href="#timeline">Learning Curve</a>
           <a class="nav-link disabled" href="#">Disabled</a>
@@ -38,64 +38,23 @@
       <div class="text-left right-section-profile">
         <div class="personal-information">
           <h1 class="text-primary">{{user.displayName}}</h1>
-          <p class="mb-3"> {{role}}</p>
+          <p class="mb-3 role-name"> {{role}}</p>
           <span class="text-gray">Ranking</span>
           <hr class="">
         </div>
 
-        <!-- Library Section -->
-        <div class=" students-library-card" id="library">
-          <div class="row">
-            <div class="col text-center"><img src="" class="text-center library-img">
-              <h2 class="text-left">Free Access to Library</h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-md-12 text-left mb-3">
-              <div class="text-left mt-2">
-                <p class=""> Our Library is opem, interactive, expanding and always driving innovative
-                  minds. We are dedicated and comitted to provide you with the best and latest content
-                  in the the field of
-                  "ROBOTICS"</p>
-              </div>
-            </div>
-
-            <div class="col-12 text-center col-md-4">
-              <img src="./../../../assets/img/1.png" class="blog-post-img">
-              <h3>Blog 1</h3>
-              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
-            </div>
-            <div class="col-12 text-center col-md-4">
-              <img src="./../../../assets/img/1.png" class="blog-post-img">
-              <h3>Blog 1</h3>
-              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
-            </div>
-            <div class="col-12 text-center col-md-4">
-              <img src="./../../../assets/img/1.png" class="blog-post-img">
-              <h3>Blog 1</h3>
-              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
-            </div>
-
-            <div class="col-12 text-center mt-5">
-              <p><a class="btn btn-primary" role="button" href="#">Visit Library</a></p>
-            </div>
-
-          </div>
-        </div>
-        <!-- Library Section Ends-->
-
         <!-- Toppers Section -->
-        <div class="container students-timeline-card" id="toppers">
-          <h2 class="text-center mb-5">Toppers' of the Month</h2>
-          <div class="row no-gutters text-center">
-            <div class="col-12">
-              <table class="table">
+        <div class="toppers-section" id="toppers">
+          <h2 class="text-left mb-5 text-primary">Toppers of the Month</h2>
+          <div class="row no-gutters text-left">
+            <div class="col-7">
+              <table class="table table-borderless">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col"></th>
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,19 +62,18 @@
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
-                    <td>@mdo</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
                     <td>Thornton</td>
-                    <td>@fat</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td colspan="2">Larry the Bird</td>
+                    <td><img src="../../../assets/icons/trophy.svg" class="trophy-img"></td>
                   </tr>
                 </tbody>
               </table>
@@ -126,8 +84,8 @@
         <!-- Toppers Section End -->
 
         <!-- Timeline card students start here -->
-        <div class="container students-timeline-card" id="timeline">
-          <h2 class="text-center mb-5">Students' Learning Curve.</h2>
+        <div class="timeline-section" id="timeline">
+          <h2 class="text-left mb-5">Students' Learning Curve.</h2>
           <div class="row no-gutters text-center">
             <div class="col-12 col-md-8 timeline-centered">
               <div class="container py-2 mt-4 mb-4">
@@ -140,7 +98,7 @@
                       <div class="col">&nbsp;</div>
                     </div>
                     <h5 class="m-2">
-                      <span class="badge badge-pill bg-light border">&nbsp;</span>
+                      <span class="badge badge-pill bg-primary border">&nbsp;</span>
                     </h5>
                     <div class="row h-50">
                       <div class="col border-right">&nbsp;</div>
@@ -149,7 +107,7 @@
                   </div>
                   <!-- timeline item 1 event content -->
                   <div class="col py-2">
-                    <div class="card">
+                    <div class="card border-primary">
                       <div class="card-body">
                         <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
                         <h4 class="card-title text-muted">Day 1 Orientation</h4>
@@ -255,58 +213,17 @@
                 </div>
                 <!--/row-->
               </div>
-              <!-- <article id="article-right" class="timeline-entry">
-                                  <div class="timeline-entry-inner">
-                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
-                                      <div class="timeline-icon bg-success"><em class="entypo-feather">Italic</em></div>
-                                      <div class="timeline-label">
-                                          <h2>Heading<a href="#">Art Ramadani</a><span>Posted a status update</span></h2>
-                                          <p>Tolerably earnestly middleton extremely distrusts</p>
-                                      </div>
-                                  </div>
-                              </article>
-                              <article id="article-left" class="timeline-entry left-aligned">
-                                  <div class="timeline-entry-inner">
-                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
-                                      <div class="timeline-icon bg-secondary"><em class="entypo-suitcase">Italic</em>
-                                      </div>
-                                      <div class="timeline-label">
-                                          <h2>Heading<a href="#">Job Meeting</a><span>You have a meeting at</span></h2>
-                                          <p>Tolerably earnestly middleton extremely distrusts</p>
-                                      </div>
-                                  </div>
-                              </article>
-                              <article id="article-right" class="timeline-entry">
-                                  <div class="timeline-entry-inner">
-                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
-                                      <div class="timeline-icon bg-success"><em class="entypo-feather">Italic</em></div>
-                                      <div class="timeline-label">
-                                          <h2>Heading<a href="#">Art Ramadani</a><span>Posted a status update</span></h2>
-                                          <p>Tolerably earnestly middleton extremely distrusts</p>
-                                      </div>
-                                  </div>
-                              </article>
-                              <article id="article-left" class="timeline-entry left-aligned">
-                                  <div class="timeline-entry-inner">
-                                      <div class="timeline-time"><span>03:45AM</span><span>Today</span></div>
-                                      <div class="timeline-icon bg-secondary"><em class="entypo-suitcase">Italic</em>
-                                      </div>
-                                      <div class="timeline-label">
-                                          <h2>Heading<a href="#">Job Meeting</a><span>You have a meeting at</span></h2>
-                                          <p>Tolerably earnestly middleton extremely distrusts</p>
-                                      </div>
-                                  </div>
-                              </article> -->
+
             </div>
           </div>
         </div>
         <!-- ***************************Timeline card students ends here**************************** -->
 
         <!-- ************************Quiz and test card students start here************************* -->
-        <div class="container students-quizcard">
+        <div class="students-quiz-section">
           <div class="row no-gutters">
-            <div class="col text-center mb-5"><img src="" class="quiz-img">
-              <h1>Quiz &amp; Tests</h1>
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Quiz &amp; Tests</h2>
             </div>
           </div>
           <div class="row">
@@ -321,7 +238,7 @@
                     orci
                     finibus.
                   </p>
-                  <div><a class="btn btn-outline-primary" data-toggle="collapse" aria-expanded="false"
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
                       aria-controls="collapse-1" role="button" href="#collapse-1">More Info</a>
                     <div class="collapse" id="collapse-1">
                       <p>Collapse content.</p>
@@ -341,7 +258,7 @@
                     orci
                     finibus.
                   </p>
-                  <div><a class="btn btn-outline-primary" data-toggle="collapse" aria-expanded="false"
+                  <div><a class="btn btn-primary mt-3" data-toggle="collapse" aria-expanded="false"
                       aria-controls="collapse-2" role="button" href="#collapse-2">More Info</a>
                     <div class="collapse" id="collapse-2" style="margin-top:20px;">
                       <div class="row">
@@ -352,7 +269,7 @@
                               <option value="14">This is item 3</option>
                             </optgroup>
                           </select></div>
-                        <div class="col-5"><button class="btn btn-outline-primary btn-block" type="button"
+                        <div class="col-5"><button class="btn btn-primary btn-block" type="button"
                             style="width:116px;">Course Details</button></div>
                       </div>
                     </div>
@@ -364,6 +281,152 @@
         </div>
         <!-- ************************Quiz and test card students ends here************************* -->
 
+        <!-- Library Section -->
+        <div class="library-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">Free Access to Library</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left mb-3">
+              <div class="text-left mt-2">
+                <p class=""> Our Library is opem, interactive, expanding and always driving innovative
+                  minds. We are dedicated and comitted to provide you with the best and latest content
+                  in the the field of
+                  "ROBOTICS"</p>
+              </div>
+            </div>
+
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+            <div class="col-12 text-center col-md-4">
+              <img src="./../../../assets/img/1.png" class="blog-post-img">
+              <h3>Blog 1</h3>
+              <p>lorem isjhjg hggdt kugyiu iohoih vyufyf ighoihoihoihihi</p>
+            </div>
+
+            <div class="col-12 text-center mt-5">
+              <p><a class="btn btn-primary" role="button" href="#">Visit Library</a></p>
+            </div>
+
+          </div>
+        </div>
+        <!-- Library Section Ends-->
+
+        <!-- *** Latest Events Section -->
+        <div class="latest-events-section">
+          <div class="row no-gutters">
+            <div class="col text-left mb-5"><img src="" class="quiz-img">
+              <h2>Recent Events</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua">
+                  <img src="../../../assets/img/fff.png" height="90px" width="90px">
+                </span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Robotics Competition</span>
+                  <span class="info-box-number">90<small>%</small></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Likes</span>
+                  <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <!-- fix for small devices only -->
+            <div class="clearfix visible-sm-block"></div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Sales</span>
+                  <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">New Members</span>
+                  <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+        </div>
+        <!-- ** Latest Events Section Ends *** -->
+
+        <!-- Collaborator Choice Section -->
+        <div class="collaborator-choice-section" id="librarysection">
+          <div class="row">
+            <div class="col text-center"><img src="" class="text-center library-img">
+              <h2 class="text-left">How can you Collaborate?</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-12 text-left my-3">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                    aria-controls="pills-contact" aria-selected="false">Contact</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  .dfdggs..</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Collaborator Choice Section -->
 
       </div>
     </div>
