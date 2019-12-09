@@ -57,10 +57,10 @@ export class AppComponent {
         // if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
         //   this.auth.postLoggedIn();
         // }
-        if( this.router.url == '/login' || this.router.url.indexOf('/login') > -1){
-          // this.auth.postLoggedIn();
-          this._apputil.loadingStarted();
-        }
+        // if( this.router.url == '/login' || this.router.url.indexOf('/login') > -1){
+        //   // this.auth.postLoggedIn();
+        //   //this._apputil.loadingStarted();
+        // }
         localStorage.clear();
       }
     });

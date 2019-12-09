@@ -115,6 +115,7 @@ export class ProfileComponent implements OnInit {
   }
 
   payLoadtoSubject(gData) {
+    this._apputil.loadingEnded();
     const { userType, fireAuthObj, fData } = this.rSubData;
     let obj = { gData: gData, userType: userType, fireAuthObj: fireAuthObj, fData: fData }
     this.userService.sendToSubject(obj);
