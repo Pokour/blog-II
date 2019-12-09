@@ -22,7 +22,7 @@ import { AppUtilService } from 'src/app/service/app-util.service';
 })
 export class ProfileComponent implements OnInit {
   rSubData;
-
+  role;
   constructor(
     private crud: CrudService, public auth: AuthsService, private userService: UserService,
     private _apputil: AppUtilService) {
@@ -57,16 +57,19 @@ export class ProfileComponent implements OnInit {
     const { userType } = subjectObject;
     if (userType == "OUWP") {
       const {  metadata: { user, roleSheet, library }, role, requestStatus } = subjectObject.fData;
+      this.role = role;
       let query = this.generateQueryString(role, requestStatus, user, roleSheet)
         + "&library=" + this.generateLibraryString(library);
       this.getGoogleSheetData(query);
     }
     if (userType == "EUWOP") {
+      this.role = "NA";
       this.payLoadtoSubject({});
       // this.query = this.generateQueryString(role, requestStatus );
       // this.getGoogleSheetData(this.query);
     }
     if (userType == "NU") {
+      this.role = "NA";
       this.payLoadtoSubject({});
     }
   }
