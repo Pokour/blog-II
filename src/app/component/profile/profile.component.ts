@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
     //     this.unwrapData(data);
     //   }
     // });
-    this.dataUnwrap(this.rSubData);
+    this.dataUnwrap(this.rSubData);  
   }
   /************************************************************************
    * 1. Destructuring dataFootprint recieved from Behaviour subject.
