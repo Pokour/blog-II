@@ -110,35 +110,31 @@ export class LibraryComponent implements OnInit {
   }
 
   fetchblogwithNumber(blogTerm: string) {
-    this.crud.getblog(blogTerm)
-      .subscribe(recievedblog => {
-        //Recieved blog is in blogData
-        if (recievedblog) {
-          this._apputil.loadingEnded();
+    this.crud.getblog(blogTerm).subscribe(recievedblog => {
+      //Recieved blog is in blogData
+      if (recievedblog) {
+        this._apputil.loadingEnded();
+      }
+      this.blogData = recievedblog;
+      // we extract the index for the blog in blogIndex array which is always the first object in the blogData
+      this.blogIndex = this.blogData[0];
+      // ckeck index
+      console.log(this.blogIndex);
+
+      for (let j = 0; j < this.blogData.length; j++) {
+        this.elementData[j] = Object.values(this.blogData[j]);
+
+        if (this.blogIndex[j] == 'youtube') {
+          this.sanatizedUrl = this.blogData[j]['youtube'];
+          this.elementData[j] = this.sanitizer.bypassSecurityTrustResourceUrl(this.sanatizedUrl)
         }
-        this.blogData = recievedblog;
-        // we extract the index for the blog in blogIndex array which is always the first object in the blogData
-        this.blogIndex = this.blogData[0];
-        // ckeck index
-        console.log(this.blogIndex);
+      }
 
-        for (let j = 0; j < this.blogData.length; j++) {
-          this.elementData[j] = Object.values(this.blogData[j]);
-
-          if (this.blogIndex[j] == 'youtube') {
-            this.sanatizedUrl = this.blogData[j]['youtube'];
-            this.elementData[j] = this.sanitizer.bypassSecurityTrustResourceUrl(this.sanatizedUrl)
-          }
-        }
-
-      });
+    });
   }
 
   fetchblog($event) {
     //  a(Category) b(Book) c(Chapter) to be retrieved, the variables a b c are converted to string ;
-
-
-
     this.blogCategory = this.blogCategory + '';
     this.blogBook = this.blogBook + '';
     this.blogChapter = this.blogChapter + '';
