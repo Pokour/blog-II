@@ -39,7 +39,7 @@ export class AuthsService {
     let returnUrl = this.route.snapshot.queryParamMap.get('queryUrl') || '/';
     localStorage.setItem('storedUrl', returnUrl);
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    this._apputil.loadingStarted();
+    // this._apputil.loadingStarted();
   }
   /***********************************
    * What is this for ?
