@@ -96,7 +96,6 @@ export class UserService {
         signupTimestamp: new Date()
       });
     }
-
     this.sendToSubject({userType: this.userType, fireAuthObj: this.userAuthObject, fData: this.fireDBObj});
   }
   
