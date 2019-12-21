@@ -25,8 +25,7 @@ export class AppComponent {
     private _apputil: AppUtilService) {
 
     /**********************************************************************
-     * EXPLAIN THE CODE BELOW
-     */
+     * EXPLAIN THE CODE BELOW */
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefreshforApp = !router.navigated;
