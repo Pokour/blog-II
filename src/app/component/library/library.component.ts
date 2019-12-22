@@ -45,12 +45,8 @@ export class LibraryComponent implements OnInit {
     private _apputil: AppUtilService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    // this.activatedRoute.params.subscribe(params => {
-    //   if (params['name']) {
-    //     this.fetchblogwithNumber(params['name']);
-    //     console.log(params['name']);
-    //   }
-    // })
+ 
+  
   }
 
   // recieveing data drom child component 
@@ -104,6 +100,17 @@ export class LibraryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      /*
+      * Check the url for if there already exists a blogname.
+      * If there exists a blogname, we are calling the function fetchblogwithNumber to fetch the article.
+      * If the name doesn't exist, then we know the user has came here through a blog selection from
+        sidebarlibrary. Hence the fetchBlog function is called.
+      */
+        if (params['id']) {
+          this.fetchblogwithNumber(params['id']);
+        }
+      })
   }
 
   selected(item) {
@@ -149,7 +156,11 @@ export class LibraryComponent implements OnInit {
 
     // check the blog name generated
     console.log(this.blogname);
-    // this.router.navigate(['library', this.blogname]);
+    /*
+    * To update the url with the selected blogname. Used Router's pre-defined function 'navigate' to
+     update the :name(from app-routing module) with this.blogname.
+    */
+    this.router.navigate(['library', this.blogname]);
 
     // the blogname is passed as a parameter to the getblog() in the crud service
     this.crud.getblog(this.blogname)
@@ -172,7 +183,6 @@ export class LibraryComponent implements OnInit {
             this.elementData[j] = this.sanitizer.bypassSecurityTrustResourceUrl(this.sanatizedUrl)
           }
         }
-
       });
   }
 
