@@ -45,11 +45,12 @@ export class LibraryComponent implements OnInit {
     private _apputil: AppUtilService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe(params => {
-      if (params['name']) {
-        this.fetchblogwithNumber(params['name']);
-      }
-    })
+    // this.activatedRoute.params.subscribe(params => {
+    //   if (params['name']) {
+    //     this.fetchblogwithNumber(params['name']);
+    //     console.log(params['name']);
+    //   }
+    // })
   }
 
   // recieveing data drom child component 
@@ -148,7 +149,7 @@ export class LibraryComponent implements OnInit {
 
     // check the blog name generated
     console.log(this.blogname);
-    this.router.navigate(['library', this.blogname]);
+    // this.router.navigate(['library', this.blogname]);
 
     // the blogname is passed as a parameter to the getblog() in the crud service
     this.crud.getblog(this.blogname)
