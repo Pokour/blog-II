@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'form', component: FormComponent },
   { path: 'library', component: LibraryComponent, canActivate: [AuthguardService] },
-  { path: 'library/:name', component: LibraryComponent, canActivate: [AuthguardService] },
+  { path: 'library/:id', component: LibraryComponent, canActivate: [AuthguardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardService] },
   { path: 'login', component: LoginComponent }
   // {path: 'blog', component: BlogComponent},
