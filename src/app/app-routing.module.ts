@@ -9,7 +9,7 @@ import { AuthguardService } from './service/authguard.service';
 
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', component: LandingComponent, pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   { path: 'form', component: FormComponent },
   { path: 'library', component: LibraryComponent, canActivate: [AuthguardService] },

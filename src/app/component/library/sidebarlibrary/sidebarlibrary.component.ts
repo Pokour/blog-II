@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CrudService } from 'src/app/service/crud.service';
-import { browserRefreshforApp } from 'src/app/app.component';
 import { AppUtilService } from 'src/app/service/app-util.service';
 
 @Component({

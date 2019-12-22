@@ -5,7 +5,6 @@ import { AuthsService } from './service/auths.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { AppUtilService } from './service/app-util.service';
 import { startWith, delay, tap, catchError } from 'rxjs/operators';
-export let browserRefreshforApp = false;
 
 @Component({
   selector: 'app-root',
@@ -26,11 +25,7 @@ export class AppComponent {
 
     /**********************************************************************
      * EXPLAIN THE CODE BELOW */
-    this.subscription = router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        browserRefreshforApp = !router.navigated;
-      }
-    });
+   
 
     /**********************************************************************
      * 1. Authentication starts from app.component.ts
@@ -48,7 +43,10 @@ export class AppComponent {
         userService.mandatoryLoginRoutine(userObjectRecieved);
         // userService.save(userObjectRecieved);----------------------------------## deprecated ##
         let storedUrl = localStorage.getItem('storedUrl');
-        router.navigateByUrl(storedUrl);
+        if(storedUrl !== null){
+          router.navigateByUrl(storedUrl);
+        }
+        console.log('srotdurl', storedUrl)
 
         /******************************************************************
          * Explain the use of commented code below
@@ -80,12 +78,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd) {
-        this.router.navigated = false;
         window.scrollTo(0, 0);
       }
     });
