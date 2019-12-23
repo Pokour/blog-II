@@ -100,13 +100,15 @@ export class LibraryComponent implements OnInit {
   }
 
   ngOnInit() {
+    /****************************************************************
+     * Check the url for if there already exists a blogname.
+     * If there exists a blogname, we are calling the function fetchblogwithNumber()
+     * to fetch the article.
+     * If the name doesn't exist, then we know the user has came here
+     * through a blog selection from sidebarlibrary.
+     * Hence the fetchBlog function is called.
+     */
     this.activatedRoute.params.subscribe(params => {
-      /*
-      * Check the url for if there already exists a blogname.
-      * If there exists a blogname, we are calling the function fetchblogwithNumber to fetch the article.
-      * If the name doesn't exist, then we know the user has came here through a blog selection from
-        sidebarlibrary. Hence the fetchBlog function is called.
-      */
         if (params['id']) {
           this.fetchblogwithNumber(params['id']);
         }

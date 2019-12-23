@@ -24,10 +24,6 @@ export class AppComponent {
     private _apputil: AppUtilService) {
 
     /**********************************************************************
-     * EXPLAIN THE CODE BELOW */
-   
-
-    /**********************************************************************
      * 1. Authentication starts from app.component.ts
      * 2. Subscribe to the USER Observable in Authentication service.
      * 3. Create a new function in UserService mandatoryLoginRoutine().
@@ -43,7 +39,7 @@ export class AppComponent {
         userService.mandatoryLoginRoutine(userObjectRecieved);
         // userService.save(userObjectRecieved);----------------------------------## deprecated ##
         let storedUrl = localStorage.getItem('storedUrl');
-        if(storedUrl !== null){
+        if (storedUrl !== null) {
           router.navigateByUrl(storedUrl);
         }
         console.log('srotdurl', storedUrl)

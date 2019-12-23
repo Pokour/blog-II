@@ -23,6 +23,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { SidebarlibraryComponent } from './component/library/sidebarlibrary/sidebarlibrary.component';
 import { LoginComponent } from './component/login/login.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginComponent } from './component/login/login.component';
     NavbarComponent,
     ProfileComponent,
     SidebarlibraryComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
