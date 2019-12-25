@@ -48,7 +48,7 @@ export class LibraryComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
     /*
     * Check the url for if there already exists a blogname.
-    * If there exists a blogname, we are calling the function fetchblogwithNumber to fetch the article.
+    * If there exists a blogname, we are calling the function fetchblogwithNumber to fetch the article of blogname.
     * If the name doesn't exist, then we know the user has came here through a blog selection from
       sidebarlibrary. Hence the fetchBlog function is called.
     */
