@@ -76,7 +76,7 @@ export class SidebarlibraryComponent implements OnInit {
    * differentiate it from the other
    * names in that list.
    */
-  selected(item) {
+  selectedCategory(item) {
     this.selectedItem = item;
   }
 
@@ -93,11 +93,10 @@ export class SidebarlibraryComponent implements OnInit {
    * This function is used to send the selected blog's details across to
    * it's parent component.
    */
-  sendtofetchblog(i, j, k, chapter) {
+  sendIndicesToLibrary(i, j, k, chapter) {
     this.blogCategory.emit(i);
     this.blogBook.emit(j);
     this.blogChapter.emit(k);
-    this.blogName.emit(chapter);
     this.fetchBlogFunctionCall.emit('call');
     this.currentblog = chapter;
   }

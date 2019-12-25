@@ -1,8 +1,7 @@
 <div id="wrapper" class="d-flex" [ngClass]="isOpen? 'toggle-sidebar' : ''">
 
   <app-sidebarlibrary (blogCategory)="receiveCategoryInfo($event)" (blogBook)="receiveBookInfo($event)"
-    (blogChapter)="receiveChapterInfo($event)" (blogName)="receiveNameInfo($event)"
-    (fetchBlogFunctionCall)="fetchblog($event)">
+    (blogChapter)="receiveChapterInfo($event)" (fetchBlogFunctionCall)="createBlogName($event)">
   </app-sidebarlibrary>
   
   <div id="page-content-wrapper">
