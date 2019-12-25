@@ -71,30 +71,29 @@ export class SidebarlibraryComponent implements OnInit {
       });
   }
 
-  selected(item) {
-    /*************************************************************************
+  /*************************************************************************
    * this function is used to colour code the selected item, so as to 
    * differentiate it from the other
    * names in that list.
    */
+  selected(item) {
     this.selectedItem = item;
   }
 
-  
-  selectedBookItem(item) {
-    /*************************************************************************
+  /*************************************************************************
    * this function is used to colour code the selected item, so as to
    * differentiate it from the other
    * names in that list.
    */
+  selectedBookItem(item) {
     this.selectedBook = item;
   }
 
-  sendtofetchblog(i, j, k, chapter) {
-    /*************************************************************************
+  /*************************************************************************
    * This function is used to send the selected blog's details across to
    * it's parent component.
    */
+  sendtofetchblog(i, j, k, chapter) {
     this.blogCategory.emit(i);
     this.blogBook.emit(j);
     this.blogChapter.emit(k);
