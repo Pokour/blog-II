@@ -44,38 +44,25 @@ export class LibraryComponent implements OnInit {
     private _notification: ToastrService,
     private _apputil: AppUtilService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe(params => {
-    /*
-    * Check the url for if there already exists a blogname.
-    * If there exists a blogname, we are calling the function fetchblogwithNumber to fetch the article of blogname.
-    * If the name doesn't exist, then we know the user has came here through a blog selection from
-      sidebarlibrary. Hence the fetchBlog function is called.
-    */
-      if (params['name']) {
-        this.fetchblogwithNumber(params['name']);
-      }
-    })
+    private activatedRoute: ActivatedRoute) {  
   }
-
-  // recieveing data drom child component 
+  
+  /*********************************************************************
+   * Recieve the blog details clicked by the user on the child component
+   * below 4 functions catch the variable details from the event
+   */
   receiveCategoryInfo($event) {
     this.blogCategory = $event
-    console.log(this.blogCategory);
   }
-
   receiveBookInfo($event) {
     this.blogBook = $event
   }
-
   receiveChapterInfo($event) {
     this.blogChapter = $event
   }
-
   receiveNameInfo($event) {
     this.blogHeadName = $event
   }
-  // end of receiving data from child component
 
   openSidebar() {
     this.isOpen = !this.isOpen;
@@ -108,7 +95,21 @@ export class LibraryComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    /****************************************************************
+     * Check the url for if there already exists a blogname.
+     * If there exists a blogname, we are calling the function fetchblogwithNumber()
+     * to fetch the article.
+     * If the name doesn't exist, then we know the user has came here
+     * through a blog selection from sidebarlibrary.
+     * Hence the fetchBlog function is called.
+     */
+    this.activatedRoute.params.subscribe(params => {
+        if (params['id']) {
+          this.fetchblogwithNumber(params['id']);
+        }
+      })
+  }
 
   selected(item) {
     this.selectedItem = item;
