@@ -10,7 +10,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: '', component: LandingComponent, pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   { path: 'form', component: FormComponent },
   { path: 'library', component: LibraryComponent, canActivate: [AuthguardService] },
