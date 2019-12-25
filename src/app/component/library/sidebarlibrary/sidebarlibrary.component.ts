@@ -43,7 +43,8 @@ export class SidebarlibraryComponent implements OnInit {
   }
 
   /*************************************************************************
-   * getLibrary() is a function to load the entire list of categories, chapters and books from the service.
+   * getLibrary() is a function to load the entire list of categories, chapters
+   * and books from the service.
    */
   getLibrary() {
     this.crud.getcategory()
@@ -72,7 +73,8 @@ export class SidebarlibraryComponent implements OnInit {
 
   selected(item) {
     /*************************************************************************
-   * this function is used to colour code the selected item, so as to differentiate it from the other
+   * this function is used to colour code the selected item, so as to 
+   * differentiate it from the other
    * names in that list.
    */
     this.selectedItem = item;
@@ -81,7 +83,8 @@ export class SidebarlibraryComponent implements OnInit {
   
   selectedBookItem(item) {
     /*************************************************************************
-   * this function is used to colour code the selected item, so as to differentiate it from the other
+   * this function is used to colour code the selected item, so as to
+   * differentiate it from the other
    * names in that list.
    */
     this.selectedBook = item;
@@ -89,7 +92,8 @@ export class SidebarlibraryComponent implements OnInit {
 
   sendtofetchblog(i, j, k, chapter) {
     /*************************************************************************
-   * This function is used to send the selected blog's details across to it's parent component.
+   * This function is used to send the selected blog's details across to
+   * it's parent component.
    */
     this.blogCategory.emit(i);
     this.blogBook.emit(j);

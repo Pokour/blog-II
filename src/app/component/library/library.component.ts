@@ -44,29 +44,25 @@ export class LibraryComponent implements OnInit {
     private _notification: ToastrService,
     private _apputil: AppUtilService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
- 
-  
+    private activatedRoute: ActivatedRoute) {  
   }
-
-  // recieveing data drom child component 
+  
+  /*********************************************************************
+   * Recieve the blog details clicked by the user on the child component
+   * below 4 functions catch the variable details from the event
+   */
   receiveCategoryInfo($event) {
     this.blogCategory = $event
-    console.log(this.blogCategory);
   }
-
   receiveBookInfo($event) {
     this.blogBook = $event
   }
-
   receiveChapterInfo($event) {
     this.blogChapter = $event
   }
-
   receiveNameInfo($event) {
     this.blogHeadName = $event
   }
-  // end of receiving data from child component
 
   openSidebar() {
     this.isOpen = !this.isOpen;
