@@ -59,7 +59,9 @@ export class LibraryComponent implements OnInit {
   receiveChapterInfo($event) {
     this.blogChapter = $event
   }
-
+  /****************************************************************
+   * This function openSidebar() is used to toggle the sidebar
+   */
   openSidebar() {
     this.isOpen = !this.isOpen;
     return this.isOpen;
