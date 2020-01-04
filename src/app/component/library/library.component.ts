@@ -18,7 +18,7 @@ export class LibraryComponent implements OnInit {
   book;
   categoryList;
   booksList;
-  chapterData;
+  chapterDatachapterData;
   books = [];
   chaptersOfCategory = [];
   blogname: string;
@@ -26,7 +26,6 @@ export class LibraryComponent implements OnInit {
   blogIndex = [];
   elementData = [];
   sanatizedUrl = '';
-  isOk = true;
   chapter: any;
   bodyContentHeadIndex = [];
   bodyContentHeadValue = [];
