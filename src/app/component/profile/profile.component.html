@@ -3,7 +3,7 @@
 <div *ngIf="auth.firebaseUserObservable$ | async as user" class="main-content">
   <!-- Header -->
   <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-    style="min-height: 600px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    style="min-height: 500px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
     <!-- Mask -->
     <span class="mask bg-gradient-default opacity-8"></span>
     <!-- Header container -->
@@ -13,7 +13,7 @@
           <h1 class="display-2 text-white">Hello {{user.displayName}} </h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've
             made with your work and manage your projects or assigned tasks</p>
-          <a [routerLink]="['../form']" href="#!" class="btn btn-info">Edit profile</a>
+          <!-- <a [routerLink]="['../form']" href="#!" class="btn btn-info">Edit profile</a> -->
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@
                 <h3 class="mb-0">My account</h3>
               </div>
               <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-primary">Edit Profile</a>
+                <a [routerLink]="['../form']" class="btn btn-sm btn-primary">Edit Profile</a>
               </div>
             </div>
           </div>
@@ -173,7 +173,7 @@
             <!-- Timeline ends -->
 
             <!-- Tabs on Plain Card (Collaborator)-->
-            <section class="pt-5">
+            <section class="collaborator-specific-section pt-5">
               <div>
                 <H3> Collaborator Choice Section </H3>
               </div>
@@ -261,67 +261,69 @@
 
 
             <!-- Quiz section starts here -->
-            <div>
-              <H3> Quiz cards section </H3>
-            </div>
-            <div class="container">
-              <div class="row mbr-justify-content-center">
-                <div class="col-lg-3 mbr-col-md-10">
-                  <div class="wrap">
-                    <div class="ico-wrap">
-                      <span class="mbr-iconfont fa-volume-up fa"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                      <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Stay
-                        <span>Successful</span></h2>
-                      <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
-                        printing and typesetting industry. Lorem Ipsum</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 mbr-col-md-10">
-                  <div class="wrap">
-                    <div class="ico-wrap">
-                      <span class="mbr-iconfont fa-calendar fa"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                      <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Create
-                        <span>An Effective Team</span>
-                      </h2>
-                      <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
-                        printing and typesetting industry. Lorem Ipsum</p>
+            <section class="pt-5">
+              <div>
+                <h3> Quiz cards section </h3>
+              </div>
+              <div class="container">
+                <div class="row mbr-justify-content-center">
+                  <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap">
+                      <div class="ico-wrap">
+                        <span class="mbr-iconfont fa-volume-up fa"></span>
+                      </div>
+                      <div class="text-wrap vcenter">
+                        <h3 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Stay
+                          <span>Successful</span></h3>
+                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
+                          printing and typesetting industry. Lorem Ipsum</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-3 mbr-col-md-10">
-                  <div class="wrap">
-                    <div class="ico-wrap">
-                      <span class="mbr-iconfont fa-globe fa"></span>
-                    </div>
-                    <div class="text-wrap vcenter">
-                      <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Launch
-                        <span>A Unique Project</span>
-                      </h2>
-                      <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
-                        printing and typesetting industry. Lorem Ipsum</p>
+                  <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap">
+                      <div class="ico-wrap">
+                        <span class="mbr-iconfont fa-calendar fa"></span>
+                      </div>
+                      <div class="text-wrap vcenter">
+                        <h3 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Create
+                          <span>An Effective Team</span>
+                        </h3>
+                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
+                          printing and typesetting industry. Lorem Ipsum</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-3 mbr-col-md-10">
-                  <div class="wrap">
-                    <div class="ico-wrap">
-                      <span class="mbr-iconfont fa-trophy fa"></span>
+                  <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap">
+                      <div class="ico-wrap">
+                        <span class="mbr-iconfont fa-globe fa"></span>
+                      </div>
+                      <div class="text-wrap vcenter">
+                        <h3 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Launch
+                          <span>A Unique Project</span>
+                        </h3>
+                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
+                          printing and typesetting industry. Lorem Ipsum</p>
+                      </div>
                     </div>
-                    <div class="text-wrap vcenter">
-                      <h2 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Achieve <span>Your
-                          Targets</span></h2>
-                      <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
-                        printing and typesetting industry. Lorem Ipsum</p>
+                  </div>
+                  <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap">
+                      <div class="ico-wrap">
+                        <span class="mbr-iconfont fa-trophy fa"></span>
+                      </div>
+                      <div class="text-wrap vcenter">
+                        <h3 class="mbr-fonts-style mbr-bold mbr-section-title3 display-5">Achieve <span>Your
+                            Targets</span></h3>
+                        <p class="mbr-fonts-style text1 mbr-text display-6">Lorem Ipsum is simply dummy text of the
+                          printing and typesetting industry. Lorem Ipsum</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
             <!-- Quiz section ends here -->
 
 

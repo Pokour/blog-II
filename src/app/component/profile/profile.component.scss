@@ -148,7 +148,7 @@
 
   //5
   .pt-lg-8 {
-    padding-top: 8rem !important;
+    // padding-top: 8rem !important;
   }
 
   .ml-lg-auto {
@@ -318,131 +318,121 @@ li.timeline-item::before {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.text-gray {
-  color: #999;
-}
+// timeline ends here
 
-.container .title {
-  color: #3c4858;
-  text-decoration: none;
-  margin-top: 30px;
-  margin-bottom: 25px;
-  min-height: 32px;
+// collborator cards section starts
+.collaborator-specific-section{
+  div.card {
+    border: 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, .87);
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  }
+  
+  div.card.card-plain {
+    background: transparent;
+    box-shadow: none;
+  }
+  
+  div.card .card-header-timeline {
+    border-radius: 3px;
+    padding: 1rem 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -30px;
+    border: 0;
+    background: linear-gradient(60deg, #eee, #bdbdbd);
+  }
+  
+  .card-plain .card-header-timeline:not(.card-avatar) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .div.card .card-body {
+    padding: 15px 30px;
+  }
+  
+  div.card .card-header-primary {
+    background: linear-gradient(60deg, #ffffff, #ffffff);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(255, 255, 255, 0.6);
+  }
+  
+  div.card .card-header-danger {
+    background: linear-gradient(60deg, #ef5350, #d32f2f);
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(244, 67, 54, .6);
+  }
+  
+  
+  .card-nav-tabs .card-header-timeline {
+    margin-top: -30px !important;
+  }
+  
+  .card .card-header-timeline .nav-tabs {
+    padding: 0;
+  }
+  
+  .nav-tabs {
+    border: 0;
+    border-radius: 3px;
+    padding: 0 15px;
+  }
+  
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  
+  .nav-tabs .nav-item {
+    margin-bottom: -1px;
+  }
+  
+  .nav-tabs .nav-item .nav-link.active {
+    background-color: hsla(0, 0%, 100%, .2);
+    transition: background-color .3s .2s;
+  }
+  
+  .nav-tabs .nav-item .nav-link {
+    border: 0 !important;
+    color: rgb(131, 131, 131) !important;
+    font-weight: 500;
+  }
+  
+  .nav-tabs .nav-item .nav-link {
+    color: rgb(133, 133, 133);
+    border: 0;
+    margin: 0;
+    border-radius: 3px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 15px;
+    background-color: transparent;
+    transition: background-color .3s 0s;
+  }
+  
+  .nav-link {
+    display: block;
+  }
+  
+  .nav-tabs .nav-item .material-icons {
+    margin: -1px 5px 0 0;
+    vertical-align: middle;
+  }
+  
+  .nav .nav-item {
+    position: relative;
+  }
 }
+// collborator cards section ends
 
-.container .title h3 {
-  font-size: 25px;
-  font-weight: 300;
-}
-
-div.card {
-  border: 0;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  border-radius: 6px;
-  color: rgba(0, 0, 0, .87);
-  background: #fff;
-  width: 100%;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-}
-
-div.card.card-plain {
-  background: transparent;
-  box-shadow: none;
-}
-
-div.card .card-header-timeline {
-  border-radius: 3px;
-  padding: 1rem 15px;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: -30px;
-  border: 0;
-  background: linear-gradient(60deg, #eee, #bdbdbd);
-}
-
-.card-plain .card-header-timeline:not(.card-avatar) {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.div.card .card-body {
-  padding: 15px 30px;
-}
-
-div.card .card-header-primary {
-  background: linear-gradient(60deg, #ffffff, #ffffff);
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(255, 255, 255, 0.6);
-}
-
-div.card .card-header-danger {
-  background: linear-gradient(60deg, #ef5350, #d32f2f);
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(244, 67, 54, .6);
-}
-
-
-.card-nav-tabs .card-header-timeline {
-  margin-top: -30px !important;
-}
-
-.card .card-header-timeline .nav-tabs {
-  padding: 0;
-}
-
-.nav-tabs {
-  border: 0;
-  border-radius: 3px;
-  padding: 0 15px;
-}
-
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-}
-
-.nav-tabs .nav-item {
-  margin-bottom: -1px;
-}
-
-.nav-tabs .nav-item .nav-link.active {
-  background-color: hsla(0, 0%, 100%, .2);
-  transition: background-color .3s .2s;
-}
-
-.nav-tabs .nav-item .nav-link {
-  border: 0 !important;
-  color: rgb(131, 131, 131) !important;
-  font-weight: 500;
-}
-
-.nav-tabs .nav-item .nav-link {
-  color: rgb(133, 133, 133);
-  border: 0;
-  margin: 0;
-  border-radius: 3px;
-  line-height: 24px;
-  text-transform: uppercase;
-  font-size: 12px;
-  padding: 10px 15px;
-  background-color: transparent;
-  transition: background-color .3s 0s;
-}
-
-.nav-link {
-  display: block;
-}
-
-.nav-tabs .nav-item .material-icons {
-  margin: -1px 5px 0 0;
-  vertical-align: middle;
-}
-
-.nav .nav-item {
-  position: relative;
-}
 
 
 
@@ -466,9 +456,9 @@ div.card .card-header-danger {
   box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
-.card2 h3 {
-  font-weight: 600;
-}
+// .card2 h3 {
+//   font-weight: 600;
+// }
 
 .card2 img {
   position: absolute;
@@ -509,16 +499,17 @@ div.card .card-header-danger {
 // quiz section starts here
 .wrap {
   display: flex;
-  background: white;
+  background: rgb(255, 254, 235);
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 0.5rem;
   box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .wrap:hover {
-  background: linear-gradient(135deg, #6394ff 0%, #0a193b 100%);
-  color: white;
+  background: linear-gradient(135deg, #faf5db 0%, #fcf8d2 100%);
+  color: rgb(44, 44, 44);
 }
 
 .ico-wrap {
@@ -526,8 +517,7 @@ div.card .card-header-danger {
 }
 
 .mbr-iconfont {
-  font-size: 4.5rem !important;
-  color: #313131;
+  // font-size: 4.5rem !important;
   margin: 1rem;
   padding-right: 1rem;
 }
@@ -540,29 +530,6 @@ div.card .card-header-danger {
   text-align: left;
 }
 
-h2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
 
-.display-5 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.4rem;
-}
-
-.mbr-bold {
-  font-weight: 700;
-}
-
-p {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  line-height: 25px;
-}
-
-.display-6 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1re
-}
 
 // Quiz section ends here
