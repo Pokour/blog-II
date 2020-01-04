@@ -13,25 +13,21 @@
                     <button class="btn btn-primary nav-lib-button mr-sm-2" type="button"
                         routerLink="library">Library</button>
                 </li>
-                <li *ngIf="auth.firebaseUserObservable$ | async as user" class="navbar-nav">
-                    <img class="profile-image" src="{{user.photoURL}}" width="25" height="25" alt="avatar">
-                </li>
                 <li *ngIf="!(auth.firebaseUserObservable$ | async)" class="nav-item active">
                     <a class="nav-link" routerLink="login"> Login </a>
                 </li>
                 <li *ngIf="auth.firebaseUserObservable$ | async as user" class="dropdown">
                     <a data-toggle="dropdown" aria-expanded="false" href="#"
-                        class="dropdown-toggle nav-link dropdown-toggle active">{{user.displayName}}</a>
+                        class="dropdown-toggle nav-link dropdown-toggle profile active">
+                        <img class="profile-image" src="{{user.photoURL}}" alt="avatar">
+                    </a>
                     <div role="menu" class="dropdown-menu">
-                        <a role="presentation" href="#" class="dropdown-item">Name</a>
-                        <a role="presentation" href="#" class="dropdown-item">Role</a>
+                        <a role="presentation" href="#" class="dropdown-item" routerLink="profile">Profile</a>
                         <a role="presentation" href="#" class="dropdown-item" (click)="accountlogout()">Logout</a>
                     </div>
-                </li>
-                <li role="presentation" class="nav-item">
-                    <a href="#" class="nav-link active" routerLink="profile">Profile</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
