@@ -3,6 +3,7 @@ import { CrudService } from 'src/app/service/crud.service';
 import { AuthsService } from 'src/app/service/auths.service';
 import { UserService } from 'src/app/service/user.service';
 import { AppUtilService } from 'src/app/service/app-util.service';
+
 /********************************************************************
  * Objective of this component is to retrieve data from the Firebase
  * and google sheet. This data is consumed by the user profile and forms
