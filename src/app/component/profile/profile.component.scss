@@ -47,6 +47,10 @@
   flex: 1 1 auto;
 }
 
+.member_img{
+height: 20px;
+}
+
 .card-header {
   margin-bottom: 0;
   padding: 1.25rem 1.5rem;
@@ -147,9 +151,9 @@
   }
 
   //5
-  .pt-lg-8 {
-    // padding-top: 8rem !important;
-  }
+  // .pt-lg-8 {
+  //   padding-top: 8rem !important;
+  // }
 
   .ml-lg-auto {
     margin-left: auto !important;
@@ -529,7 +533,4 @@ li.timeline-item::before {
 .mbr-section-title3 {
   text-align: left;
 }
-
-
-
 // Quiz section ends here
