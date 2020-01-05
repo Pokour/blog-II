@@ -503,7 +503,7 @@ li.timeline-item::before {
 // quiz section starts here
 .wrap {
   display: flex;
-  background: rgb(255, 254, 235);
+  background: rgb(245, 244, 239);
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 0.5rem;
   box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.1);
@@ -512,7 +512,7 @@ li.timeline-item::before {
 }
 
 .wrap:hover {
-  background: linear-gradient(135deg, #faf5db 0%, #fcf8d2 100%);
+  background: linear-gradient(135deg, #f1f1f1 0%, #dadada 100%);
   color: rgb(44, 44, 44);
 }
 
