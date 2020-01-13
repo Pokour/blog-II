@@ -42,7 +42,7 @@ export class AppComponent {
         if (storedUrl !== null) {
           router.navigateByUrl(storedUrl);
         }
-        console.log('srotdurl', storedUrl)
+        console.log('storedURL', storedUrl)
 
         /******************************************************************
          * Explain the use of commented code below
