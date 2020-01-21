@@ -18,10 +18,7 @@ export class AppComponent {
   isSticky: boolean = false;
 
   constructor(userService: UserService,
-    private auth: AuthsService,
-    private router: Router,
-    private utility: AppUtilService, // why AppUtilService is having 2 Instances ?
-    private _apputil: AppUtilService) {
+    auth: AuthsService, private router: Router, private _apputil: AppUtilService) {
 
     /**********************************************************************
      * 1. Authentication starts from app.component.ts
@@ -43,17 +40,6 @@ export class AppComponent {
           router.navigateByUrl(storedUrl);
         }
         console.log('storedURL', storedUrl)
-
-        /******************************************************************
-         * Explain the use of commented code below
-         */
-        // if (this.router.url == '/login' || this.router.url.indexOf('/login') > -1) {
-        //   this.auth.postLoggedIn();
-        // }
-        // if( this.router.url == '/login' || this.router.url.indexOf('/login') > -1){
-        //   // this.auth.postLoggedIn();
-        //   //this._apputil.loadingStarted();
-        // }
         localStorage.clear();
       }
     });
@@ -64,7 +50,7 @@ export class AppComponent {
      * This is the code for loader. Spinner Subject gets the boolean value as per which it gets displayed and not displayed.
      * If spinnerVisible is true, loader is shown otherwise not.
      */
-    this.utility.getSpinnerSubject()
+    this._apputil.getSpinnerSubject()
       .pipe(
         startWith(null),
         delay(0),

@@ -23,9 +23,9 @@ export class UserService {
    */
   private dataShare: BehaviorSubject<any> = new BehaviorSubject({} as any);
   subjectDataObservable$ = this.dataShare.asObservable();
-  userType;
+  userType: string;
   userAuthObject: firebase.User;
-  fireDBObj;
+  fireDBObj: any;
   constructor(private _apputil: AppUtilService) {
   }
   /**************************************************************

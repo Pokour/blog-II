@@ -41,12 +41,7 @@ export class AuthsService {
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
     // this._apputil.loadingStarted();
   }
-  /***********************************
-   * What is this for ?
-   */
-  // postLoggedIn() {
-  //   this.router.navigateByUrl('/');
-  // }
+  
   /********************************************
    * AngularFireAuth module id used to sign out
    */
