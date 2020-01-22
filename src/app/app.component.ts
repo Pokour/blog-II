@@ -34,7 +34,6 @@ export class AppComponent {
         this._apputil.loadingEnded();
         console.log('USEROBJECT recieved from FireAuthModule', userObjectRecieved);
         userService.mandatoryLoginRoutine(userObjectRecieved);
-        // userService.save(userObjectRecieved);----------------------------------## deprecated ##
         let storedUrl = localStorage.getItem('storedUrl');
         if (storedUrl !== null) {
           router.navigateByUrl(storedUrl);
@@ -46,8 +45,9 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-    /***************
-     * This is the code for loader. Spinner Subject gets the boolean value as per which it gets displayed and not displayed.
+    /*****************************************************************
+     * This is the code for loader. Spinner Subject gets the boolean
+     * value as per which it gets displayed and not displayed.
      * If spinnerVisible is true, loader is shown otherwise not.
      */
     this._apputil.getSpinnerSubject()

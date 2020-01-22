@@ -174,6 +174,7 @@ export class FormComponent implements OnInit {
     this.seletedRole = role;
     console.log(role)
   }
+
   /************************************************************************
    * This function kicks in after user hits the submit button. It validates
    * userType to take appropriate actions.
@@ -181,7 +182,7 @@ export class FormComponent implements OnInit {
    *    to get userType
    * 2. If(userType) and trigger creation of profile or update of profile
    */
-  submit_student_info() {
+  submitFormData() {
     const { userType } = this.rSubData;
     if (userType == "NU") {
       this.createUserProfile('write');
