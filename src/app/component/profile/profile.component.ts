@@ -22,8 +22,8 @@ import { AppUtilService } from 'src/app/service/app-util.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  rSubData;
-  role;
+  rSubData: { userType: any; fireAuthObj: any; fData: any; };
+  role: string;
   constructor(
     private crud: CrudService, public auth: AuthsService, private userService: UserService,
     private _apputil: AppUtilService) {
@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
+
   /*******************************************************************
    * 1. Destructuring of the behaviourSubject and get dataFootprint
    *    and other data.
@@ -42,14 +43,9 @@ export class ProfileComponent implements OnInit {
    */
   ngOnInit() {
     this._apputil.loadingStarted();
-    // this.userService.readUser(this.uid).then(data => {
-    //   if (data) {
-    //     console.log('Data from FIERBASE', data);
-    //     this.unwrapData(data);
-    //   }
-    // });
     this.dataUnwrap(this.rSubData);  
   }
+
   /************************************************************************
    * 1. Destructuring dataFootprint recieved from Behaviour subject.
    * 2. Check userType "OUWP" "EUWOP" "NU"
@@ -76,6 +72,7 @@ export class ProfileComponent implements OnInit {
       this.payLoadtoSubject({});
     }
   }
+
   /*************************************************************************
    * Generating query string. Basic essential parameters
    * role, requestStatus, user, roleSheet
@@ -85,6 +82,7 @@ export class ProfileComponent implements OnInit {
       + user + "&rolePointer=" + roleSheet;
     return queryString;
   }
+
   /************************************************************************
    * This function checks for existance of library node in Firebase DB
    * If library array is detected it is converted to a string separated by ","
@@ -100,6 +98,7 @@ export class ProfileComponent implements OnInit {
     }
     return "none"
   }
+  
   /*************************************************************************
    * This function takes the query string and requests the Google Sheet data
    * from CRUD service.
