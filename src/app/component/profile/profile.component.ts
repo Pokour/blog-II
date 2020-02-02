@@ -52,12 +52,21 @@ export class ProfileComponent implements OnInit {
    * 3. generate query string to request Google Sheet
    * 4. Send Google Sheet data to behaviur subject
    */
+  /***************************************************
+   * TODO
+   * 1. New metadata values roleScriptId, userScriptId,
+   *    roleIndex, userIndex
+   * 2. Generate query string that will send role,
+   *    requestStatus, user, roleSheet, rolescriptId,
+   *    roleIndex
+   * 3. 
+   */
   dataUnwrap(subjectObject) {
     const { userType } = subjectObject;
     if (userType == "OUWP") {
-      const {  metadata: { user, roleSheet, library }, role, requestStatus } = subjectObject.fData;
+      const {  metadata: { roleScriptId, userScriptId, roleIndex, userIndex, user, roleSheet, library }, role, requestStatus } = subjectObject.fData;
       this.role = role;
-      let query = this.generateQueryString(role, requestStatus, user, roleSheet)
+      let query = this.generateQueryString(roleScriptId, userScriptId, roleIndex, userIndex, role, requestStatus, user, roleSheet)
         + "&library=" + this.generateLibraryString(library);
       this.getGoogleSheetData(query);
     }
@@ -77,7 +86,7 @@ export class ProfileComponent implements OnInit {
    * Generating query string. Basic essential parameters
    * role, requestStatus, user, roleSheet
    */
-  generateQueryString(role, requestStatus, user, roleSheet) {
+  generateQueryString(roleScriptId, userScriptId, roleIndex, userIndex, role, requestStatus, user, roleSheet) {
     var queryString = "?action=read&role=" + role + "&requestStatus=" + requestStatus + "&userPointer="
       + user + "&rolePointer=" + roleSheet;
     return queryString;
