@@ -54,4 +54,9 @@ export class CrudService {
     var url = this.scriptUrl + qString;
     return this.http.get(url);
   }
+
+  pingToGsSheet(scriptLink, qParam) {
+    var url = scriptLink + qParam;
+    return this.http.get(url);
+  }
 }

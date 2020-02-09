@@ -24,6 +24,9 @@ import { AppUtilService } from 'src/app/service/app-util.service';
 export class ProfileComponent implements OnInit {
   rSubData: { userType: any; fireAuthObj: any; fData: any; };
   role: string;
+  rsid: any;
+  usid: any;
+  
   constructor(
     private crud: CrudService, public auth: AuthsService, private userService: UserService,
     private _apputil: AppUtilService) {
@@ -43,7 +46,7 @@ export class ProfileComponent implements OnInit {
    */
   ngOnInit() {
     this._apputil.loadingStarted();
-    this.dataUnwrap(this.rSubData);  
+    this.dataUnwrap(this.rSubData);
   }
 
   /************************************************************************
@@ -53,7 +56,7 @@ export class ProfileComponent implements OnInit {
    * 4. Send Google Sheet data to behaviur subject
    */
   /***************************************************
-   * TODO
+   * #TODO
    * 1. New metadata values roleScriptId, userScriptId,
    *    roleIndex, userIndex
    * 2. Generate query string that will send role,
@@ -64,18 +67,41 @@ export class ProfileComponent implements OnInit {
   dataUnwrap(subjectObject) {
     const { userType } = subjectObject;
     if (userType == "OUWP") {
-      const {  metadata: { roleScriptId, userScriptId, roleIndex, userIndex, user, roleSheet, library }, role, requestStatus } = subjectObject.fData;
+      const {
+        metadata: {
+          roleScriptId,
+          userScriptId,
+          roleIndex,
+          userIndex,
+          user,
+          roleSheet,
+          library
+        },
+        role,
+        requestStatus
+      } = subjectObject.fData;
+
+      /*****************************************************
+       *Pass the destructured data to the global variables
+       * 1. roleScriptId as rsid
+       * 2. userScriptId as usid
+       */
       this.role = role;
-      let query = this.generateQueryString(roleScriptId, userScriptId, roleIndex, userIndex, role, requestStatus, user, roleSheet)
-        + "&library=" + this.generateLibraryString(library);
-      this.getGoogleSheetData(query);
+      this.rsid = roleScriptId;
+      this.usid = userScriptId;
+      
+      let query = this.generateQueryString(roleIndex,userIndex,role,requestStatus,user,roleSheet) +
+        "&library=" + this.generateLibraryString(library);
+      this.getGoogleSheetData(this.rsid,query);
     }
+
     if (userType == "EUWOP") {
       this.role = "NA";
       this.payLoadtoSubject({});
       // this.query = this.generateQueryString(role, requestStatus );
       // this.getGoogleSheetData(this.query);
     }
+
     if (userType == "NU") {
       this.role = "NA";
       this.payLoadtoSubject({});
@@ -85,8 +111,9 @@ export class ProfileComponent implements OnInit {
   /*************************************************************************
    * Generating query string. Basic essential parameters
    * role, requestStatus, user, roleSheet
+   * #TOBE added roleScriptId, userScriptId, roleIndex, userIndex
    */
-  generateQueryString(roleScriptId, userScriptId, roleIndex, userIndex, role, requestStatus, user, roleSheet) {
+  generateQueryString(roleIndex, userIndex, role, requestStatus, user, roleSheet) {
     var queryString = "?action=read&role=" + role + "&requestStatus=" + requestStatus + "&userPointer="
       + user + "&rolePointer=" + roleSheet;
     return queryString;
@@ -107,15 +134,17 @@ export class ProfileComponent implements OnInit {
     }
     return "none"
   }
-  
+
   /*************************************************************************
    * This function takes the query string and requests the Google Sheet data
    * from CRUD service.
    * As the data is recieved the data is passed to the Payload function as
-   * parameter
+   * parameter.
+   * To be added an argument that is passed to the readGsData() that contains
+   * the sheet url containing the database.
    */
-  getGoogleSheetData(qstring) {
-    this.crud.readGsData(qstring).subscribe(gdata => {
+  getGoogleSheetData(roleSheetId,qstring) {
+    this.crud.pingToGsSheet(roleSheetId,qstring).subscribe(gdata => {
       if (gdata) {
         this._apputil.loadingEnded();
         this.payLoadtoSubject(gdata);
