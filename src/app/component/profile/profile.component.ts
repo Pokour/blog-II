@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   role: string;
   rsid: any;
   usid: any;
-  
+
   constructor(
     private crud: CrudService, public auth: AuthsService, private userService: UserService,
     private _apputil: AppUtilService) {
@@ -89,10 +89,10 @@ export class ProfileComponent implements OnInit {
       this.role = role;
       this.rsid = roleScriptId;
       this.usid = userScriptId;
-      
-      let query = this.generateQueryString(roleIndex,userIndex,role,requestStatus,user,roleSheet) +
+
+      let query = this.generateQueryString(roleIndex, userIndex, role, requestStatus, user, roleSheet) +
         "&library=" + this.generateLibraryString(library);
-      this.getGoogleSheetData(this.rsid,query);
+      this.getGoogleSheetData(this.rsid, query);
     }
 
     if (userType == "EUWOP") {
@@ -143,8 +143,8 @@ export class ProfileComponent implements OnInit {
    * To be added an argument that is passed to the readGsData() that contains
    * the sheet url containing the database.
    */
-  getGoogleSheetData(roleSheetId,qstring) {
-    this.crud.pingToGsSheet(roleSheetId,qstring).subscribe(gdata => {
+  getGoogleSheetData(roleSheetId, qstring) {
+    this.crud.pingToGsSheet(roleSheetId, qstring).subscribe(gdata => {
       if (gdata) {
         this._apputil.loadingEnded();
         this.payLoadtoSubject(gdata);
