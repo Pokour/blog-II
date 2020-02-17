@@ -115,7 +115,7 @@ export class ProfileComponent implements OnInit {
    */
   generateQueryString(roleIndex, userIndex, role, requestStatus, user, roleSheet) {
     var queryString = "?action=read&role=" + role + "&requestStatus=" + requestStatus + "&userPointer="
-      + user + "&rolePointer=" + roleSheet;
+      + user + "&rolePointer=" + roleSheet + "&roleIndex=" + roleIndex + "&userIndex=" + userIndex;
     return queryString;
   }
 
