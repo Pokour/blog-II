@@ -54,6 +54,8 @@ export class LibraryComponent implements OnInit {
   }
   receiveBookInfo($event) {
     this.blogBook = $event
+
+
   }
   receiveChapterInfo($event) {
     this.blogChapter = $event
@@ -126,6 +128,7 @@ export class LibraryComponent implements OnInit {
           this.elementData[j] = Object.values(this.blogData[j]);
 
           if (this.blogIndex[j] == 'youtube') {
+
             this.sanatizedUrl = this.blogData[j]['youtube'];
             this.elementData[j] = this.sanitizer.bypassSecurityTrustResourceUrl(this.sanatizedUrl)
           }
