@@ -87,7 +87,7 @@ export class LibraryComponent implements OnInit {
     });
   }
 
-  createBlogName() {
+  createBlogName(a) {
       //  a(Category) b(Book) c(Chapter) to be retrieved, the variables a b c are converted to string ;
       this.blogCategory = this.blogCategory + '';
       this.blogBook = this.blogBook + '';
