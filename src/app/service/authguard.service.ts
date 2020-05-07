@@ -28,6 +28,7 @@ export class AuthguardService implements CanActivate {
         return true;
       }
       if (!user) {
+        state.url = "/blog-II"+ state.url // added this for subdomain routing
         console.log("Connot find USER. The attempted route is " + state.url);
         this.router.navigate(['/login'], { queryParams: { queryUrl: state.url } });
       }
