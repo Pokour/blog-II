@@ -8,6 +8,8 @@ import Swiper from 'swiper';
 })
 export class LandingComponent implements OnInit {
 
+  swiper
+
   describe = false;
   roleDescription = ["You are our favourite people. If you are here to learn and access our free library, then giddy up, sign up and choose your role to be a Student.",
     "If you are not a student anymore, but a learner and doer in life, then sign up and choose your role to be a Collaborator. You will get to work on our ongoing projects and will also have access to our library.",
@@ -18,23 +20,20 @@ export class LandingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var swiper = new Swiper('.blog-slider', {
-      spaceBetween: 30
-      , effect: 'fade'
-      , loop: true
-      , autoplay: {
+    this.swiper = new Swiper('.blog-slider', {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      autoplay: {
         delay: 2000
-        ,
-      }
-      , mousewheel: {
+      },
+      mousewheel: {
         invert: false
-        ,
-      }
-      , // autoHeight: true,
+      },
+      // autoHeight: true,
       pagination: {
-        el: '.blog-slider__pagination'
-        , clickable: true
-        ,
+        el: '.blog-slider__pagination',
+        clickable: true
       }
     });
   }
